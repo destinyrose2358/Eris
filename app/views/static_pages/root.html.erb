@@ -3,7 +3,8 @@
     window.currentUser = <%= render(
       "api/users/user.json.jbuilder",
       user: current_user
-    ).html_safe %>
+    ).html_safe %>;
+    window.logo = "<%= image_url("eris_logo.gif") %>";
   </script>
 <% end %>
 
