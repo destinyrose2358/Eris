@@ -4,12 +4,13 @@ import { AuthRoute } from "../util/route_util";
 import SignupFormContainer from "./session/signup_form_container";
 import LoginFormContainer from "./session/login_form_container";
 
-const App = () => (
+const App = () => {
+  return (
   <div>
     <GreetingContainer />
     <AuthRoute path="/signup" component={ SignupFormContainer } />
     <AuthRoute path="/login" component={ LoginFormContainer } />
   </div>
-);
+)};
 
 export default App;

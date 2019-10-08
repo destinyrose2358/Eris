@@ -1,0 +1,67 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.modal {
+  background: $pastel-tertiary;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  font-size: 24px;
+}
+
+input:not([type="submit"]) {
+  display: block;
+  background: darken($base-color, 10%);
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin: 5px;
+  margin-bottom: 10px;
+  width: 90%;
+  border: 1px solid darken($base-color, 20%);
+}
+
+input:not([type="submit"]):focus {
+  border: 1px solid $accent-color;
+}
+
+input[type=submit] {
+  background: $accent-color;
+  color: white;
+  padding: 10px;
+  width: 92.5%;
+  border-radius: 5px;
+  text-align: center;
+  margin: 5px;
+}
+
+input[type=submit]:hover {
+  background: darken($accent-color, 10%);
+}
+
+label {
+  color: lightgray;
+  align-self: flex-start;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a {
+  color: $tertiary-color;
+  cursor: pointer;
+}
