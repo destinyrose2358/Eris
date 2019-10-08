@@ -1,11 +1,11 @@
-<% if logged_in? %>
-  <script type="text/javascript">
+<script type="text/javascript">
+  <% if logged_in? %>
     window.currentUser = <%= render(
       "api/users/user.json.jbuilder",
       user: current_user
     ).html_safe %>;
-    window.logo = "<%= image_url("eris_logo.gif") %>";
-  </script>
-<% end %>
+  <% end %>
+  window.logoURL = "<%= image_url('eris_logo.gif') %>"
+</script>
 
 <div id="root"></div>

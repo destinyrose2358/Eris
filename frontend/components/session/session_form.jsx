@@ -45,7 +45,7 @@ export default class SessionForm extends React.Component {
     return (
       <div className="modal">
         <div className="logo">
-          <img src={ window.logo } alt="Eris Logo"/>
+          <img src={ window.logoURL } alt="Eris Logo"/>
           <h1>ERIS</h1>
         </div>
         <div className="session-form">
