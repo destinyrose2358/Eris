@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+  background: $base-color;
+}
+
 .modal {
   background: $pastel-tertiary;
   position: fixed;
@@ -29,6 +33,11 @@ input:not([type="submit"]) {
   margin-bottom: 10px;
   width: 90%;
   border: 1px solid darken($base-color, 20%);
+}
+
+input {
+  color: white;
+  font-family: 'Roboto', sans-serif;
 }
 
 input:not([type="submit"]):focus {
