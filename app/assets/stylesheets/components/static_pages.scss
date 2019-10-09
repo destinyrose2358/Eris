@@ -4,6 +4,8 @@
 
 body {
   background: $base-color;
+  font-family: 'Roboto', sans-serif;
+  color: white;
 }
 
 .modal {
@@ -19,9 +21,12 @@ body {
 }
 
 h1 {
-  color: white;
   text-align: center;
   font-size: 24px;
+}
+
+h2 {
+  font-size: 20px;
 }
 
 input:not([type="submit"]) {
@@ -35,26 +40,19 @@ input:not([type="submit"]) {
   border: 1px solid darken($base-color, 20%);
 }
 
-input {
-  color: white;
-  font-family: 'Roboto', sans-serif;
-}
-
 input:not([type="submit"]):focus {
   border: 1px solid $accent-color;
 }
 
-input[type=submit] {
+input[type=submit], button {
   background: $accent-color;
-  color: white;
   padding: 10px;
-  width: 92.5%;
   border-radius: 5px;
   text-align: center;
   margin: 5px;
 }
 
-input[type=submit]:hover {
+input[type=submit]:hover, button:hover {
   background: darken($accent-color, 10%);
 }
 
@@ -73,4 +71,14 @@ form {
 a {
   color: $tertiary-color;
   cursor: pointer;
+}
+
+.profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+i {
+  font-size: 20px;
 }

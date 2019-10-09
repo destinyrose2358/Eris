@@ -1,0 +1,12 @@
+.setting-nav {
+  display: flex;
+  align-items: flex-end;
+  flex-flow: column;
+  padding: 10px;
+  background: $base-color;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 33.33%;
+}

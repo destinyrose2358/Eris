@@ -1,0 +1,8 @@
+.user-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 200px;
+  padding: 10px;
+  background: darken($base-color, 10%);
+}

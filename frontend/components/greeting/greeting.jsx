@@ -1,5 +1,6 @@
 import React from "react";
 import { ProtectedRoute } from "../../util/route_util";
+import UserControlsContainer from "../user/user_controls_container";
 
 
 export default class Greeting extends React.Component {
@@ -10,10 +11,9 @@ export default class Greeting extends React.Component {
         path="/"
         currentUser={ currentUser }
         logout={ logout }
-        component={ ({ currentUser, logout }) => (
+        component={ () => (
         <div>
-          <h1>Welcome, { currentUser.username }</h1>
-          <button onClick={ logout }>Logout</button>
+          <UserControlsContainer />
         </div>
       )}/>
     )
