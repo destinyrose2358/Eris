@@ -1,5 +1,5 @@
 class Server < ApplicationRecord
-  validates :title, :icon, uniqueness: true
+  validates :title, :icon, presence: true
 
   has_many :channels,
   dependent: :destroy
