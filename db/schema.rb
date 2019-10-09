@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_030846) do
+ActiveRecord::Schema.define(version: 2019_10_09_170923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 2019_10_09_030846) do
     t.datetime "updated_at", null: false
     t.index ["server_id"], name: "index_channels_on_server_id"
     t.index ["title", "server_id"], name: "index_channels_on_title_and_server_id", unique: true, where: "(server_id IS NOT NULL)"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer "memberable_id", null: false
+    t.string "memberable_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["memberable_type", "memberable_id", "user_id"], name: "unique_membership_index", unique: true
+    t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
   create_table "servers", force: :cascade do |t|

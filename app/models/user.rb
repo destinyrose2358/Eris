@@ -4,6 +4,17 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 6, allow_nil: true}
   after_initialize :ensure_session_token
 
+  has_many :memberships
+
+  has_many :servers,
+  through: :memberships,
+  source: :memberable,
+  source_type: :Server
+
+  has_many :owned_servers,
+  class_name: :Server,
+  foreign_key: :owner_id
+
   attr_reader :password
 
   def self.find_by_credentials(username, password)
