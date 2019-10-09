@@ -55,7 +55,7 @@ export default class SessionForm extends React.Component {
           <ul>
             { errorLis }
           </ul>
-          
+          { demoLogin }
           <form onSubmit={ this.handleSubmit }>
             <label htmlFor="username">Username</label>
             <input
@@ -71,7 +71,7 @@ export default class SessionForm extends React.Component {
               value={this.state.password}
               onChange={this.update("password")} />
               <input type="submit" value={ formType }/>
-              { demoLogin }
+              
               <p>or  { linkOff }</p>            
           </form>
         </div>
