@@ -42,6 +42,8 @@ export default class SessionForm extends React.Component {
         value={this.state.email}
         onChange={this.update("email")} />
       </>;
+    let demoLogin = formType === "Login" ? <button onClick={ () => this.props.processForm({username: "Flerpen", password: "hunter2"}) }>Demo Login</button> :
+      undefined;
     return (
       <div className="modal">
         <div className="logo">
@@ -53,6 +55,7 @@ export default class SessionForm extends React.Component {
           <ul>
             { errorLis }
           </ul>
+          
           <form onSubmit={ this.handleSubmit }>
             <label htmlFor="username">Username</label>
             <input
@@ -68,6 +71,7 @@ export default class SessionForm extends React.Component {
               value={this.state.password}
               onChange={this.update("password")} />
               <input type="submit" value={ formType }/>
+              { demoLogin }
               <p>or  { linkOff }</p>            
           </form>
         </div>
