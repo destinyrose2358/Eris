@@ -9,7 +9,8 @@ export const REMOVE_SERVER_ERRORS = "REMOVE_SERVER_ERRORS";
 
 export const receiveServers = servers => ({
   type: RECEIVE_SERVERS,
-  servers
+  servers,
+  serverIds: Object.keys(servers)
 });
 
 export const receiveServer = ({server, users}) => ({

@@ -1,0 +1,16 @@
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { fetchServer } from "../../actions/server_actions";
+import ServerItem from "./server_item";
+
+const msp = (state, { serverId, match: { params } }) => ({
+  server: state.entities.servers[serverId]
+});
+
+const mdp = (dispatch, { serverId, match: { params } }) => ({
+  fetchServer: () => dispatch(fetchServer(serverId))
+})
+
+const ServerItemContainer = withRouter(connect(msp, mdp)(ServerItem));
+
+export default ServerItemContainer;

@@ -1,6 +1,7 @@
 import React from "react";
 import { ProtectedRoute } from "../../util/route_util";
 import UserControlsContainer from "../user/user_controls_container";
+import ServerIndexContainer from "../server/server_index_container";
 
 
 export default class Greeting extends React.Component {
@@ -13,6 +14,7 @@ export default class Greeting extends React.Component {
         logout={ logout }
         component={ () => (
         <div>
+          <ServerIndexContainer />
           <UserControlsContainer />
         </div>
       )}/>
