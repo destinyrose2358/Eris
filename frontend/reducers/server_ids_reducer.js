@@ -6,10 +6,18 @@ const serverIdsReducer = (state = [], action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_SERVERS:
-      newState = merge([], state, action.serverIds);
+      newState = merge([], state);
+      action.serverIds.forEach(serverId => {
+        if (!newState.includes(serverId)) {
+          newState.push(serverId);
+        }
+      });
       return newState;
     case RECEIVE_SERVER:
-      newState = merge([], state, action.server.id);
+      newState = merge([], state);
+      if (!newState.includes(action.server.id)) {
+        newState.push(action.server.id);
+      }
       return newState;
     default:
       return state;

@@ -1,9 +1,29 @@
 import React from "react";
+import { Route } from "react-router-dom";
 import ServerItemContainer from "./server_item_container";
+import CreateServerContainer from "./create_server_container";
+import isEqual from "lodash.isequal";
 
 export default class ServerIndex extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      createServerModalOpen: false
+    };
+    this.openCreateServerForm = this.openCreateServerForm.bind(this);
+    this.closeCreateServerForm = this.closeCreateServerForm.bind(this);
+  }
+
   componentDidMount() {
     this.props.fetchServers();
+  }
+
+  openCreateServerForm() {
+    this.setState({createServerModalOpen: true});
+  }
+
+  closeCreateServerForm() {
+    this.setState({ createServerModalOpen: false });
   }
 
   render() {
@@ -11,11 +31,21 @@ export default class ServerIndex extends React.Component {
       <ServerItemContainer serverId={ serverId } key={ serverId } />
     ));
     return (
-      <div>
+      <>
         <ul>
           { serverItems }
+          <li className="icon" onClick={ this.openCreateServerForm }>
+            <i className="fas fa-plus"></i>
+          </li>
         </ul>
-      </div>
+        { this.state.createServerModalOpen && 
+          <>
+            <div className="translucent modal" onClick={ this.closeCreateServerForm }>
+            </div>
+          <CreateServerContainer resetModal={ this.closeCreateServerForm } />
+          </> }
+      </>
+        
     )
   }
 }
