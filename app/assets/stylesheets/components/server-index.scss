@@ -1,0 +1,15 @@
+.server-nav {
+  grid-area: nav;
+  background: darken($base-color, 20%);
+  padding: 20px 0;
+}
+
+.server-nav ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.server-link {
+  padding: 5px;
+}

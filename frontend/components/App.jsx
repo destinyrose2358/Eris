@@ -7,12 +7,12 @@ import UserSettingsContainer from "./user/user_settings_container";
 
 const App = () => {
   return (
-  <div>
+  <>
     <ProtectedComponents />
     <AuthRoute path="/signup" component={ SignupFormContainer } />
     <AuthRoute path="/login" component={ LoginFormContainer } />
     <ProtectedRoute path="/settings" component={ UserSettingsContainer} /> 
-  </div>
+  </>
 )};
 
 export default App;

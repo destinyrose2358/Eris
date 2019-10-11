@@ -7,17 +7,16 @@ export default class ServerItem extends React.Component {
     let isDisabled = location.pathname === `/${server.id}`;
     if (isDisabled) {
       return (
-        <li>
-        <div className="fake server-link">
+        <li className="fake server-link">
+        <div>
           <img className="icon" src={server.icon} alt={`${server.title}'s Icon`} />
         </div>
       </li>
       )
     }
     return (
-      <li>
+      <li className="server-link">
         <Link
-          className="server-link"
           to={`/${server.id}`}>
           <img className="icon" src={ server.icon } alt={`${server.title}'s Icon`}/>
         </Link>

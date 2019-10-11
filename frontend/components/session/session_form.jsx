@@ -45,7 +45,7 @@ export default class SessionForm extends React.Component {
     let demoLogin = formType === "Login" ? <button onClick={ () => this.props.processForm({username: "Flerpen", password: "hunter2"}) }>Demo Login</button> :
       undefined;
     return (
-      <div className="modal">
+      <div className="modal-session">
         <div className="logo">
           <img src="https://i.ibb.co/RP6f9XK/eris-logo.gif" alt="Eris Logo"/>
           <h1>ERIS</h1>

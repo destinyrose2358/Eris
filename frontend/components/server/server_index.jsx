@@ -31,7 +31,7 @@ export default class ServerIndex extends React.Component {
       <ServerItemContainer serverId={ serverId } key={ serverId } />
     ));
     return (
-      <>
+      <nav className="server-nav scroll">
         <ul>
           { serverItems }
           <li className="icon" onClick={ this.openCreateServerForm }>
@@ -40,11 +40,11 @@ export default class ServerIndex extends React.Component {
         </ul>
         { this.state.createServerModalOpen && 
           <>
-            <div className="translucent modal" onClick={ this.closeCreateServerForm }>
+            <div className="translucent modal-create-server" onClick={ this.closeCreateServerForm }>
             </div>
           <CreateServerContainer resetModal={ this.closeCreateServerForm } />
           </> }
-      </>
+      </nav>
         
     )
   }

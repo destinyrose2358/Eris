@@ -13,7 +13,7 @@ export default class ProtectedComponents extends React.Component {
         currentUser={ currentUser }
         logout={ logout }
         component={ () => (
-        <div>
+        <div className="main-page">
           <ServerIndexContainer />
           <UserControlsContainer />
         </div>

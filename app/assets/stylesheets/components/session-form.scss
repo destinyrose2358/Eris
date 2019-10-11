@@ -1,22 +1,35 @@
+.modal-session {
+  display: grid;
+  grid-template-columns: 60px [logo-start] 200px [logo-end] 30px 400px 1fr;
+  grid-template-rows: 60px [logo-start] 200px [logo-end] 30px 340px 1fr;
+  grid-template-areas:
+    ". . . . ."
+    ". logo . . ."
+    ". . . . ."
+    ". . . form ."
+    ". . . . .";
+}
+
 .session-form {
   z-index: 1000;
-  position: relative;
+  position: absolute;
   background: $base-color;
-  margin-left: 23%;
   padding: 20px;
   width: 400px;
   border-radius: 5px;
+  grid-area: form;
   -webkit-box-shadow: -10px 10px 10px 0px rgba(0,0,0,0.5);
   -moz-box-shadow: -10px 10px 10px 0px rgba(0,0,0,0.5);
   box-shadow: -10px 10px 10px 0px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .logo {
   display: flex;
   position: absolute;
-  top: 100px;
-  left: 100px;
-  width: 200px;
+  grid-area: logo;
 }
 
 .logo img {
@@ -31,7 +44,7 @@
 }
 
 .session-form input[type=submit] {
-  width: 92.5%;
+  width: 100%;
 }
 
 .session-form button {

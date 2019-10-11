@@ -25,18 +25,23 @@ export default class CreateServerForm extends React.Component {
 
   render() {
     return (
-      <form className="modal-content" onSubmit={ this.handleSubmit }>
-        <input
-          type="text"
-          onChange={ this.update("title") }
-          value={ this.state.title } />
-        <input
-          type="text"
-          onChange={ this.update("icon") }
-          value={ this.state.icon }
-          />
-        <input type="submit" value="Create New Server"/>
-      </form>
+      <div className="modals-content">
+        <form  onSubmit={ this.handleSubmit }>
+          <label htmlFor="title">Server Name</label>
+          <input
+            id="title"
+            type="text"
+            onChange={ this.update("title") }
+            value={ this.state.title } />
+          <input
+            type="text"
+            onChange={ this.update("icon") }
+            value={ this.state.icon }
+            />
+          <input type="submit" value="Create New Server"/>
+        </form>
+      </div>
+      
     )
   }
 }
