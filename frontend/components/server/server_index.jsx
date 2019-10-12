@@ -31,7 +31,7 @@ export default class ServerIndex extends React.Component {
       <ServerItemContainer serverId={ serverId } key={ serverId } />
     ));
     return (
-      <nav className="server-nav scroll">
+      <nav className="server-nav scroll-visible">
         <ul>
           { serverItems }
           <li className="icon" onClick={ this.openCreateServerForm }>

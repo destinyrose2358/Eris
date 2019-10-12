@@ -71,7 +71,6 @@ export default class SessionForm extends React.Component {
               value={this.state.password}
               onChange={this.update("password")} />
               <input type="submit" value={ formType }/>
-              
               <p>or  { linkOff }</p>            
           </form>
         </div>

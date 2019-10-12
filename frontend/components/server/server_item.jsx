@@ -8,9 +8,7 @@ export default class ServerItem extends React.Component {
     if (isDisabled) {
       return (
         <li className="fake server-link">
-        <div>
           <img className="icon" src={server.icon} alt={`${server.title}'s Icon`} />
-        </div>
       </li>
       )
     }

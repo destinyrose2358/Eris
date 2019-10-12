@@ -13,10 +13,12 @@ export const logoutCurrentUser = () => ({
   type: LOGOUT_CURRENT_USER
 })
 
-export const receiveSessionErrors = errors => ({
+export const receiveSessionErrors = errors => {
+  return {
   type: RECEIVE_SESSION_ERRORS,
   errors: errors.responseJSON
-});
+  }
+};
 
 export const login = user => dispatch => (
   SessionAPIUtil.login(user)
