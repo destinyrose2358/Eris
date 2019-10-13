@@ -7,11 +7,13 @@ export const REMOVE_SERVER = "REMOVE_SERVER";
 export const RECEIVE_SERVER_ERRORS = "RECEIVE_SERVER_ERRORS";
 export const REMOVE_SERVER_ERRORS = "REMOVE_SERVER_ERRORS";
 
-export const receiveServers = servers => ({
+export const receiveServers = servers => {
+  let serverIds = Object.keys(servers).map(serverId => parseInt(serverId))
+  return {
   type: RECEIVE_SERVERS,
   servers,
-  serverIds: Object.keys(servers)
-});
+  serverIds
+}};
 
 export const receiveServer = ({server, users}) => ({
   type: RECEIVE_SERVER,

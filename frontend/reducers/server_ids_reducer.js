@@ -12,13 +12,13 @@ const serverIdsReducer = (state = [], action) => {
           newState.push(serverId);
         }
       });
-      return newState;
+      return newState.sort();
     case RECEIVE_SERVER:
       newState = merge([], state);
       if (!newState.includes(action.server.id)) {
         newState.push(action.server.id);
       }
-      return newState;
+      return newState.sort();
     default:
       return state;
   }

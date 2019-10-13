@@ -1,0 +1,18 @@
+.member-index {
+  grid-area: members;
+  background: darken($base-color, 15%);
+}
+
+.member-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.member-item .icon {
+  margin: 0 10px;
+}
+
+.member-item:hover {
+  background: rgba($tertiary-color, 0.25);
+}

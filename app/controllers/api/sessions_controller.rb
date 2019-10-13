@@ -4,7 +4,7 @@ class Api::SessionsController < ApplicationController
     @user = User.find_by_credentials(params[:user][:username], params[:user][:password])
     if @user
       login(@user)
-      render :create
+      render "api/users/show"
     else
       render json: ["Password or Username was invalid"], status: :unprocessable_entity
     end

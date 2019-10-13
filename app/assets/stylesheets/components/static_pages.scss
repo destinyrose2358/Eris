@@ -120,6 +120,9 @@ i {
 
 *[class*="scroll"] {
   overflow: auto;
+}
+
+*[class*="scroll"] > * {
   padding-left: 6px;
 }
 
