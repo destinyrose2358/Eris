@@ -1,5 +1,6 @@
 import merge from "lodash.merge";
 import { RECEIVE_SERVERS, RECEIVE_SERVER } from "../actions/server_actions";
+import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 
 const serverIdsReducer = (state = [], action) => {
   Object.freeze(state);
@@ -19,6 +20,8 @@ const serverIdsReducer = (state = [], action) => {
         newState.push(action.server.id);
       }
       return newState.sort();
+    case LOGOUT_CURRENT_USER:
+      return [];
     default:
       return state;
   }

@@ -7,14 +7,14 @@ export default class ServerShow extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (!prevProps.server || (this.props.server.id !== prevProps.server.id)) {
+    let { server } = this.props;
+    if (!prevProps.server || (server && (server.id !== prevProps.server.id))) {
       this.props.fetchServer();
     }
   }
   
   render() {
     let { server } = this.props;
-    console.log(server);
     return server ? (
       <>
         <MemberIndex memberIds={ server.member_ids } />

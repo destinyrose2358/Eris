@@ -6,8 +6,7 @@ export default class MemberItem extends React.Component {
     let { member } = this.props;
     return member ? (
       <li
-        className="member-item"
-        key={ member.id }>
+        className="member-item">
         <img
           className="icon"
           src={ member.profile_picture }

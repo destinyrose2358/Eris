@@ -5,7 +5,7 @@ export default class MemberIndex extends React.Component {
   render() {
     if (!this.props.memberIds) return <div></div>;
     let memberLis = this.props.memberIds.map(memberId => (
-      <MemberItemContainer memberId={ memberId } />
+      <MemberItemContainer memberId={memberId} key={memberId} />
     ));
     return (
       <aside className="member-index">
