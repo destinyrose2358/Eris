@@ -16,4 +16,7 @@ class Server < ApplicationRecord
   through: :memberships,
   source: :user
 
+  has_many :roles,
+  dependent: :destroy
+
 end

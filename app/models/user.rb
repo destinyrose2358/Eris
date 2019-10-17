@@ -15,6 +15,13 @@ class User < ApplicationRecord
   class_name: :Server,
   foreign_key: :owner_id
 
+  has_many :user_roles,
+  dependent: :destroy
+
+  has_many :roles,
+  through: :user_roles,
+  source: :role
+
   attr_reader :password
 
   def self.find_by_credentials(username, password)
