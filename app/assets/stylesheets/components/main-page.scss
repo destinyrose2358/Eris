@@ -5,7 +5,7 @@
   grid-template-columns: 80px 210px 1fr 200px ;
   grid-template-rows: 60px 1fr 80px;
   grid-template-areas:
-    "nav channel . ."
-    "nav channel . members"
+    "nav . . ."
+    "nav channel-index . members"
     "nav user-controls . members"
 }

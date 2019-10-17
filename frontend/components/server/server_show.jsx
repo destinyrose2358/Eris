@@ -1,5 +1,6 @@
 import React from "react";
 import MemberIndex from "../user/member_index";
+import ChannelIndexContainer from "../channel/channel_index_container";
 
 export default class ServerShow extends React.Component {
   componentDidMount() {
@@ -17,6 +18,7 @@ export default class ServerShow extends React.Component {
     let { server } = this.props;
     return server ? (
       <>
+        <ChannelIndexContainer />
         <MemberIndex memberIds={ server.member_ids } />
       </>
     ) : (

@@ -1,0 +1,31 @@
+.channel-index {
+  grid-area: channel-index;
+  background: darken($base-color, 15%);
+  padding: 5px;
+}
+
+.channel-link {
+  border-radius: 5px;
+}
+
+.channel-link a {
+  color: #ccc;
+}
+
+.channel-link > * {
+  padding: 10px;
+  padding-left: 20px;
+  display: block;
+}
+
+.channel-link:hover {
+  background: rgba($base-color, 0.5);
+}
+
+.channel-link:hover a {
+  color: white;
+}
+
+.channel-link.fake {
+  background: rgba($base-color, 0.5);
+}

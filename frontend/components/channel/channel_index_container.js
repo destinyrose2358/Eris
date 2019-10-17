@@ -1,11 +1,14 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { selectChildChannels } from "../../selectors/channel_selectors";
+import ChannelIndex from "./channel_index";
 
-const msp = (state, { match: { params: { serverId } }}) => ({
-  channels: selectChildChannels(state, serverId)
-});
+const msp = (state, { match: { params: { serverId } }}) => {
+  return {
+    channelIds: selectChildChannels(state, serverId)
+  };
+};
 
-const mdp = (dispatch, )
+const ChannelIndexContainer = withRouter(connect(msp)(ChannelIndex));
 
-const ChannelIndexContainer = connect(msp)()
+export default ChannelIndexContainer;
