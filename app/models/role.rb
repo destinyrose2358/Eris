@@ -8,12 +8,8 @@ class Role < ApplicationRecord
   has_many :restrictions,
   dependent: :destroy
   
-  has_many :role_restrictions,
-  through: :restrictions,
-  source: :channel
-
   has_many :channels,
-  through: :role_restrictions,
+  through: :restrictions,
   source: :channel
 
   has_many :user_roles

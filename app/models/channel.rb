@@ -19,11 +19,7 @@ class Channel < ApplicationRecord
   through: :restrictions,
   source: :role
 
-  def restricted_members
-    members = []
-    self.restriction_roles.each do |role|
-      members.concat(role.users).uniq!
-    end
-    return members
-  end
+  has_many :restricted_members,
+  through: :restriction_roles,
+  source: :users
 end

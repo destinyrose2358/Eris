@@ -4,7 +4,7 @@ class Api::ServersController < ApplicationController
   end
 
   def show
-    @server = current_user.servers.includes(:members).find_by(id: params[:id])
+    @server = current_user.servers.includes(:roles, members: :roles, channels: :restricted_members).find_by(id: params[:id])
     if @server
       render :show
     else
@@ -15,6 +15,8 @@ class Api::ServersController < ApplicationController
   def create
     @server = current_user.owned_servers.new(server_params)
     @server.members.push(current_user)
+    new_role = @server.roles.create(name: "test")
+    current_user.roles.push(new_role)
     if @server.save
       render :show
     else

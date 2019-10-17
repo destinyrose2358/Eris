@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import ServerShow from "./server_show";
+import { fetchServer } from "../../actions/server_actions";
 
 const msp = (state, { match: { params } }) => ({
   server: state.entities.servers[params.serverId]

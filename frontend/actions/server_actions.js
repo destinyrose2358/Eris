@@ -15,10 +15,12 @@ export const receiveServers = servers => {
   serverIds
 }};
 
-export const receiveServer = ({server, users}) => ({
+export const receiveServer = ({server, users, channels, roles}) => ({
   type: RECEIVE_SERVER,
   server,
-  users
+  users,
+  channels,
+  roles
 });
 
 export const removeServer = serverId => ({
