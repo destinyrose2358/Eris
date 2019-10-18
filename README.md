@@ -1,20 +1,12 @@
-<style>
-  .img-container {
-    text-align: center;
-  }
-</style>
-
 <div
-  class="img-container">
+  class="img-container"
+  style="text-align: center;">
 
   [<img src="https://i.ibb.co/RP6f9XK/eris-logo.gif"
     alt="Logo"
     title="Eris Logo"
     width="300px"
     height="auto"/>](https://erisapp.herokuapp.com)
-
-  
-
 # **Eris**
 An in browser chat application.
 </div>
