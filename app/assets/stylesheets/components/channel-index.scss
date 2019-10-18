@@ -6,6 +6,7 @@
 
 .channel-link {
   border-radius: 5px;
+  border: 1px solid darken($base-color, 15%);
 }
 
 .channel-link a {
@@ -19,7 +20,7 @@
 }
 
 .channel-link:hover {
-  background: rgba($base-color, 0.5);
+  background: rgba($tertiary-color, 0.25);
 }
 
 .channel-link:hover a {
@@ -27,5 +28,5 @@
 }
 
 .channel-link.fake {
-  background: rgba($base-color, 0.5);
+  background: rgba($tertiary-color, 0.3);
 }

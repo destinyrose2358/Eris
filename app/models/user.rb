@@ -22,6 +22,9 @@ class User < ApplicationRecord
   through: :user_roles,
   source: :role
 
+  has_many :messages,
+  foreign_key: :author_id
+
   attr_reader :password
 
   def self.find_by_credentials(username, password)

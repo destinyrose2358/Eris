@@ -3,7 +3,7 @@ json.server do
   json.extract! @server, :member_ids
   channel_ids = []
   @server.channels.each do |channel|
-    if channel.restricted_members.include?(current_user)
+    if channel.restricted_members.include?(current_user) || channel.restrictions.empty?
       channel_ids.push(channel.id)
     end
   end
@@ -22,7 +22,7 @@ end
 
 json.channels do 
   @server.channels.each do |channel|
-    if channel.restricted_members.include?(current_user)
+    if channel.restricted_members.include?(current_user) || channel.restrictions.empty?
       json.set! channel.id do
         json.partial! "api/channels/channel", channel: channel
       end

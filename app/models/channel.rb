@@ -22,4 +22,6 @@ class Channel < ApplicationRecord
   has_many :restricted_members,
   through: :restriction_roles,
   source: :users
+
+  has_many :messages
 end

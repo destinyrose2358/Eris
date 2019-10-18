@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default class ServerItem extends React.Component {
   render() {
     let { server, location } = this.props;
-    let isDisabled = location.pathname === `/${server.id}`;
+    let isDisabled = location.pathname.split("/")[1] === `${server.id}`;
     if (isDisabled) {
       return (
         <li className="fake server-link">
