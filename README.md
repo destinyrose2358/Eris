@@ -17,3 +17,12 @@
   * Once created you will be able to add users
 * Channel creation - Create channels
   * For servers that a user has admin privileges for can add channels
+
+## Setup
+Clone the repository to your local machine and run `npm install` to install all dependencies.
+
+Run `bundle install`, then `bundle exec rails db:setup` to setup the database.
+
+After running `rails s`, you can then access the app through `localhost:3000`
+
+To test the app out, you can use the Demo Login account.
