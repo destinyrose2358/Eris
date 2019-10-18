@@ -11,6 +11,10 @@ class User < ApplicationRecord
   source: :memberable,
   source_type: :Server
 
+  has_many :channels,
+  through: :servers,
+  source: :channels
+
   has_many :owned_servers,
   class_name: :Server,
   foreign_key: :owner_id
