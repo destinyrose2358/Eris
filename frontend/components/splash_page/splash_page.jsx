@@ -23,6 +23,19 @@ export default class SplashPage extends React.Component {
           {svg.square}
           {svg.square}
           {svg.square}
+          {svg.bomb}
+          {svg.coin}
+          {svg.coin}
+          {svg.potion}
+          {svg.cartridge}
+          {svg.shield}
+          {svg.block}
+          {svg.desktop}
+          {svg.android}
+          {svg.iphone}
+          {svg.laptop}
+          {svg.headphones}
+          {svg.controller}
         </div>
       </div>
     )

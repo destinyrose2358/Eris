@@ -18,14 +18,76 @@
 
 @mixin nth-x($n) {
   &:nth-of-type(#{$n + 11}) {
-    @content
+    @content;
   }
 }
 
 @mixin nth-square($n) {
   &:nth-of-type(#{$n + 14}) {
-    @content
+    @content;
   }
+}
+
+@mixin nth-coin($n) {
+  &:nth-of-type(#{$n + 18}) {
+    @content;
+  }
+}
+
+.bomb {
+  margin-left: -481px;
+  bottom: 335px;
+}
+
+.cartridge {
+  margin-left: 250px;
+  bottom: 392px;
+}
+
+.potion {
+  margin-left: -609px;
+  bottom: 10px;
+}
+
+.shield {
+  margin-left: 423px;
+  bottom: 10px;
+}
+
+.desktop {
+  margin-left: -289.5px;
+  bottom: 10px;
+}
+
+.android {
+  margin-left: -548px;
+  bottom: 10px;
+}
+
+.iphone {
+  margin-left: -401.5px;
+  bottom: 10px;
+}
+
+.controller {
+  margin-left: -255px;
+  bottom: 10px;
+}
+
+.laptop {
+  margin-left: -4px;
+  bottom: 10px;
+}
+
+.headphones {
+  margin-left: 270px;
+  bottom: 142px;
+  transform: scale(0.75);
+}
+
+.block {
+  margin-left: -239px;
+  bottom: 462px;
 }
 
 .triangle {
@@ -120,6 +182,18 @@
   @include nth-square(3) {
     margin-left: 331px;
     bottom: 600px;
+  }
+}
+
+.coin {
+  @include nth-coin(1) {
+    margin-left: -428px;
+    bottom: 300px;
+  }
+
+  @include nth-coin(2) {
+    margin-left: 80px;
+    bottom: 530px;
   }
 }
 
