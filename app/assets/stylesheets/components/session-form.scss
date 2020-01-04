@@ -1,6 +1,6 @@
 .modal-session {
   display: grid;
-  grid-template-columns: 60px [logo-start] 200px [logo-end] 30px 400px 1fr;
+  grid-template-columns: 60px [logo-start] 200px [logo-end] 30px 600px 1fr;
   grid-template-rows: 60px [logo-start] 200px [logo-end] 30px 340px 1fr;
   grid-template-areas:
     ". . . . ."
@@ -15,7 +15,7 @@
   position: absolute;
   background: $base-color;
   padding: 20px;
-  width: 400px;
+  width: 500px;
   border-radius: 5px;
   grid-area: form;
   -webkit-box-shadow: -10px 10px 10px 0px rgba(0,0,0,0.5);
@@ -43,8 +43,14 @@
   color: $accent-color;
 }
 
-.session-form input[type=submit] {
+.session-form input[type=submit], .session-form button {
   width: 100%;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+.session-form p {
+  margin: 7px;
 }
 
 .session-form button {
