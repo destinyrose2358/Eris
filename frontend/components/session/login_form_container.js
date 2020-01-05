@@ -4,7 +4,7 @@ import SessionForm from "./session_form";
 
 const msp = state => ({
   errors: state.errors.session,
-  formType: "Login"
+  formType: "Welcome Back!"
 });
 
 const mdp = dispatch => ({

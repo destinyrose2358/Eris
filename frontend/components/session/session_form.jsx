@@ -30,9 +30,9 @@ export default class SessionForm extends React.Component {
       <p key={ idx }>{ error }</p>
     ));
     let { formType } = this.props;
-    let linkOff = formType === "Login" ?
-      <Link to="/signup" >sign up</Link> : <Link to="/login">login</Link>;
-    let emailInput = formType === "Login" ?
+    let linkOff = formType === "Welcome Back!" ?
+      <p>Need an account? <Link to="/signup" >Register</Link></p> : <Link to="/login">Already have an account?</Link>;
+    let emailInput = formType === "Welcome Back!" ?
       undefined:
       <>
       <label htmlFor="email">Email</label>
@@ -42,7 +42,7 @@ export default class SessionForm extends React.Component {
         value={this.state.email}
         onChange={this.update("email")} />
       </>;
-    let demoLogin = formType === "Login" ? <button onClick={ () => this.props.processForm({username: "Flerpen", password: "hunter2"}) }>Demo Login</button> :
+    let demoLogin = formType === "Welcome Back!" ? <button onClick={ (e) => {e.preventDefault(); this.props.processForm({username: "Flerpen", password: "hunter2"})}}>Demo Login</button> :
       undefined;
     return (
       <div className="modal-session">
@@ -55,7 +55,6 @@ export default class SessionForm extends React.Component {
           <ul>
             { errorLis }
           </ul>
-          { demoLogin }
           <form onSubmit={ this.handleSubmit }>
             <label htmlFor="username">Username</label>
             <input
@@ -70,9 +69,11 @@ export default class SessionForm extends React.Component {
               id="password"
               value={this.state.password}
               onChange={this.update("password")} />
-              <input type="submit" value={ formType }/>
-              <p>or  { linkOff }</p>            
+              <input type="submit" value={ formType === "Welcome Back!" ? "Login" : "Continue" }/>
+              { !!demoLogin ? <p>or</p> : undefined }
+              { demoLogin }
           </form>
+          { linkOff }
         </div>
       </div>
     )
