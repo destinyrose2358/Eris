@@ -8,6 +8,9 @@ export default class UserSettings extends React.Component {
         <nav className="setting-nav">
           <button onClick={logout}>Logout</button>
         </nav>
+        <aside className="user-info">
+          
+        </aside>
       </div>
     )
   }
