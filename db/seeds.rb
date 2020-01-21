@@ -8,21 +8,37 @@
 
 ActiveRecord::Base.transaction do
 
+  require 'aws-sdk-s3'
+
+  s3 = Aws::S3::Resource.new(region: 'us-east-2', credentials: Aws::Credentials.new(Rails.application.credentials.aws[:access_key_id], Rails.application.credentials.aws[:secret_access_key]))
+
+  obj = s3.bucket('eris-dev').object('flerpen_profile.jpg')
+  obj.get(response_target: 'app/assets/images/flerpen_profile.jpg')
+
   #users
   flerpen = User.create(username: "Flerpen",
     password: "hunter2",
-    email: "flerpen@gler.fer",
-    profile_picture: "https://pbs.twimg.com/media/DEE_v61XUAEp5wx.jpg")
+    email: "flerpen@gler.fer")
+
+  flerpen.photo.attach(io: File.open("app/assets/images/flerpen_profile.jpg"), filename: "flerpen_profile.jpg")
+
+  obj = s3.bucket('eris-dev').object('maryllyn_profile.jpg')
+  obj.get(response_target: 'app/assets/images/maryllyn_profile.jpg')
 
   maryllyn = User.create(username: "Maryllyn",
     password: "hunter2",
-    email: "maryllyn@classy.class",
-    profile_picture: "https://www.lunss.com/uploads/product/1/X/1X189/Lavender-Off-the-Shoulder-Long-Ball-Gown-Pageant-Dress-with-High-Slit-1.jpg")
+    email: "maryllyn@classy.class")
+
+  maryllyn.photo.attach(io: File.open("app/assets/images/maryllyn_profile.jpg"), filename: "maryllyn_profile.jpg")
+
+  obj = s3.bucket('eris-dev').object('geoff_grandsoul_profile.jpg')
+  obj.get(response_target: 'app/assets/images/geoff_grandsoul_profile.jpg')
 
   geoff = User.create(username: "Geoff_Grandsoul",
     password: "hunter2",
-    email: "geoff1905@gmail.com",
-    profile_picture: "https://images.uesp.net/thumb/8/8e/OB-item-Black_Soul_Gem.jpg/250px-OB-item-Black_Soul_Gem.jpg")
+    email: "geoff1905@gmail.com")
+
+  geoff.photo.attach(io: File.open("app/assets/images/geoff_grandsoul_profile.jpg"), filename: "geoff_grandsoul_profile.jpg")
 
   #servers
 
