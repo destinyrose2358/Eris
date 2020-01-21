@@ -4,7 +4,7 @@ import SessionForm from "./session_form";
 
 const msp = state => ({
   errors: state.errors.session,
-  formType: "Sign Up"
+  formType: "Create An Account"
 });
 
 const mdp = dispatch => ({

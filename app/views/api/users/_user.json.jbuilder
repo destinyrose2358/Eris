@@ -1,1 +1,2 @@
-json.extract! user, :username, :id, :profile_picture
+json.extract! user, :username, :id
+json.profile_picture url_for(user.photo)
