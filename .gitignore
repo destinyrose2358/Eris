@@ -30,4 +30,3 @@
 node_modules/
 bundle.js
 bundle.js.map
-database.yml
