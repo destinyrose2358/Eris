@@ -14,6 +14,7 @@ export default class UpdateUserForm extends React.Component {
             editting: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleFile = this.handleFile.bind(this);
     }
 
     update(field) {
@@ -27,7 +28,13 @@ export default class UpdateUserForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         let { username, password, email } = this.state;
-        this.props.updateUser({ username, email, password }, this.props.currentUser.id);
+        this.props.updateUser({user: { username, email, password }}, this.props.currentUser.id);
+    }
+
+    handleFile(e) {
+        this.setState({
+            file: e.currentTarget.files[0]
+        })
     }
 
     render() {
@@ -37,7 +44,12 @@ export default class UpdateUserForm extends React.Component {
                 className="user-edit-form"
                 onSubmit={this.handleSubmit}
             >
-                <input type="file" name="profile_picture" accept="image/png, image/jpeg" value={file} />
+                <input
+                    type="file"
+                    name="profile_picture"
+                    accept="image/png, image/jpeg"
+                    onChange={this.handleFile}
+                />
                 <img src={profile_picture} alt={`${username}'s profile picture`} />
                 <label>
                     USERNAME
@@ -46,6 +58,15 @@ export default class UpdateUserForm extends React.Component {
                         name="username"
                         value={username}
                         onChange = {this.update("username")}
+                    />
+                </label>
+                <label>
+                    PASSWORD
+                    <input
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={this.update("password")}
                     />
                 </label>
                 <input type="submit" value="Save" />

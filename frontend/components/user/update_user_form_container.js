@@ -7,7 +7,7 @@ const msp = state => ({
 });
 
 const mdp = dispatch => ({
-    updateUser: userData => dispatch(updateUser(userData))
+    updateUser: (userData, id) => dispatch(updateUser(userData, id))
 });
 
 const UpdateUserFormContainer = connect(msp, mdp)(UpdateUserForm);

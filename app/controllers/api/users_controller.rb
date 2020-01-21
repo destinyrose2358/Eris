@@ -10,8 +10,8 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by(id: params[:userId]);
-    if @user && @user.is_password(params[:password]) && @user.update(user_params)
+    @user = User.find_by(id: params[:id])
+    if @user && @user.is_password?(params[:user][:password]) && @user.update(user_params)
       render :show
     else
       render json: @user ? @user.errors.full_messages : ["The given user or password is incorrect"], status: :unprocessable_entity
