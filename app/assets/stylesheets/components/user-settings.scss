@@ -4,9 +4,25 @@
   flex-flow: column;
   padding: 10px;
   background: $base-color;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 33.33%;
+  grid-area: setting-menu;
+}
+
+.modal-settings {
+  display: grid;
+  grid-template-columns: 1fr 2fr 100px;
+  grid-template-rows: 60px 120px 1fr;
+  grid-template-areas: 
+  "setting-menu . exit"
+  "setting-menu user-settings ."
+  "setting-menu . .";
+}
+
+.user-info {
+  grid-area: user-settings;
+  & img {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+
+  }
 }

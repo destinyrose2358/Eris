@@ -9,6 +9,7 @@ export default class UpdateUserForm extends React.Component {
             password: "",
             email: currentUser.email,
             profile_picture: currentUser.profile_picture,
+            photoURL: null,
             file: null,
             newPassword: "",
             editting: false
@@ -37,44 +38,55 @@ export default class UpdateUserForm extends React.Component {
     }
 
     handleFile(e) {
-        this.setState({
-            file: e.currentTarget.files[0]
-        })
+        const file = e.currentTarget.files[0];
+        const fileReader = new FileReader();
+        fileReader.onloadend = () => {
+            this.setState({
+                file,
+                photoURL: fileReader.result
+            })
+        }
+        fileReader.readAsDataURL(file);
     }
 
     render() {
-        console.log(this.state);
-        let { username, password, email, newPassword, profile_picture, editting, file } = this.state;
+        let { username, password, email, newPassword, photoURL, profile_picture, editting, file } = this.state;
         return this.state.editting ? (
             <form
-                className="user-edit-form"
+                className="update-user"
                 onSubmit={this.handleSubmit}
             >
-                <input
-                    type="file"
-                    name="profile_picture"
-                    accept="image/png, image/jpeg"
-                    onChange={this.handleFile}
-                />
-                <img src={profile_picture} alt={`${username}'s profile picture`} />
                 <label>
-                    USERNAME
                     <input
-                        type="text"
-                        name="username"
-                        value={username}
-                        onChange = {this.update("username")}
+                        type="file"
+                        name="profile_picture"
+                        accept="image/png, image/jpeg"
+                        onChange={this.handleFile}
                     />
+                    <img src={photoURL || profile_picture} alt={`${username}'s profile picture`} />
                 </label>
-                <label>
-                    PASSWORD
-                    <input
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={this.update("password")}
-                    />
-                </label>
+                
+                <div>
+                    <label>
+                        USERNAME
+                        <input
+                            type="text"
+                            name="username"
+                            value={username}
+                            onChange = {this.update("username")}
+                        />
+                    </label>
+                    <label>
+                        PASSWORD
+                        <input
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={this.update("password")}
+                        />
+                    </label>
+                </div>
+                
                 <input type="submit" value="Save" />
                 <button onClick={e => {
                     e.preventDefault();
@@ -90,14 +102,16 @@ export default class UpdateUserForm extends React.Component {
                 className="update-user"
             >
                 <img src={profile_picture} alt={`${username}'s profile picture`} />
-                <label>
-                    USERNAME
-                    <p>{username}</p>
-                </label>
-                <label>
-                    EMAIL
-                    <p>{email}</p>
-                </label>
+                <div>
+                    <label>
+                        USERNAME
+                        <p>{username}</p>
+                    </label>
+                    <label>
+                        EMAIL
+                        <p>{email}</p>
+                    </label>
+                </div>
                 <button
                     onClick={() => this.setState({editting: true})}
                 >Edit</button>

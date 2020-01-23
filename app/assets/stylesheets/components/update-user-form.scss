@@ -1,0 +1,33 @@
+.update-user {
+    background: lighten($base-color, 20%);
+    border-radius: 5px;
+    margin: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    & img {
+        margin-right: 20px;
+    }
+    & input[type=submit], button {
+        align-self: flex-start;
+        position: absolute;
+        right: 140px;
+    }
+    & div {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        height: 120px;
+    }
+    & label {
+        margin-bottom: 0;
+    }
+    & input[type=file] {
+        display: none;
+        width: 128px;
+        height: 128px;
+        border-radius: 50%;
+        background-size: 128px;
+    }
+}
