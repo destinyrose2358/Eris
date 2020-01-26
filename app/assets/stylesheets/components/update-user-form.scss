@@ -1,0 +1,52 @@
+.update-user {
+    background: $base-color;
+    border-radius: 5px;
+    border: darken($base-color, 20%) 1px solid;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    & > input[type=submit], > button {
+        align-self: flex-start;
+        margin-left: auto;
+        margin-right: 0;
+    }
+    & .update-user-row {
+        display: flex;
+        flex-direction: row;
+        border-bottom: lighten($base-color, 20%) 1px solid;
+        width: 100%;
+        margin-bottom: 25px;
+    }
+    & .update-user-fields {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+    & label {
+        margin-bottom: 10px;
+        font-weight: 700;
+        color: lighten($base-color, 20%);
+        overflow: visible;
+        & * {
+            color: white;
+            font-weight: 400;
+        }
+    }
+    & .image-uploader {
+        align-self: flex-start;
+        margin: 0 20px;
+    }
+    & .update-user-buttons {
+        margin-right: 0;
+        margin-left: auto;
+        align-self: flex-end;
+        & a {
+            margin-right: 10px;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
