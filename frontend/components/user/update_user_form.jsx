@@ -1,4 +1,5 @@
 import React from "react";
+import BaseSVG from "../svg/base_svgs";
 
 export default class UpdateUserForm extends React.Component {
     constructor(props) {
@@ -30,11 +31,12 @@ export default class UpdateUserForm extends React.Component {
         e.preventDefault();
         const formData = new FormData();
         let { username, password, email, file } = this.state;
-        formData.append("user[username]", username);
-        formData.append("user[password]", password);
-        formData.append("user[email]", email);
-        formData.append("user[photo]", file);
+        if (username) formData.append("user[username]", username);
+        if (password) formData.append("user[password]", password);
+        if (email) formData.append("user[email]", email);
+        if (file) formData.append("user[photo]", file);
         this.props.updateUser(formData, this.props.currentUser.id);
+        this.setState({editting: false, password: ""});
     }
 
     handleFile(e) {
@@ -56,53 +58,97 @@ export default class UpdateUserForm extends React.Component {
                 className="update-user"
                 onSubmit={this.handleSubmit}
             >
-                <label>
-                    <input
-                        type="file"
-                        name="profile_picture"
-                        accept="image/png, image/jpeg"
-                        onChange={this.handleFile}
-                    />
-                    <img src={photoURL || profile_picture} alt={`${username}'s profile picture`} />
-                </label>
-                
-                <div>
-                    <label>
-                        USERNAME
+                <div
+                    className="update-user-row"
+                >
+                    <div
+                        className="image-uploader"
+                        style={{
+                            backgroundImage: `url(${photoURL || profile_picture})`
+                        }}
+                    >
+                        <div
+                            className="image-uploader-message"
+                        >
+                            Change
+                            <br/>
+                            Avatar
+                        </div>
                         <input
-                            type="text"
-                            name="username"
-                            value={username}
-                            onChange = {this.update("username")}
+                            type="file"
+                            name="profile_picture"
+                            accept="image/png, image/jpeg"
+                            onChange={this.handleFile}
                         />
-                    </label>
-                    <label>
-                        PASSWORD
-                        <input
-                            type="password"
-                            name="password"
-                            value={password}
-                            onChange={this.update("password")}
-                        />
-                    </label>
+                        <div
+                            className="image-uploader-icon"
+                        >
+                            {BaseSVG.file}
+                        </div>
+                    </div>
+                    
+                    <div
+                        className="update-user-fields"
+                    >
+                        <label>
+                            USERNAME
+                            <input
+                                type="text"
+                                name="username"
+                                value={username}
+                                onChange = {this.update("username")}
+                            />
+                        </label>
+                        <label>
+                            EMAIL
+                            <input
+                                type="email"
+                                name="email"
+                                value={email}
+                                onChange={this.update("email")}
+                            />
+                        </label>
+                        <label>
+                            PASSWORD
+                            <input
+                                type="password"
+                                name="password"
+                                value={password}
+                                onChange={this.update("password")}
+                            />
+                        </label>
+                    </div>
                 </div>
-                
-                <input type="submit" value="Save" />
-                <button onClick={e => {
-                    e.preventDefault();
-                    this.setState({
-                        editting: false
-                    });
-                }}>
-                    Cancel
-                </button>
+                <div
+                    className="update-user-buttons"
+                >
+                    <a
+                        onClick={e => {
+                            e.preventDefault();
+                            this.setState({
+                                editting: false
+                            });
+                        }}
+                    >
+                        Cancel
+                    </a>
+                    <input type="submit" value="Save" />
+                </div>
             </form>
         ) : (
             <div
                 className="update-user"
             >
-                <img src={profile_picture} alt={`${username}'s profile picture`} />
-                <div>
+                <div
+                    className="image-uploader"
+                    style={{
+                        backgroundImage: `url(${photoURL || profile_picture})`
+                    }}
+                >
+                </div>
+                <div
+                    className="update-user-fields"
+                >
                     <label>
                         USERNAME
                         <p>{username}</p>
