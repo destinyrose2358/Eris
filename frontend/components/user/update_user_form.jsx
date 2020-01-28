@@ -13,10 +13,23 @@ export default class UpdateUserForm extends React.Component {
             photoURL: null,
             file: null,
             newPassword: "",
-            editting: false
+            editting: false,
+            edittingPassword: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFile = this.handleFile.bind(this);
+    }
+
+    clearProfilePicture() {
+        // const file;
+        const fileReader = new FileReader();
+        fileReader.onloadend = () => {
+            this.setState({
+                file,
+                photoURL: fileReader.result
+            })
+        }
+        fileReader.readAsDataURL(file);
     }
 
     update(field) {
@@ -30,13 +43,25 @@ export default class UpdateUserForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const formData = new FormData();
-        let { username, password, email, file } = this.state;
+        let { username, password, email, file, newPassword } = this.state;
         if (username) formData.append("user[username]", username);
-        if (password) formData.append("user[password]", password);
+        if (password) formData.append("password", password);
         if (email) formData.append("user[email]", email);
         if (file) formData.append("user[photo]", file);
+        if (newPassword.length > 0) formData.append("user[password]", newPassword);
         this.props.updateUser(formData, this.props.currentUser.id);
-        this.setState({editting: false, password: ""});
+        this.reset();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (Object.entries(this.props).some(currentEntry => currentEntry[1] !== prevProps[currentEntry[0]])) {
+            const { currentUser } = this.props;
+            this.setState({
+                username: currentUser.username,
+                email: currentUser.email,
+                profile_picture: currentUser.profile_picture
+            })
+        } 
     }
 
     handleFile(e) {
@@ -51,9 +76,24 @@ export default class UpdateUserForm extends React.Component {
         fileReader.readAsDataURL(file);
     }
 
+    reset() {
+        const { currentUser } = this.props;
+        this.setState({
+            username: currentUser.username,
+            password: "",
+            email: currentUser.email,
+            profile_picture: currentUser.profile_picture,
+            photoURL: null,
+            file: null,
+            newPassword: "",
+            editting: false,
+            edittingPassword: false
+        });
+    }
+
     render() {
-        let { username, password, email, newPassword, photoURL, profile_picture, editting, file } = this.state;
-        return this.state.editting ? (
+        let { username, password, email, newPassword, photoURL, profile_picture, editting, edittingPassword } = this.state;
+        return editting ? (
             <form
                 className="update-user"
                 onSubmit={this.handleSubmit}
@@ -109,7 +149,7 @@ export default class UpdateUserForm extends React.Component {
                             />
                         </label>
                         <label>
-                            PASSWORD
+                            CURRENT PASSWORD
                             <input
                                 type="password"
                                 name="password"
@@ -117,6 +157,28 @@ export default class UpdateUserForm extends React.Component {
                                 onChange={this.update("password")}
                             />
                         </label>
+                        { edittingPassword ?
+                            <label>
+                                NEW PASSWORD
+                                <input
+                                    type="password"
+                                    name="new-password"
+                                    value={newPassword}
+                                    onChange={this.update("newPassword")}
+                                />
+                            </label>
+                            :
+                            <a
+                                onClick={e => {
+                                    e.preventDefault();
+                                    this.setState({
+                                        edittingPassword: true
+                                    })
+                                }}
+                            >
+                                Change Password?
+                            </a>
+                        }
                     </div>
                 </div>
                 <div
@@ -125,9 +187,7 @@ export default class UpdateUserForm extends React.Component {
                     <a
                         onClick={e => {
                             e.preventDefault();
-                            this.setState({
-                                editting: false
-                            });
+                            this.reset();
                         }}
                     >
                         Cancel
