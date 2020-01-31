@@ -1,10 +1,11 @@
 .message-index {
     grid-area: message-index;
     padding: 0 10px;
+    box-sizing: border-box;
     & .message-show {
         display: flex;
         padding: 10px 0;
-        border-top: 1px solid $accent-color;
+        border-bottom: 1px solid $accent-color;
         & .icon {
             display: inline-block;
         }
@@ -17,5 +18,36 @@
                 padding-bottom: 10px;
             }
         }
+        &:hover .message-menu {
+            display: flex
+        }
+        & .message-menu {
+            position: relative;
+            display: none;
+            flex-direction: column;
+            align-items: flex-end;
+            z-index: 1000;
+            height: 25px;
+            & .message-menu-content {
+                display: none;
+                background: darken($base-color, 10%);
+                border-radius: 5px;
+                & button {
+                    font-size: 10px;
+                    padding: 2px;
+                    background: darken($base-color, 15%);
+                    &:hover {
+                        background: darken($base-color, 20%);
+                    }
+                }
+            }
+            &:hover .message-menu-content {
+                display: flex;
+                position: absolute;
+                top: 25px;
+                flex-direction: column;
+            }
+        }
     }
 }
+

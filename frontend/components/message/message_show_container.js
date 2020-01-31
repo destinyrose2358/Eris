@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
-import { updateMessage } from "../../actions/message_actions"
+import { deleteMessage } from "../../actions/message_actions"
 import MessageShow from "./message_show";
 
-const mdp = (dispatch) => {
+const mdp = (dispatch, { message }) => {
     return {
-        updateMessage: (message) => dispatch(updateMessage(message))
+        deleteMessage: () => dispatch(deleteMessage(message.id))
     }
 };
 

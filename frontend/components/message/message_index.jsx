@@ -7,7 +7,7 @@ export default class MessageIndex extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.match.params.channelId !== this.props.match.params.channelId) {
+        if (prevProps.match.params.channelId !== this.props.match.params.channelId || ) {
             this.props.fetchMessages();
         }
     }
