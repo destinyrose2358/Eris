@@ -1,0 +1,21 @@
+.message-index {
+    grid-area: message-index;
+    padding: 0 10px;
+    & .message-show {
+        display: flex;
+        padding: 10px 0;
+        border-top: 1px solid $accent-color;
+        & .icon {
+            display: inline-block;
+        }
+        & .message-content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-left: 10px;
+            & :first-child {
+                padding-bottom: 10px;
+            }
+        }
+    }
+}

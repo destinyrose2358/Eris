@@ -6,6 +6,6 @@
   grid-template-rows: 60px 1fr 80px;
   grid-template-areas:
     "nav . . ."
-    "nav channel-index . members"
+    "nav channel-index message-index members"
     "nav user-controls . members"
 }

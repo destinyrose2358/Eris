@@ -95,6 +95,7 @@ a {
   justify-content: center;
   align-items: center;
   background: darken($base-color, 10%);
+  background-size: contain;
 }
 
 .large.icon {

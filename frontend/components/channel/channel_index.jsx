@@ -1,5 +1,7 @@
 import React from "react";
 import ChannelItemContainer from "./channel_item_container";
+import MessageIndexContainer from "../message/message_index_container";
+import { Route } from "react-router-dom";
 
 export default class ChannelIndex extends React.Component {
   render() {
@@ -14,9 +16,12 @@ export default class ChannelIndex extends React.Component {
       <ChannelItemContainer channelId={ channelId } key={ channelId } />
     ));
     return (
-      <ul className="channel-index">
-        { channelItems }
-      </ul>
+      <>
+        <ul className="channel-index">
+          { channelItems }
+        </ul>
+        <Route path="/:serverId/:channelId" component={MessageIndexContainer} />
+      </>
     )
   }
 }
