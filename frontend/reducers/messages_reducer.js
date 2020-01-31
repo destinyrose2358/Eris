@@ -1,6 +1,6 @@
 import merge from "lodash.merge";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
-import { RECEIVE_MESSAGES, RECEIVE_MESSAGE } from "../actions/message_actions";
+import { RECEIVE_MESSAGES, RECEIVE_MESSAGE, REMOVE_MESSAGE } from "../actions/message_actions";
 
 
 const messagesReducer = (state = {}, action) => {
@@ -14,6 +14,10 @@ const messagesReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_MESSAGE:
       newState = merge({}, state, { [action.message.id]: action.message });
+      return newState;
+    case REMOVE_MESSAGE:
+      newState = merge({}, state);
+      delete newState[action.messageId]
       return newState;
     default:
       return state;

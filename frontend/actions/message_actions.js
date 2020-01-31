@@ -14,7 +14,7 @@ export const receiveMessages = messages => ({
   messages
 });
 
-export const removeMessages = messageId => ({
+export const removeMessage = messageId => ({
   type: REMOVE_MESSAGE,
   messageId
 });
