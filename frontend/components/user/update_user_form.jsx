@@ -20,6 +20,10 @@ export default class UpdateUserForm extends React.Component {
         this.handleFile = this.handleFile.bind(this);
     }
 
+    componentDidMount() {
+        this.props.fetchUser(this.props.userId);
+    }
+
     clearProfilePicture() {
         // const file;
         const fileReader = new FileReader();

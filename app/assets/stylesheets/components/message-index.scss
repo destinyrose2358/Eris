@@ -18,18 +18,24 @@
                 padding-bottom: 10px;
             }
         }
-        &:hover .message-menu {
-            display: flex
+        &:hover .message-menu svg {
+            opacity: 1;
         }
         & .message-menu {
             position: relative;
-            display: none;
             flex-direction: column;
             align-items: flex-end;
             z-index: 1000;
             height: 25px;
+            & svg {
+                opacity: 0;
+                cursor: pointer;
+            }
             & .message-menu-content {
                 display: none;
+                position: absolute;
+                top: 25px;
+                flex-direction: column;
                 background: darken($base-color, 10%);
                 border-radius: 5px;
                 & button {
@@ -40,12 +46,6 @@
                         background: darken($base-color, 20%);
                     }
                 }
-            }
-            &:hover .message-menu-content {
-                display: flex;
-                position: absolute;
-                top: 25px;
-                flex-direction: column;
             }
         }
     }

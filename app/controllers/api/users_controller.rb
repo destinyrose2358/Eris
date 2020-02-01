@@ -23,8 +23,10 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:userId])
-    if @user
+    @user = User.find_by(id: params[:id])
+    if @user === current_user
+      render :current_user
+    elsif @user
       render :show
     else
       render json: ["This user does not exist"], status: :unprocessable_entity
