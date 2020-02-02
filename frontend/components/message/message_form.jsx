@@ -18,22 +18,54 @@ export default class MessageForm extends React.Component {
     }
 
     handleSubmit() {
-        this.props.action(this.state);
+        this.props.action(this.state)
+            .then(() => {
+                this.setState({
+                    body: ""
+                }, this.props.postAction);
+            });
     }
 
     render() {
-        const { formType, channel } = this.props;
+        const { formType, channel, postAction } = this.props;
         const { body } = this.state;
+        const controls = formType === "edit" ?
+            <p
+                className="message-form-controls"
+            >
+                escape to
+                    <a
+                        onClick={e => {
+                            e.preventDefault();
+                            postAction();
+                        }}
+                    >
+                        close
+                    </a>
+                •
+                enter to
+                    <a
+                        onClick={e => {
+                            e.preventDefault();
+                            this.handleSubmit();
+                        }}
+                    >
+                        save
+                    </a>
+            </p>
+        :
+            null;
         return (
             <form
                 className="message-form"
-                onKeyPress={(e) => {
-                    console.log(e.charCode);
+                onKeyDown={(e) => {
                     switch (e.key) {
                         case "Enter":
                             e.preventDefault();
                             this.handleSubmit();
                             break;
+                        case "Escape":
+                            postAction();
                     }
                 }}
             >
@@ -47,7 +79,9 @@ export default class MessageForm extends React.Component {
                     type="text"
                     value={body}
                     onChange={this.update("body")}
+                    autoFocus={formType === "edit"}
                 />
+                {controls}        
             </form>
         )
     }

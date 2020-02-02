@@ -5,15 +5,15 @@ import EditMessageFormContainer from "./edit_message_form_container";
 export default class MessageShow extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
-            editting: false,
             menuOpen: false
         }
     }
 
     componentDidMount() {
         $("body").on("click", e => {
-            if (e.target !== $("svg")[0]) {
+            if (e.target === $("body")[0]) {
                 this.setState({
                     menuOpen: false
                 });
@@ -26,8 +26,8 @@ export default class MessageShow extends React.Component {
     }
 
     render() {
-        const { message, author, isUser } = this.props;
-        const { menuOpen, editting } = this.state;
+        const { message, author, isUser, select, selected } = this.props;
+        const { menuOpen } = this.state;
         let dropDown;
         if (isUser) dropDown = (
             <aside
@@ -46,10 +46,12 @@ export default class MessageShow extends React.Component {
                     className={`message-menu-content ${menuOpen ? "visible" : ""}`}
                 >
                     <button
-                        onClick={() => {
+                        onClick={(e) => {
+                            e.stopPropagation();
                             this.setState({
-                                editting: true
-                            })
+                                menuOpen: false
+                            });
+                            select(message.id);
                         }}
                     >
                         Edit
@@ -59,7 +61,7 @@ export default class MessageShow extends React.Component {
                         onClick={() => this.props.deleteMessage()}
                     >
                         Delete
-                                </button>
+                    </button>
                 </div>
             </aside>
         );
@@ -79,13 +81,20 @@ export default class MessageShow extends React.Component {
                     >
                         <p>{author.username}</p>
                         {
-                            editting ?
-                                <EditMessageFormContainer message={message} />
+                            selected ?
+                                <EditMessageFormContainer
+                                    message={message}
+                                    postAction={() => select(null)}
+                                />
                             :
-                                <p>{message.body}</p>    
-                        }
+                                <aside
+                                    className="message-content-main"
+                                >
+                                    <p>{message.body}</p>
+                                    { dropDown }
+                                </aside>    
+                        }  
                     </article>
-                    { dropDown }
                 </li>
                 
             </>

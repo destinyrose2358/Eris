@@ -14,7 +14,6 @@ export const createMessage = (channelId, message) => (
 );
 
 export const updateMessage = message => {
-  debugger;
   return $.ajax({
     method: "PATCH",
     url: `api/messages/${message.id}`,

@@ -4,9 +4,10 @@ export const RECEIVE_MESSAGES = "RECEIVE_MESSAGES";
 export const RECEIVE_MESSAGE = "RECEIVE_MESSAGE";
 export const REMOVE_MESSAGE = "REMOVE_MESSAGE";
 
-export const receiveMessage = message => ({
+export const receiveMessage = ({message, channel}) => ({
   type: RECEIVE_MESSAGE,
-  message
+  message,
+  channel
 });
 
 export const receiveMessages = messages => ({
