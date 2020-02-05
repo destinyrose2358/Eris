@@ -4,9 +4,10 @@ export const RECEIVE_MESSAGES = "RECEIVE_MESSAGES";
 export const RECEIVE_MESSAGE = "RECEIVE_MESSAGE";
 export const REMOVE_MESSAGE = "REMOVE_MESSAGE";
 
-export const receiveMessage = message => ({
+export const receiveMessage = ({message, channel}) => ({
   type: RECEIVE_MESSAGE,
-  message
+  message,
+  channel
 });
 
 export const receiveMessages = messages => ({
@@ -14,9 +15,9 @@ export const receiveMessages = messages => ({
   messages
 });
 
-export const removeMessage = messageId => ({
+export const removeMessage = ({message}) => ({
   type: REMOVE_MESSAGE,
-  messageId
+  message
 });
 
 export const fetchMessages = channelId => dispatch => (
@@ -36,5 +37,5 @@ export const updateMessage = message => dispatch => (
 
 export const deleteMessage = message => dispatch => (
   MessageAPIUtl.deleteMessage(message)
-    .then(messageId => dispatch(removeMessage(messageId)))
+    .then(message => dispatch(removeMessage(message)))
 );

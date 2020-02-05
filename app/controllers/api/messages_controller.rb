@@ -46,7 +46,7 @@ class Api::MessagesController < ApplicationController
     @message = current_user.messages.find_by(id: params[:id])
     if @message
       @message.delete
-      render json: @message.id
+      render :show
     else
       render json: ["Message not found"], status: 404
     end

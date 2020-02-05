@@ -47,8 +47,9 @@ const BaseSVG = {
                 </path>
             </g>
         </svg>,
-    dropdown:
+    dropdown: ({menuOpen, message}) => (
         <svg
+            className={`${menuOpen ? "visible" : ""} message-${message.id}`}
             aria-hidden="false"
             width="24"
             height="24"
@@ -69,6 +70,7 @@ const BaseSVG = {
                 </path>
             </g>
         </svg>
+    )
 };
 
 export default BaseSVG;

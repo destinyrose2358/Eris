@@ -123,6 +123,11 @@ i {
   justify-content: center;
 }
 
+.visible {
+  display: flex !important;
+  opacity: 1 !important;
+}
+
 .image-uploader {
   min-width: 128px;
   min-height: 128px;
