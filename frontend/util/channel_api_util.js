@@ -11,4 +11,11 @@ export const createChannel = (serverId, channel) => (
     url: `api/servers/${serverId}/channels`,
     data: { channel }
   })
+);
+
+export const fetchDirectChannels = () => (
+  $.ajax({
+    method: "GET",
+    url: "api/channels"
+  })
 )

@@ -1,8 +1,7 @@
 class Api::MessagesController < ApplicationController
 
   def index
-    channel = current_user
-      .channels
+    channel = Channel
       .where(id: params[:channel_id]).first
     if channel && (channel.restricted_members.include?(current_user) || channel.restrictions.empty?)
       @messages = channel.messages

@@ -2,13 +2,25 @@ class Api::ChannelsController < ApplicationController
 
   def create
     server = Server.find_by(id: params[:server_id])
-    @channel = server.channels.new(channel_params)
-    @channel.restriction_roles.push(server.roles.first)
+    if server
+      @channel = server.channels.new(channel_params)
+      @channel.restriction_roles.push(server.roles.first)
+    else
+      @channel = Channel.new(channel_params)
+      @channel.members.push(current_user)
+    end
     if @channel.save
       render :show
     else
       render json: @channel.errors.full_messages, status: :unprocessable_entity
     end
+  end
+
+  def index
+    memberships = current_user.memberships.where(memberable_type: "Channel")
+    membership_ids = memberships.map { |membership| membership.memberable_id }
+    @channels = Channel.find(membership_ids)
+    render :index
   end
 
   def destroy

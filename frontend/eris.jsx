@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import configureStore from "./store/store";
 import Root from "./components/root";
-import { fetchMessages, createMessage, updateMessage, deleteMessage } from "./actions/message_actions";
+import { fetchDirectChannels } from "./actions/channel_actions";
 
 document.addEventListener("DOMContentLoaded", () => {
   let root = document.getElementById("root");
@@ -19,10 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     store = configureStore();
   };
-  window.fetchMessages = fetchMessages;
-  window.createMessage = createMessage;
-  window.updateMessage = updateMessage;
-  window.deleteMessage = deleteMessage;
+  window.fetchChannels = fetchDirectChannels;
   window.store = store;
   ReactDOM.render(<Root store={ store } />, root);
 });
