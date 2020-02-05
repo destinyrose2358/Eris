@@ -15,9 +15,9 @@ export const receiveMessages = messages => ({
   messages
 });
 
-export const removeMessage = messageId => ({
+export const removeMessage = ({message}) => ({
   type: REMOVE_MESSAGE,
-  messageId
+  message
 });
 
 export const fetchMessages = channelId => dispatch => (
@@ -37,5 +37,5 @@ export const updateMessage = message => dispatch => (
 
 export const deleteMessage = message => dispatch => (
   MessageAPIUtl.deleteMessage(message)
-    .then(messageId => dispatch(removeMessage(messageId)))
+    .then(message => dispatch(removeMessage(message)))
 );

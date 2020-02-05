@@ -17,7 +17,7 @@ const messagesReducer = (state = {}, action) => {
       return newState;
     case REMOVE_MESSAGE:
       newState = merge({}, state);
-      delete newState[action.messageId]
+      delete newState[action.message.id]
       return newState;
     default:
       return state;

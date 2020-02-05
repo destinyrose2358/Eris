@@ -29,7 +29,6 @@
             position: relative;
             flex-direction: column-reverse;
             align-items: flex-end;
-            z-index: 1000;
             height: 25px;
             width: 60px;
             text-align: end;
@@ -39,7 +38,8 @@
                 cursor: pointer;
                 text-anchor: end;
                 width: 100%;
-                
+                z-index: 1000;
+                position: relative;
             }
             & .message-menu-content {
                 display: none;
@@ -48,6 +48,7 @@
                 border-radius: 5px;
                 padding: 5px;
                 z-index: 10001;
+                position: relative;
                 & button {
                     font-size: 10px;
                     padding: 2px;

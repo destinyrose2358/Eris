@@ -2,7 +2,7 @@ import merge from "lodash.merge";
 import { RECEIVE_CHANNEL } from "../actions/channel_actions";
 import { RECEIVE_SERVER } from "../actions/server_actions";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
-import { RECEIVE_MESSAGE } from "../actions/message_actions";
+import { RECEIVE_MESSAGE, REMOVE_MESSAGE } from "../actions/message_actions";
 
 
 const channelsReducer = (state = {}, action) => {
@@ -22,6 +22,10 @@ const channelsReducer = (state = {}, action) => {
       let message_ids = newState[action.message.channelId].message_ids;
       newState[action.message.channelId].message_ids = message_ids.includes(action.channel) ?
         message_ids : message_ids.concat(action.channel);
+      return newState;
+    case REMOVE_MESSAGE:
+      newState = merge({}, state);
+      newState[action.message.channelId].message_ids = newState[action.message.channelId].message_ids.filter(term => term !== action.message.id);
       return newState;
     default:
       return state;
