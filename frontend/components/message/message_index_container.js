@@ -3,10 +3,14 @@ import { fetchMessages } from "../../actions/message_actions";
 import MessageIndex from "./message_index";
 
 const msp = (state, { match: { params: { channelId } } }) => {
+    let messages = state.entities.channels[channelId] ?
+        state.entities.channels[channelId].message_ids.map(message_id => state.entities.messages[message_id])
+    :
+        [];
     return {
-        messages: state.entities.channels[channelId].message_ids.map(message_id => state.entities.messages[message_id]),
+        messages,
         users: state.entities.users,
-        channel: state.entities.channels[channelId]
+        channel: state.entities.channels[channelId] || { title: "" }
     }
 };
 

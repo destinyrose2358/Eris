@@ -1,10 +1,11 @@
 import React from "react";
 import MemberIndex from "../user/member_index";
 import ChannelIndexContainer from "../channel/channel_index_container";
+import DirectChannelIndexContainer from "../channel/direct-channel-index-container";
 
 export default class ServerShow extends React.Component {
   componentDidMount() {
-    this.props.fetchServer()
+    this.props.fetchServer();
   }
 
   componentDidUpdate(prevProps) {
@@ -22,8 +23,9 @@ export default class ServerShow extends React.Component {
         <MemberIndex memberIds={ server.member_ids } />
       </>
     ) : (
-      <div>
-      </div>
+      <>
+        <DirectChannelIndexContainer />
+      </>
     )
   }
 }

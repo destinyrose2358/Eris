@@ -1,5 +1,5 @@
 import merge from "lodash.merge";
-import { RECEIVE_CHANNEL } from "../actions/channel_actions";
+import { RECEIVE_CHANNEL, RECEIVE_DIRECT_CHANNELS } from "../actions/channel_actions";
 import { RECEIVE_SERVER } from "../actions/server_actions";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_MESSAGE, REMOVE_MESSAGE } from "../actions/message_actions";
@@ -11,6 +11,9 @@ const channelsReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_CHANNEL:
       newState = merge({}, state, { [action.channel.id]: action.channel });
+      return newState;
+    case RECEIVE_DIRECT_CHANNELS:
+      newState = merge({}, state, action.channels);
       return newState;
     case RECEIVE_SERVER:
       newState = merge({}, state, action.channels);

@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import ServerItemContainer from "./server_item_container";
 import CreateServerContainer from "./create_server_container";
 import isEqual from "lodash.isequal";
+import BaseSVG from "../svg/base_svgs";
 
 export default class ServerIndex extends React.Component {
   constructor(props) {
@@ -31,21 +32,33 @@ export default class ServerIndex extends React.Component {
       <ServerItemContainer serverId={ serverId } key={ serverId } />
     ));
     return (
-      <nav className="server-nav scroll-visible">
-        <ul>
+      <>
+        <div
+          className="server-nav scroll-visible"
+        >
+          <div
+            className="server-link icon"
+          >
+            <Link
+              to="/channels"
+            >
+              {BaseSVG.erisLogo}
+            </Link>
+          </div>
           { serverItems }
-          <li className="icon" onClick={ this.openCreateServerForm }>
+          <div className="icon server-link" onClick={ this.openCreateServerForm }>
             <i className="fas fa-plus"></i>
-          </li>
-        </ul>
+          </div>
+        </div>
         { this.state.createServerModalOpen && 
           <>
             <div className="translucent modal-create-server" onClick={ this.closeCreateServerForm }>
             </div>
           <CreateServerContainer resetModal={ this.closeCreateServerForm } />
-          </> }
-      </nav>
-        
+          </>
+        }
+      </>
+      
     )
   }
 }

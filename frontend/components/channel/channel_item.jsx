@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 
 export default class ChannelItem extends React.Component {
   render() {
-    let { serverId, channel, location } = this.props;
+    let { serverId, channel, location, members } = this.props;
     let isDisabled = location.pathname === `/${serverId}/${channel.id}`;
+
     if (isDisabled) {
       return (
         <li className="fake channel-link">
-          <p>{ channel.title }</p>
+          <p>{ channel.title || members[members.length - 1].username }</p>
         </li>
       )
     }
@@ -16,7 +17,7 @@ export default class ChannelItem extends React.Component {
       <li className="channel-link">
         <Link
           to={`/${serverId}/${channel.id}`}>
-          <p>{ channel.title }</p>
+          <p>{ channel.title || members[members.length - 1].username }</p>
         </Link>
       </li>
     )

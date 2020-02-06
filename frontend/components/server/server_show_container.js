@@ -8,7 +8,9 @@ const msp = (state, { match: { params } }) => ({
 });
 
 const mdp = (dispatch, { match: { params } }) => ({
-  fetchServer: () => dispatch(fetchServer(params.serverId))
+  fetchServer: () => {
+    if (/^\d+$/.test(params.serverId)) return dispatch(fetchServer(params.serverId));
+  }
 });
 
 const ServerShowConainer = withRouter(

@@ -5,7 +5,6 @@ import EditMessageFormContainer from "./edit_message_form_container";
 export default class MessageShow extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props);
         this.state = {
             menuOpen: false,
             change: true
