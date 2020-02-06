@@ -1,28 +1,45 @@
 .server-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   grid-area: nav;
   background: darken($base-color, 20%);
   padding: 20px 0;
 }
 
-.server-nav ul {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .server-link {
   padding: 5px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: $base-color !important;
+  transition: background-color 0.25s ease-in, border-radius 0.25s ease-in-out;
+  & a {
+    width: 50px;
+    height: 50px;
+    color: $accent-color;
+  }
+  & i {
+    color: $accent-color;
+    transition: color 0.25s ease-in;
+  }
 }
 
-.server-link:hover img {
+.server-link:hover {
   border-radius: 25%;
+  background-color: $accent-color !important;
+  & i {
+    color: white;
+  }
 }
 
-.server-link img {
-  transition: border-radius .5s;
+.server-link.icon {
+  box-sizing: border-box;
 }
 
-.server-link.fake img {
+.server-link.fake {
   border-radius: 25%;
 }
 

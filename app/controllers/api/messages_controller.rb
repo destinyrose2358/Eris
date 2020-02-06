@@ -12,8 +12,7 @@ class Api::MessagesController < ApplicationController
   end
 
   def create
-    channel = current_user
-      .channels
+    channel = Channel
       .where(id: params[:channel_id]).first
     if channel && (channel.restricted_members.include?(current_user) || channel.restrictions.empty?)
       @message = channel.messages.new(message_params)

@@ -27,8 +27,19 @@ export default class MessageForm extends React.Component {
     }
 
     render() {
-        const { formType, channel, postAction } = this.props;
+        const { formType, channel, postAction, members } = this.props;
         const { body } = this.state;
+        let displayTitle;
+
+        if (channel.title) {
+            if (channel.serverId) {
+                displayTitle = `#${channel.title}`;
+            } else {
+                displayTitle = `${channel.title}`;
+            }
+        } else if (members) {
+            displayTitle = `@${members[members.length - 1].username}`
+        }
         const controls = formType === "edit" ?
             <p
                 className="message-form-controls"
@@ -72,7 +83,7 @@ export default class MessageForm extends React.Component {
                 <input
                     placeholder={
                         formType === "create" ?
-                            `Message #${channel.title}`
+                            `Message ${displayTitle}`
                         :
                             ""
                     }

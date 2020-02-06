@@ -7,18 +7,24 @@ export default class ServerItem extends React.Component {
     let isDisabled = location.pathname.split("/")[1] === `${server.id}`;
     if (isDisabled) {
       return (
-        <li className="fake server-link">
-          <img className="icon" src={server.icon} alt={`${server.title}'s Icon`} />
-      </li>
+        <div className="fake server-link icon"
+          style={{ backgroundImage: `url(${server.icon})` }}
+        >
+          {server.icon ? null : <p>{server.title.split(" ").map(word => word[0])}</p>}
+      </div>
       )
     }
     return (
-      <li className="server-link">
+      <div
+        className="server-link icon"
+        style={{ backgroundImage: `url(${server.icon})` }}
+      >
         <Link
-          to={`/${server.id}`}>
-          <img className="icon" src={ server.icon } alt={`${server.title}'s Icon`}/>
+          to={`/${server.id}`}
+        >
+          {server.icon ? null : <p>{server.title.split(" ").map(word => word[0])}</p>}
         </Link>
-      </li>
+      </div>
     )
   }
 }

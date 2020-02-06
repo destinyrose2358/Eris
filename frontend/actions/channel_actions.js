@@ -9,7 +9,7 @@ export const receiveChannel = channel => ({
   channel
 });
 
-export const receiveDirectChannels = ({channels, channelIds}) => ({
+export const receiveDirectChannels = ({channels, channelIds, test}) => ({
   type: RECEIVE_DIRECT_CHANNELS,
   channels,
   channelIds
