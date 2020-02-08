@@ -8,7 +8,7 @@ const serverErrorsReducer = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_SERVER_ERRORS:
       newState = merge([], state, action.errors);
-      return action.errors;
+      return newState;
     case REMOVE_SERVER_ERRORS:
       return [];
     default:

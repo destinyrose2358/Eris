@@ -18,7 +18,7 @@ export default class MessageShow extends React.Component {
                 return {
                     menuOpen: false
                 }
-            }, () => console.log("outside menu", this.state.menuOpen));
+            });
         });
     }
 
@@ -39,7 +39,7 @@ export default class MessageShow extends React.Component {
                         return {
                             menuOpen: !prevState.menuOpen
                         }
-                    }, () => console.log("menu", this.state.menuOpen));
+                    });
                 }}
             >
                 <BaseSVG.dropdown menuOpen={menuOpen} message={message} />
@@ -51,7 +51,7 @@ export default class MessageShow extends React.Component {
                             e.stopPropagation();
                             this.setState({
                                 menuOpen: false
-                            }, () => console.log("edit button", this.state.menuOpen));
+                            });
                             select(message.id);
                         }}
                     >

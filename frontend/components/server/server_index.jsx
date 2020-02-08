@@ -1,8 +1,7 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ServerItemContainer from "./server_item_container";
 import CreateServerContainer from "./create_server_container";
-import isEqual from "lodash.isequal";
 import BaseSVG from "../svg/base_svgs";
 
 export default class ServerIndex extends React.Component {
@@ -31,20 +30,29 @@ export default class ServerIndex extends React.Component {
     let serverItems = this.props.serverIds.map(serverId => (
       <ServerItemContainer serverId={ serverId } key={ serverId } />
     ));
+    let isDisabled = this.props.location.pathname.split("/")[1] === `channels`;
+    let homeLink = isDisabled ?
+      <div
+        className="server-link icon fake"
+      >
+        {BaseSVG.erisLogo}
+      </div>
+    : 
+      <div
+        className="server-link icon"
+      >
+        <Link
+          to="/channels"
+        >
+          {BaseSVG.erisLogo}
+        </Link>
+      </div>;
     return (
       <>
         <div
           className="server-nav scroll-visible"
         >
-          <div
-            className="server-link icon"
-          >
-            <Link
-              to="/channels"
-            >
-              {BaseSVG.erisLogo}
-            </Link>
-          </div>
+          {homeLink}
           { serverItems }
           <div className="icon server-link" onClick={ this.openCreateServerForm }>
             <i className="fas fa-plus"></i>

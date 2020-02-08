@@ -6,11 +6,16 @@
 
 .channel-link {
   border-radius: 5px;
+  height: 50px;
   border: 1px solid darken($base-color, 15%);
+  align-items: center;
+  display: flex;
 }
 
 .channel-link a {
   color: #ccc;
+  margin: 0;
+  width: 100%;
 }
 
 .channel-link > * {

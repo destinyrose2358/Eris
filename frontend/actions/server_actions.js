@@ -28,10 +28,13 @@ export const removeServer = serverId => ({
   serverId
 });
 
-export const receiveServerErrors = errors => ({
-  type: RECEIVE_SERVER_ERRORS,
-  errors: errors.responseJSON
-});
+export const receiveServerErrors = errors => {
+  console.log(errors);
+  return {
+    type: RECEIVE_SERVER_ERRORS,
+    errors: errors.responseJSON
+  };
+};
 
 export const removeServerErrors = () => ({
   type: REMOVE_SERVER_ERRORS

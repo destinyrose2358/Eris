@@ -11,13 +11,13 @@ const msp = (state) => {
 
 const mdp = (dispatch) => {
     return {
-        fetchChannels: () => dispatch(fetchDirectChannels())
+      fetchChannels: () => dispatch(fetchDirectChannels())
     }
 }
 
 class DirectChannelIndex extends ChannelIndex {
     componentDidMount() {
-        this.props.fetchChannels();
+      this.props.fetchChannels();
     }
 }
 
