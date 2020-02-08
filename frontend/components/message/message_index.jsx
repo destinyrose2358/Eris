@@ -63,6 +63,5 @@ export default class MessageIndex extends React.Component {
                 <CreateMessageFormContainer message={{body: ""}} channel={channel} />
             </>
         )
-            
     }
 }

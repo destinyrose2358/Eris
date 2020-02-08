@@ -13,6 +13,13 @@
 .message-content > .message-form {
     align-items: flex-end;
     width: auto;
+    background: transparent;
+    & input {
+        box-shadow: 0 0 0 50px rgba($accent-color, 0.25) inset;
+        -webkit-box-shadow: 0 0 0 50px rgba($accent-color, 0.25) inset;
+        -webkit-text-fill-color: white;
+        background: rgba($accent-color, 0.25);
+    }
     & .message-form-controls {
         font-size: 12px;
         color: lighten($base-color, 25%);
