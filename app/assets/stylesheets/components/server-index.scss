@@ -8,8 +8,9 @@
 }
 
 .server-link {
-  padding: 5px;
   height: 50px;
+  margin-left: 6px;
+  padding-left: 0 !important;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,18 +21,29 @@
     width: 50px;
     height: 50px;
     color: $accent-color;
+    transition: color 0.25s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & svg {
+      fill: lighten($base-color, 30%);
+      transition: fill 0.25s ease-in-out;
+    }
   }
   & i {
     color: $accent-color;
-    transition: color 0.25s ease-in;
+    transition: color 0.25s ease-in-out;
   }
 }
 
 .server-link:hover {
   border-radius: 25%;
   background-color: $accent-color !important;
-  & i {
+  & i, a {
     color: white;
+  }
+  & svg {
+    fill: white;
   }
 }
 
@@ -41,6 +53,17 @@
 
 .server-link.fake {
   border-radius: 25%;
+  border-radius: 25%;
+  background-color: $accent-color !important;
+  & i {
+    color: white;
+  }
+  & svg {
+    fill: white;
+  }
+  & a {
+    color: white;
+  }
 }
 
 .server-form {

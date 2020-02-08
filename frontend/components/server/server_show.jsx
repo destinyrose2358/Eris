@@ -5,12 +5,13 @@ import DirectChannelIndexContainer from "../channel/direct-channel-index-contain
 
 export default class ServerShow extends React.Component {
   componentDidMount() {
+    console.log("mount");
     this.props.fetchServer();
   }
 
   componentDidUpdate(prevProps) {
     let { server } = this.props;
-    if (!prevProps.server || (server && (server.id !== prevProps.server.id))) {
+    if (server && prevProps.server && (server.id !== prevProps.server.id)) {
       this.props.fetchServer();
     }
   }

@@ -15,9 +15,9 @@ class Api::ServersController < ApplicationController
   def create
     @server = current_user.owned_servers.new(server_params)
     @server.members.push(current_user)
-    new_role = @server.roles.create(name: "test")
-    current_user.roles.push(new_role)
     if @server.save
+      new_role = @server.roles.create(name: "test")
+      current_user.roles.push(new_role)
       render :show
     else
       render json: @server.errors.full_messages, status: :unprocessable_entity
