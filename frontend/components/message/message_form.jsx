@@ -40,14 +40,28 @@ export default class MessageForm extends React.Component {
         } else if (members) {
             displayTitle = `@${members[members.length - 1].username}`
         }
-        let channelTitleSym;
+        let channelTitleContent;
         if (displayTitle) switch (displayTitle[0]) {
             case "#":
-                channelTitleSym = <i class="fas fa-hashtag"></i>;
+                channelTitleContent = (
+                    <>
+                        <i class="fas fa-hashtag"></i>
+                        <h1>{displayTitle.slice(1)}</h1>
+                    </>
+                );
                 break;
             case "@":
-                channelTitleSym = <i class="fas fa-at"></i>;
+                channelTitleContent = (
+                    <>
+                        <i class="fas fa-at"></i>
+                        <h1>{displayTitle.slice(1)}</h1>
+                    </>
+                );
                 break;
+            default:
+                channelTitleContent = (
+                    <h1>{displayTitle}</h1>
+                );
         }
         const controls = formType === "edit" ?
             <p
@@ -109,8 +123,7 @@ export default class MessageForm extends React.Component {
                         <div
                             className="channel-title"
                         >
-                            {channelTitleSym}
-                            <h1>{displayTitle.slice(1)}</h1>
+                            {channelTitleContent}
                         </div>
                     :
                         null

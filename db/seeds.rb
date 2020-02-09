@@ -66,6 +66,10 @@ ActiveRecord::Base.transaction do
   server7 = geoff.owned_servers.create(title: "Forget My Ex",
     icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqSj4Hyx6KYy-IK-R3P0qsqXblJWXNzV6ynyF7wesmLMqK6Ohe")
   
+  #direct_channels
+
+  direct_channel1 = flerpen.direct_channels.create(title: "test")
+
   #memberships
   membership1 = server1.members = [flerpen, maryllyn, geoff]
   membership2 = server2.members = [flerpen, geoff]

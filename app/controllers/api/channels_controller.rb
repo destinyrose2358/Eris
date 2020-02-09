@@ -6,8 +6,7 @@ class Api::ChannelsController < ApplicationController
       @channel = server.channels.new(channel_params)
       @channel.restriction_roles.push(server.roles.first)
     else
-      @channel = Channel.new(channel_params)
-      @channel.members.push(current_user)
+      @channel = current_user.direct_channels.new(channel_params)
     end
     if @channel.save
       render :show
@@ -17,9 +16,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def index
-    memberships = current_user.memberships.where(memberable_type: "Channel")
-    membership_ids = memberships.map { |membership| membership.memberable_id }
-    @channels = Channel.find(membership_ids)
+    @channels = current_user.direct_channels
     render :index
   end
 

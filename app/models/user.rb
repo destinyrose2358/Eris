@@ -19,6 +19,11 @@ class User < ApplicationRecord
   source: :memberable,
   source_type: :Server
 
+  has_many :direct_channels,
+  through: :accepted_memberships,
+  source: :memberable,
+  source_type: :Channel
+
   has_many :pending_servers,
   through: :pending_memberships,
   source: :memberable,
