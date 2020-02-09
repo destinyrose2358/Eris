@@ -4,12 +4,23 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 6, allow_nil: true}
   after_initialize :ensure_session_token
 
-  has_many :memberships
+  has_many :accepted_memberships,
+  -> { where accepted: :true },
+  class_name: :Membership
+
+  has_many :pending_memberships,
+  -> { where accepted: :false },
+  class_name: :Membership
 
   has_one_attached :photo
 
   has_many :servers,
-  through: :memberships,
+  through: :accepted_memberships,
+  source: :memberable,
+  source_type: :Server
+
+  has_many :pending_servers,
+  through: :pending_memberships,
   source: :memberable,
   source_type: :Server
 

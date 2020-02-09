@@ -24,8 +24,21 @@ class Api::ServersController < ApplicationController
     end
   end
 
+  def update
+    @server = current_user.owned_servers.find_by(id: params[:id])
+    if @server && @server.update(server_params)
+      render :show
+    else
+      render json: @server ?
+        @server.errors.full_messages
+      :
+        ["This server does not exist, or you are not the Admin"],
+      status: :unprocessable_entity
+    end
+  end
+
   def destroy
-    server = current_user.servers.find_by(id: params[:id])
+    server = current_user.owned_servers.find_by(id: params[:id])
     if server && server.delete
       render json: server.id
     else

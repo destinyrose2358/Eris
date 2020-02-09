@@ -23,5 +23,8 @@
     & .message-form-controls {
         font-size: 12px;
         color: lighten($base-color, 25%);
+        & a:hover {
+            text-decoration: underline;
+        }
     }
 }

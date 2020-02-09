@@ -5,4 +5,7 @@
   padding: 10px;
   background: darken($base-color, 10%);
   grid-area: user-controls;
+  & a:hover {
+    color: lighten($tertiary-color, 10%);
+  }
 }

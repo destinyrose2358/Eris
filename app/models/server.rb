@@ -8,12 +8,24 @@ class Server < ApplicationRecord
   foreign_key: :owner_id,
   class_name: :User
 
-  has_many :memberships,
+  has_many :accepted_memberships,
+  -> {where accepted: :true},
   as: :memberable,
+  class_name: :Membership,
   dependent: :destroy
 
+  has_many :pending_memberships,
+  -> {where accepted: :false},
+  as: :memberable,
+  class_name: :Membership,
+  dependent: :destroy
+  
   has_many :members,
-  through: :memberships,
+  through: :accepted_memberships,
+  source: :user
+
+  has_many :pending_members,
+  through: :pending_memberships,
   source: :user
 
   has_many :roles,

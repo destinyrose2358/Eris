@@ -57,7 +57,6 @@ export default class MessageShow extends React.Component {
                     >
                         Edit
                     </button>
-                    <button>Quote</button>
                     <button
                         onClick={() => this.props.deleteMessage()}
                     >
