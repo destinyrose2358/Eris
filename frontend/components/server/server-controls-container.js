@@ -3,7 +3,7 @@ import ServerControls from "./server-controls";
 
 const mdp = (dispatch, { server }) => {
     return {
-
+        inviteUser: (userId) => dispatch(inviteUser(server.id, userId))
     }
 }
 

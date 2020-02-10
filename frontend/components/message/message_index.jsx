@@ -32,12 +32,13 @@ export default class MessageIndex extends React.Component {
     render() {
         const { messages, users, channel } = this.props;
         const { edittingMessage } = this.state;
+        console.log(messages);
         const messageLis = messages.map(message => (
             message ?
                 <MessageShowContainer
                     message={message}
                     key={message.id}
-                    author={users[message.authorId]}
+                    author={users[message.authorId] || {id: 0}}
                     select={(value) => this.update("edittingMessage")(value)}
                     selected={edittingMessage === message.id ? "selected" : ""}
                 />

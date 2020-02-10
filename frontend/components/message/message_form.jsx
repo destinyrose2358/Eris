@@ -45,7 +45,7 @@ export default class MessageForm extends React.Component {
             case "#":
                 channelTitleContent = (
                     <>
-                        <i class="fas fa-hashtag"></i>
+                        <i className="fas fa-hashtag"></i>
                         <h1>{displayTitle.slice(1)}</h1>
                     </>
                 );
@@ -53,7 +53,7 @@ export default class MessageForm extends React.Component {
             case "@":
                 channelTitleContent = (
                     <>
-                        <i class="fas fa-at"></i>
+                        <i className="fas fa-at"></i>
                         <h1>{displayTitle.slice(1)}</h1>
                     </>
                 );

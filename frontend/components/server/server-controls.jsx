@@ -1,13 +1,44 @@
-import { React } from "react";
+import React from "react";
 
 export default class ServerControls extends React.Component {
-    render() {
-        return (
-            <div
-                className="server-controls"
-            >
+    constructor(props) {
+        super(props);
+        this.state = {
+            openUserSearch: false
+        };
+    }
 
-            </div>
+    render() {
+        const { openUserSearch } = this.state;
+        let userSearchModal = openUserSearch ?
+            <>
+                <div
+                    className={`modal-user-search translucent`}
+                    onClick={() => this.setState({
+                        openUserSearch: false
+                    })}
+                >
+                </div>
+            </>
+        :
+            null;
+                
+        return (
+            <>
+                <div
+                    className="server-controls"
+                >
+                    <button
+                        onClick={() => this.setState({
+                            openUserSearch: true
+                        }, () => console.log(this.state.openUserSearch))}
+                    >
+                        Invite People
+                    </button>
+                </div>
+                { userSearchModal }        
+            </>
+            
         )
     }
 }

@@ -16,16 +16,23 @@ class Api::ChannelsController < ApplicationController
   end
 
   def index
-    @channels = current_user.direct_channels
+    @channels = current_user.direct_channels.includes(messages: :author)
     render :index
   end
 
   def destroy
-    channel = current_user
-      .owned_servers
-      .find_by(id: params[:server_id])
-      .channels
-      .find_by(id: params[:id])
+    if params[:server_id]
+      channel = current_user
+        .owned_servers
+        .find_by(id: params[:server_id])
+        .channels
+        .find_by(id: params[:id])
+    else
+      channel = current_user
+        .direct_channels
+        .find_by(id: params[:id])
+      channel = nil if channel.member_ids.length > 1
+    end
     if channel && channel.delete
       render json: channel.id
     else

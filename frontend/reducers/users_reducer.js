@@ -2,6 +2,7 @@ import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from "../actions/session_ac
 import { RECEIVE_SERVER } from "../actions/server_actions";
 import merge from "lodash.merge";
 import { RECEIVE_USER } from "../actions/user_actions";
+import { RECEIVE_DIRECT_CHANNELS, RECEIVE_DIRECT_CHANNEL } from "../actions/channel_actions";
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -23,6 +24,12 @@ const usersReducer = (state = {}, action) => {
         state,
         { [action.user.id]: action.user}
       );
+      return newState;
+    case RECEIVE_DIRECT_CHANNELS:
+      newState = merge({}, state, action.users);
+      return newState;
+    case RECEIVE_DIRECT_CHANNEL:
+      newState = merge({}, state, action.users);
       return newState;
     default:
       return state;
