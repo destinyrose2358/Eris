@@ -1,6 +1,6 @@
 json.server do
   json.partial! "api/servers/server", server: @server
-  json.extract! @server, :member_ids
+  json.extract! @server, :member_ids, :pending_member_ids
   channel_ids = []
   @server.channels.each do |channel|
     if channel.restricted_members.include?(current_user) || channel.restrictions.empty?

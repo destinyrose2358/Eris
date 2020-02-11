@@ -32,7 +32,7 @@ export default class MessageShow extends React.Component {
         let dropDown;
         if (isUser) dropDown = (
             <aside
-                className={`message-menu message-${ this.props.message.id }`}
+                className={`message-menu message-${ message.id }`}
                 onClick={(e) => {
                     e.stopPropagation();
                     this.setState(prevState => {
@@ -44,7 +44,7 @@ export default class MessageShow extends React.Component {
             >
                 <BaseSVG.dropdown menuOpen={menuOpen} message={message} />
                 <div
-                    className={`message-menu-content message-${this.props.message.id} ${menuOpen ? "visible" : ""}`}
+                    className={`message-menu-content message-${message.id} ${menuOpen ? "visible" : ""}`}
                 >
                     <button
                         onClick={(e) => {
@@ -57,7 +57,6 @@ export default class MessageShow extends React.Component {
                     >
                         Edit
                     </button>
-                    <button>Quote</button>
                     <button
                         onClick={() => this.props.deleteMessage()}
                     >

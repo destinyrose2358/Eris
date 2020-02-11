@@ -6,8 +6,7 @@ class Api::ChannelsController < ApplicationController
       @channel = server.channels.new(channel_params)
       @channel.restriction_roles.push(server.roles.first)
     else
-      @channel = Channel.new(channel_params)
-      @channel.members.push(current_user)
+      @channel = current_user.direct_channels.new(channel_params)
     end
     if @channel.save
       render :show
@@ -17,18 +16,23 @@ class Api::ChannelsController < ApplicationController
   end
 
   def index
-    memberships = current_user.memberships.where(memberable_type: "Channel")
-    membership_ids = memberships.map { |membership| membership.memberable_id }
-    @channels = Channel.find(membership_ids)
+    @channels = current_user.direct_channels.includes(:members, messages: :author)
     render :index
   end
 
   def destroy
-    channel = current_user
-      .owned_servers
-      .find_by(id: params[:server_id])
-      .channels
-      .find_by(id: params[:id])
+    if params[:server_id]
+      channel = current_user
+        .owned_servers
+        .find_by(id: params[:server_id])
+        .channels
+        .find_by(id: params[:id])
+    else
+      channel = current_user
+        .direct_channels
+        .find_by(id: params[:id])
+      channel = nil if channel.member_ids.length > 1
+    end
     if channel && channel.delete
       render json: channel.id
     else

@@ -2,6 +2,7 @@ import * as ChannelAPIUtil from "../util/channel_api_util";
 
 export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 export const RECEIVE_DIRECT_CHANNELS = "RECEIVE_DIRECT_CHANNELS";
+export const RECEIVE_DIRECT_CHANNEL = "RECEIVE_DIRECT_CHANNEL";
 export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
 
 export const receiveChannel = channel => ({
@@ -9,11 +10,22 @@ export const receiveChannel = channel => ({
   channel
 });
 
-export const receiveDirectChannels = ({channels, channelIds, test}) => ({
-  type: RECEIVE_DIRECT_CHANNELS,
-  channels,
-  channelIds
-})
+export const receiveDirectChannels = ({channels, channelIds, users}) => {
+  return {
+    type: RECEIVE_DIRECT_CHANNELS,
+    channels,
+    channelIds,
+    users
+  }
+}
+
+export const receiveDirectChannel = ({channel, users}) => {
+  return {
+    type: RECEIVE_DIRECT_CHANNEL,
+    channel,
+    users
+  }
+}
 
 export const removeChannel = channelId => ({
   type: REMOVE_CHANNEL,

@@ -31,7 +31,7 @@ export default class MessageForm extends React.Component {
         const { body } = this.state;
         let displayTitle;
 
-        if (channel.title) {
+        if (channel && channel.title) {
             if (channel.serverId) {
                 displayTitle = `#${channel.title}`;
             } else {
@@ -39,6 +39,29 @@ export default class MessageForm extends React.Component {
             }
         } else if (members) {
             displayTitle = `@${members[members.length - 1].username}`
+        }
+        let channelTitleContent;
+        if (displayTitle) switch (displayTitle[0]) {
+            case "#":
+                channelTitleContent = (
+                    <>
+                        <i className="fas fa-hashtag"></i>
+                        <h1>{displayTitle.slice(1)}</h1>
+                    </>
+                );
+                break;
+            case "@":
+                channelTitleContent = (
+                    <>
+                        <i className="fas fa-at"></i>
+                        <h1>{displayTitle.slice(1)}</h1>
+                    </>
+                );
+                break;
+            default:
+                channelTitleContent = (
+                    <h1>{displayTitle}</h1>
+                );
         }
         const controls = formType === "edit" ?
             <p
@@ -67,33 +90,45 @@ export default class MessageForm extends React.Component {
         :
             null;
         return (
-            <form
-                className="message-form"
-                onKeyDown={(e) => {
-                    switch (e.key) {
-                        case "Enter":
-                            e.preventDefault();
-                            this.handleSubmit();
-                            break;
-                        case "Escape":
-                            postAction();
-                    }
-                }}
-            >
-                <input
-                    placeholder={
-                        formType === "create" ?
-                            `Message ${displayTitle}`
-                        :
-                            ""
-                    }
-                    type="text"
-                    value={body}
-                    onChange={this.update("body")}
-                    autoFocus={formType === "edit"}
-                />
-                {controls}        
-            </form>
+            <>
+                <form
+                    className="message-form"
+                    onKeyDown={(e) => {
+                        switch (e.key) {
+                            case "Enter":
+                                e.preventDefault();
+                                this.handleSubmit();
+                                break;
+                            case "Escape":
+                                postAction();
+                        }
+                    }}
+                >
+                    <input
+                        placeholder={
+                            formType === "create" ?
+                                `Message ${displayTitle}`
+                            :
+                                ""
+                        }
+                        type="text"
+                        value={body}
+                        onChange={this.update("body")}
+                        autoFocus={formType === "edit"}
+                    />
+                    {controls}        
+                </form>
+                {
+                    formType === "create" ?
+                        <div
+                            className="channel-title"
+                        >
+                            {channelTitleContent}
+                        </div>
+                    :
+                        null
+                }
+            </>
         )
     }
 }

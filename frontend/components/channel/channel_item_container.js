@@ -7,7 +7,7 @@ const msp = (state, { channelId, match: { params: { serverId } } }) => {
   return {
     serverId,
     channel,
-    members: channel.member_ids ? channel.member_ids.map(member_id => state.entities.users[member_id]) : [{username: ""}]
+    members: channel && channel.member_ids ? channel.member_ids.map(member_id => state.entities.users[member_id]) : [{username: ""}]
   }
 };
 

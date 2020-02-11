@@ -4,7 +4,7 @@
     box-sizing: border-box;
     & .message-show {
         display: flex;
-        padding: 10px 0;
+        padding: 10px;
         border-top: 1px solid $accent-color;
         & .icon {
             display: inline-block;
@@ -22,8 +22,11 @@
             display: flex;
             justify-content: space-between;
         }
-        &:hover .message-menu svg {
-            opacity: 1;
+        &:hover {
+            background: darken($base-color, 5%);
+            & .message-menu svg {
+                opacity: 1;
+            }
         }
         & .message-menu {
             position: relative;
