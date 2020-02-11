@@ -4,7 +4,7 @@ class Api::ServersController < ApplicationController
   end
 
   def show
-    @server = current_user.servers.includes(:roles, members: :roles, channels: [:restrictions, :restricted_members]).find_by(id: params[:id])
+    @server = current_user.servers.includes(:roles, :pending_members, members: :roles, channels: [:restrictions, :restricted_members]).find_by(id: params[:id])
     if @server
       render :show
     else

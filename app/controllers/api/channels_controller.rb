@@ -16,7 +16,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def index
-    @channels = current_user.direct_channels.includes(messages: :author)
+    @channels = current_user.direct_channels.includes(:members, messages: :author)
     render :index
   end
 
