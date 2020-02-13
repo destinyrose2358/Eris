@@ -1,6 +1,9 @@
 class Api::ServersController < ApplicationController
   def index
-    @servers = current_user.servers
+    servers = current_user.servers
+    processed_servers = ApplicationController.renderer.render("api/servers/index", locals: { '@servers': servers })
+    UsersChannel.broadcast_to current_user, processed_servers
+    head :ok
   end
 
   def show

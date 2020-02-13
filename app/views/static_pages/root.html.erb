@@ -4,7 +4,7 @@
       "api/users/current_user.json.jbuilder",
       user: current_user
     ).html_safe %>;
-    <% cookies.encrypted[:session_token] = session[:session_token] %>
+    <%= "test" if cookies.encrypted[:session_token] = session[:session_token] %>
   <% end %>
 </script>
 
