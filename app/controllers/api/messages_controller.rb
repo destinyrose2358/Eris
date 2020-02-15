@@ -5,7 +5,9 @@ class Api::MessagesController < ApplicationController
       .where(id: params[:channel_id]).first
     if channel && (channel.restricted_members.include?(current_user) || channel.restrictions.empty?)
       @messages = channel.messages
-      render :index
+      processed_messeages = ApplicationController.renderer.render("api/messages/index", locals: { "@messages": @messages })
+      UsersChannel.broadcast_to current_user, processed_messeages
+      head :ok
     else
       render json: ["Nothing to see here"], status: 404
     end

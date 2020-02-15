@@ -11,7 +11,9 @@ const msp = (state) => {
 
 const mdp = (dispatch) => {
     return {
-        receiveResponse: (response) => dispatch(response)
+        receiveResponse: (response) => {
+            return dispatch(JSON.parse(response));
+        }
     }
 }
 

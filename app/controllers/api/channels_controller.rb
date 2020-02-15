@@ -3,21 +3,33 @@ class Api::ChannelsController < ApplicationController
   def create
     server = Server.find_by(id: params[:server_id])
     if server
-      @channel = server.channels.new(channel_params)
-      @channel.restriction_roles.push(server.roles.first)
+      channel = server.channels.new(channel_params)
+      channel.restriction_roles.push(server.roles.first)
     else
-      @channel = current_user.direct_channels.new(channel_params)
+      channel = current_user.direct_channels.includes(:members).new(channel_params)
     end
-    if @channel.save
-      render :show
+    if channel.save
+      processed_channel = ApplicationController.renderer.render("api/channels/show", locals: { "@channel": channel })
+      if server
+        ServersChannel.broadcast_to server, processed_channel 
+        head :ok
+      else
+        channel.members.each do |member|
+          UsersChannel.broadcast_to member, processed_channel
+          head :ok
+        end
+      end
     else
-      render json: @channel.errors.full_messages, status: :unprocessable_entity
+      UsersChannel.broadcast_to current_user, json.stringify({ type: "RECEIVE_CHANNEL_ERRORS", errors: channel.errors.full_messages})
+      head :unprocessable_entity
     end
   end
 
   def index
-    @channels = current_user.direct_channels.includes(:members, messages: :author)
-    render :index
+    channels = current_user.direct_channels.includes(:members, messages: :author)
+    processed_channels = ApplicationController.renderer.render("api/channels/index", locals: { "@channels": channels })
+    UsersChannel.broadcast_to current_user, processed_channels
+    head :ok
   end
 
   def destroy
@@ -26,17 +38,15 @@ class Api::ChannelsController < ApplicationController
         .owned_servers
         .find_by(id: params[:server_id])
         .channels
+        .includes(:server)
         .find_by(id: params[:id])
-    else
-      channel = current_user
-        .direct_channels
-        .find_by(id: params[:id])
-      channel = nil if channel.member_ids.length > 1
     end
     if channel && channel.delete
-      render json: channel.id
+      ServersChannel.broadcast_to channel.server, json.stringify({ type: "REMOVE_CHANNEL", channelId: channel.id })
+      head :ok
     else
-      render json: ["You are not the admin or the channel does not exist"], status: 401
+      UsersChannel.broadcast_to current_user, json.stringify({ type: "RECEIVE_CHANNEL_ERRORS", errors: ["You are not the admin or the channel does not exist"] })
+      head 401
     end
   end
 

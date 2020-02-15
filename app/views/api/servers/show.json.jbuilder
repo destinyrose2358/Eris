@@ -1,3 +1,4 @@
+json.type "RECEIVE_SERVER"
 json.server do
   json.partial! "api/servers/server", server: @server
   json.extract! @server, :member_ids, :pending_member_ids

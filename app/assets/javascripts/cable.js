@@ -7,7 +7,11 @@
 
 (function() {
   this.App || (this.App = {});
-
-  App.cable = ActionCable.createConsumer();
+  try {
+    App.cable = ActionCable.createConsumer();
+  } catch (e) {
+    App.cable.connection.events.error = function(e) { console.log("My error handler:", e) }
+  }
+  
 
 }).call(this);
