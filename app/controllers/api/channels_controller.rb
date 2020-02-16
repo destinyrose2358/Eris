@@ -11,17 +11,17 @@ class Api::ChannelsController < ApplicationController
     if channel.save
       processed_channel = ApplicationController.renderer.render("api/channels/show", locals: { "@channel": channel })
       if server
-        ServersChannel.broadcast_to server, processed_channel 
-        head :ok
+        ServersChannel.broadcast_to server, processed_channel
+        render json: {}, status: :ok
       else
         channel.members.each do |member|
           UsersChannel.broadcast_to member, processed_channel
-          head :ok
+          render json: {}, status: :ok
         end
       end
     else
-      UsersChannel.broadcast_to current_user, json.stringify({ type: "RECEIVE_CHANNEL_ERRORS", errors: channel.errors.full_messages})
-      head :unprocessable_entity
+      UsersChannel.broadcast_to current_user, JSON.generate({ type: "RECEIVE_CHANNEL_ERRORS", errors: channel.errors.full_messages})
+      render json: {}, status: :unprocessable_entity
     end
   end
 
@@ -29,7 +29,7 @@ class Api::ChannelsController < ApplicationController
     channels = current_user.direct_channels.includes(:members, messages: :author)
     processed_channels = ApplicationController.renderer.render("api/channels/index", locals: { "@channels": channels })
     UsersChannel.broadcast_to current_user, processed_channels
-    head :ok
+    render json: {}, status: :ok
   end
 
   def destroy
@@ -42,11 +42,11 @@ class Api::ChannelsController < ApplicationController
         .find_by(id: params[:id])
     end
     if channel && channel.delete
-      ServersChannel.broadcast_to channel.server, json.stringify({ type: "REMOVE_CHANNEL", channelId: channel.id })
-      head :ok
+      ServersChannel.broadcast_to channel.server, JSON.generate({ type: "REMOVE_CHANNEL", channelId: channel.id })
+      render json: {}, status: :ok
     else
-      UsersChannel.broadcast_to current_user, json.stringify({ type: "RECEIVE_CHANNEL_ERRORS", errors: ["You are not the admin or the channel does not exist"] })
-      head 401
+      UsersChannel.broadcast_to current_user, JSON.generate({ type: "RECEIVE_CHANNEL_ERRORS", errors: ["You are not the admin or the channel does not exist"] })
+      render json: {}, status: 401
     end
   end
 
