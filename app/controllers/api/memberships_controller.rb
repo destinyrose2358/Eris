@@ -4,7 +4,8 @@ class Api::MembershipsController < ApplicationController
         original_membership = Membership.find_by(memberable_type: "Server", memberable_id: params[:server_id], user_id: params[:membership][:user_id]) ||
             Membership.find_by(memberable_type: "Channel", memberable_id: params[:channel_id], user_id: params[:membership][:user_id])
         if original_membership
-            render json: ["This user has been invited already"], status: :unprocessable_entity
+            UsersChannel.broadcast_to current_user, JSON.generate({["This user has been invited already"]})
+            render json: {}, status: :unprocessable_entity
         elsif params[:server_id]
             @server = current_user.owned_servers.find_by(id: params[:server_id])
             if @server
