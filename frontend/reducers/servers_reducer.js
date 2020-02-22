@@ -1,4 +1,4 @@
-import { RECEIVE_SERVERS, RECEIVE_SERVER, REMOVE_SERVER } from "../actions/server_actions";
+import { RECEIVE_SERVERS, RECEIVE_SERVER, REMOVE_SERVER, RECEIVE_PENDING_MEMBER } from "../actions/server_actions";
 import merge from "lodash.merge";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 
@@ -19,6 +19,14 @@ const serversReducer = (state = {}, action) => {
       return newState;
     case LOGOUT_CURRENT_USER:
       return {};
+    case RECEIVE_PENDING_MEMBER:
+      newState = merge({}, state);
+      newState[action.serverId].pending_member_ids = [...newState[action.serverId].pending_member_ids, action.memberId].filter(distinct);
+      return newState;
+    case "RECEIVE_SERVER_MEMBERSHIP":
+      newState = merge({}, state);
+      newState[action.memberable_id].member_ids = [...newState[action.memberable_id].member_ids, action.user_id].filter(distinct);
+      return newState;
     default:
       return state;
   };

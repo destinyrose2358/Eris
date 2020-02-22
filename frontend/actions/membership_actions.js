@@ -8,10 +8,4 @@ export const inviteUser = (serverId, userId) => (
 
 export const acceptInvite = (membershipId) => dispatch => (
     MembershipAPIUtil.acceptInvite(membershipId)
-        .then(response => {
-            return response.channel ?
-                dispatch(receiveDirectChannel(response))
-            :
-                dispatch(receiveServer(response))
-        })
 );
