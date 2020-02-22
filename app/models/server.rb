@@ -12,6 +12,7 @@ class Server < ApplicationRecord
   -> {where accepted: :true},
   as: :memberable,
   class_name: :Membership,
+  validate: false,
   dependent: :destroy
 
   has_many :pending_memberships,

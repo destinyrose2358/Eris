@@ -34,15 +34,12 @@ export const removeChannel = channelId => ({
 
 export const createChannel = (serverId, channel) => dispatch => (
   ChannelAPIUtil.createChannel(serverId, channel)
-    .then(channel => dispatch(receiveChannel(channel)))
 );
 
 export const deleteChannel = (serverId, channelId) => dispatch => (
   ChannelAPIUtil.deleteChannel(serverId, channelId)
-    .then(channel => dispatch(removeChannel(channel)))
 );
 
 export const fetchDirectChannels = () => dispatch => (
   ChannelAPIUtil.fetchDirectChannels()
-    .then(channelData => dispatch(receiveDirectChannels(channelData)))
 )

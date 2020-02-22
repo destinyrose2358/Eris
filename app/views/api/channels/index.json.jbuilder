@@ -1,3 +1,4 @@
+json.type "RECEIVE_DIRECT_CHANNELS"
 json.channels do
     @channels.each do |channel|
         json.set! channel.id do

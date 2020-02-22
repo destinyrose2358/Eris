@@ -32,8 +32,7 @@ export default class MessageIndex extends React.Component {
     render() {
         const { messages, users, channel } = this.props;
         const { edittingMessage } = this.state;
-        console.log(messages);
-        const messageLis = messages.map(message => (
+        const messageLis = messages.sort((a, b) => Date.parse(a.created_at) - Date.parse(b.created_at)).map(message => (
             message ?
                 <MessageShowContainer
                     message={message}

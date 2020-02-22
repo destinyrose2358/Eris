@@ -34,6 +34,10 @@ const channelsReducer = (state = {}, action) => {
       newState = merge({}, state, { [action.channel.id]: action.channel });
       newState.channelIds.push(action.channel.id)
       return newState;
+    case "RECEIVE_CHANNEL_MEMBERSHIP":
+      newState = merge({}, state);
+      newState[action.memberable_id].member_ids = [...newState[action.memberable_id].member_ids, action.user_id].filter(distinct);
+      return newState;
     default:
       return state;
   }

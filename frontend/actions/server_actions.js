@@ -6,6 +6,7 @@ export const CREATE_SERVER = "CREATE_SERVER";
 export const REMOVE_SERVER = "REMOVE_SERVER";
 export const RECEIVE_SERVER_ERRORS = "RECEIVE_SERVER_ERRORS";
 export const REMOVE_SERVER_ERRORS = "REMOVE_SERVER_ERRORS";
+export const RECEIVE_PENDING_MEMBER = "RECEIVE_PENDING_MEMBER";
 
 export const receiveServers = servers => {
   let serverIds = Object.keys(servers).map(serverId => parseInt(serverId))
@@ -29,7 +30,6 @@ export const removeServer = serverId => ({
 });
 
 export const receiveServerErrors = errors => {
-  console.log(errors);
   return {
     type: RECEIVE_SERVER_ERRORS,
     errors: errors.responseJSON
@@ -42,23 +42,16 @@ export const removeServerErrors = () => ({
 
 export const fetchServers = () => dispatch => (
   ServerAPIUtil.fetchServers()
-    .then(servers => dispatch(receiveServers(servers)))
 );
 
 export const fetchServer = serverId => dispatch => (
   ServerAPIUtil.fetchServer(serverId)
-    .then(server => dispatch(receiveServer(server)),
-      errors => dispatch(receiveServerErrors(errors)))
 );
 
 export const createServer = server => dispatch => (
   ServerAPIUtil.createServer(server)
-    .then(server => dispatch(receiveServer(server)),
-      errors => dispatch(receiveServerErrors(errors)))
 );
 
 export const deleteServer = serverId => (
   ServerAPIUtil.deleteServer(serverId)
-    .then(server => dispatch(removeServer(server.id)),
-      errors => dispatch(receiveServerErrors(errors)))
 );

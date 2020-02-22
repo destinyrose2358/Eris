@@ -1,0 +1,495 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-S',
+1 verbose cli   'react-actioncable-provider' ]
+2 info using npm@3.5.2
+3 info using node@v8.10.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData react-actioncable-provider
+8 silly fetchNamedPackageData react-actioncable-provider
+9 silly mapToRegistry name react-actioncable-provider
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry uri https://registry.npmjs.org/react-actioncable-provider
+13 verbose request uri https://registry.npmjs.org/react-actioncable-provider
+14 verbose request no auth needed
+15 info attempt registry request try #1 at 6:54:00 PM
+16 verbose request id 6987e90be88a4d0e
+17 verbose etag W/"aa2888499366ec338281eca89fe29a46"
+18 verbose lastModified Sun, 20 Jan 2019 03:49:55 GMT
+19 http request GET https://registry.npmjs.org/react-actioncable-provider
+20 http 304 https://registry.npmjs.org/react-actioncable-provider
+21 verbose headers { date: 'Thu, 13 Feb 2020 00:54:03 GMT',
+21 verbose headers   connection: 'keep-alive',
+21 verbose headers   'set-cookie':
+21 verbose headers    [ '__cfduid=dd9d8c76660cc45acdc52d889bcf89b371581555243; expires=Sat, 14-Mar-20 00:54:03 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+21 verbose headers   'cf-ray': '5642d42f994e54de-ORD',
+21 verbose headers   age: '209',
+21 verbose headers   'cache-control': 'public, max-age=300',
+21 verbose headers   etag: '"aa2888499366ec338281eca89fe29a46"',
+21 verbose headers   'last-modified': 'Sun, 20 Jan 2019 03:49:55 GMT',
+21 verbose headers   vary: 'Accept-Encoding',
+21 verbose headers   'cf-cache-status': 'HIT',
+21 verbose headers   'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+21 verbose headers   server: 'cloudflare' }
+22 silly get cb [ 304,
+22 silly get   { date: 'Thu, 13 Feb 2020 00:54:03 GMT',
+22 silly get     connection: 'keep-alive',
+22 silly get     'set-cookie':
+22 silly get      [ '__cfduid=dd9d8c76660cc45acdc52d889bcf89b371581555243; expires=Sat, 14-Mar-20 00:54:03 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+22 silly get     'cf-ray': '5642d42f994e54de-ORD',
+22 silly get     age: '209',
+22 silly get     'cache-control': 'public, max-age=300',
+22 silly get     etag: '"aa2888499366ec338281eca89fe29a46"',
+22 silly get     'last-modified': 'Sun, 20 Jan 2019 03:49:55 GMT',
+22 silly get     vary: 'Accept-Encoding',
+22 silly get     'cf-cache-status': 'HIT',
+22 silly get     'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+22 silly get     server: 'cloudflare' } ]
+23 verbose etag https://registry.npmjs.org/react-actioncable-provider from cache
+24 verbose get saving react-actioncable-provider to /home/destinyrose2358/.npm/registry.npmjs.org/react-actioncable-provider/.cache.json
+25 silly install normalizeTree
+26 silly loadCurrentTree Finishing
+27 silly loadIdealTree Starting
+28 silly install loadIdealTree
+29 silly cloneCurrentTree Starting
+30 silly install cloneCurrentTreeToIdealTree
+31 silly cloneCurrentTree Finishing
+32 silly loadShrinkwrap Starting
+33 silly install loadShrinkwrap
+34 silly loadShrinkwrap Finishing
+35 silly loadAllDepsIntoIdealTree Starting
+36 silly install loadAllDepsIntoIdealTree
+37 silly resolveWithNewModule react-actioncable-provider@2.0.0 checking installable status
+38 silly cache add args [ 'react-actioncable-provider', null ]
+39 verbose cache add spec react-actioncable-provider
+40 silly cache add parsed spec Result {
+40 silly cache add   raw: 'react-actioncable-provider',
+40 silly cache add   scope: null,
+40 silly cache add   name: 'react-actioncable-provider',
+40 silly cache add   rawSpec: '',
+40 silly cache add   spec: 'latest',
+40 silly cache add   type: 'tag' }
+41 silly addNamed react-actioncable-provider@latest
+42 verbose addNamed "latest" is being treated as a dist-tag for react-actioncable-provider
+43 info addNameTag [ 'react-actioncable-provider', 'latest' ]
+44 silly mapToRegistry name react-actioncable-provider
+45 silly mapToRegistry using default registry
+46 silly mapToRegistry registry https://registry.npmjs.org/
+47 silly mapToRegistry uri https://registry.npmjs.org/react-actioncable-provider
+48 verbose addNameTag registry:https://registry.npmjs.org/react-actioncable-provider not in flight; fetching
+49 verbose get https://registry.npmjs.org/react-actioncable-provider not expired, no request
+50 silly addNameTag next cb for react-actioncable-provider with tag latest
+51 silly addNamed react-actioncable-provider@2.0.0
+52 verbose addNamed "2.0.0" is a plain semver version for react-actioncable-provider
+53 silly cache afterAdd react-actioncable-provider@2.0.0
+54 verbose afterAdd /home/destinyrose2358/.npm/react-actioncable-provider/2.0.0/package/package.json not in flight; writing
+55 verbose afterAdd /home/destinyrose2358/.npm/react-actioncable-provider/2.0.0/package/package.json written
+56 silly fetchNamedPackageData actioncable
+57 silly mapToRegistry name actioncable
+58 silly mapToRegistry using default registry
+59 silly mapToRegistry registry https://registry.npmjs.org/
+60 silly mapToRegistry uri https://registry.npmjs.org/actioncable
+61 silly fetchNamedPackageData create-react-class
+62 silly mapToRegistry name create-react-class
+63 silly mapToRegistry using default registry
+64 silly mapToRegistry registry https://registry.npmjs.org/
+65 silly mapToRegistry uri https://registry.npmjs.org/create-react-class
+66 silly fetchNamedPackageData react
+67 silly mapToRegistry name react
+68 silly mapToRegistry using default registry
+69 silly mapToRegistry registry https://registry.npmjs.org/
+70 silly mapToRegistry uri https://registry.npmjs.org/react
+71 verbose request uri https://registry.npmjs.org/create-react-class
+72 verbose request no auth needed
+73 info attempt registry request try #1 at 6:54:01 PM
+74 verbose etag W/"090b9d71d86c8546ea87d508a6242485"
+75 verbose lastModified Sat, 26 May 2018 21:19:22 GMT
+76 http request GET https://registry.npmjs.org/create-react-class
+77 verbose request uri https://registry.npmjs.org/actioncable
+78 verbose request no auth needed
+79 info attempt registry request try #1 at 6:54:01 PM
+80 verbose etag W/"a8f1f4e421dddeff8f852c8f22d49bcf"
+81 verbose lastModified Wed, 18 Dec 2019 19:03:11 GMT
+82 http request GET https://registry.npmjs.org/actioncable
+83 verbose request uri https://registry.npmjs.org/react
+84 verbose request no auth needed
+85 info attempt registry request try #1 at 6:54:01 PM
+86 verbose etag W/"1d9ce5a9103134198c122d209e15d184"
+87 verbose lastModified Wed, 05 Feb 2020 17:54:51 GMT
+88 http request GET https://registry.npmjs.org/react
+89 http 304 https://registry.npmjs.org/create-react-class
+90 verbose headers { date: 'Thu, 13 Feb 2020 00:54:03 GMT',
+90 verbose headers   connection: 'keep-alive',
+90 verbose headers   'set-cookie':
+90 verbose headers    [ '__cfduid=dd9d8c76660cc45acdc52d889bcf89b371581555243; expires=Sat, 14-Mar-20 00:54:03 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+90 verbose headers   'cf-ray': '5642d431eb5a54de-ORD',
+90 verbose headers   age: '1347',
+90 verbose headers   'cache-control': 'public, max-age=300',
+90 verbose headers   etag: '"090b9d71d86c8546ea87d508a6242485"',
+90 verbose headers   'last-modified': 'Sat, 26 May 2018 21:19:22 GMT',
+90 verbose headers   vary: 'Accept-Encoding',
+90 verbose headers   'cf-cache-status': 'HIT',
+90 verbose headers   'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+90 verbose headers   server: 'cloudflare' }
+91 silly get cb [ 304,
+91 silly get   { date: 'Thu, 13 Feb 2020 00:54:03 GMT',
+91 silly get     connection: 'keep-alive',
+91 silly get     'set-cookie':
+91 silly get      [ '__cfduid=dd9d8c76660cc45acdc52d889bcf89b371581555243; expires=Sat, 14-Mar-20 00:54:03 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+91 silly get     'cf-ray': '5642d431eb5a54de-ORD',
+91 silly get     age: '1347',
+91 silly get     'cache-control': 'public, max-age=300',
+91 silly get     etag: '"090b9d71d86c8546ea87d508a6242485"',
+91 silly get     'last-modified': 'Sat, 26 May 2018 21:19:22 GMT',
+91 silly get     vary: 'Accept-Encoding',
+91 silly get     'cf-cache-status': 'HIT',
+91 silly get     'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+91 silly get     server: 'cloudflare' } ]
+92 verbose etag https://registry.npmjs.org/create-react-class from cache
+93 verbose get saving create-react-class to /home/destinyrose2358/.npm/registry.npmjs.org/create-react-class/.cache.json
+94 silly resolveWithNewModule create-react-class@15.6.3 checking installable status
+95 silly cache add args [ 'create-react-class@^15.6.2', null ]
+96 verbose cache add spec create-react-class@^15.6.2
+97 silly cache add parsed spec Result {
+97 silly cache add   raw: 'create-react-class@^15.6.2',
+97 silly cache add   scope: null,
+97 silly cache add   name: 'create-react-class',
+97 silly cache add   rawSpec: '^15.6.2',
+97 silly cache add   spec: '>=15.6.2 <16.0.0',
+97 silly cache add   type: 'range' }
+98 silly addNamed create-react-class@>=15.6.2 <16.0.0
+99 verbose addNamed ">=15.6.2 <16.0.0" is a valid semver range for create-react-class
+100 silly addNameRange { name: 'create-react-class',
+100 silly addNameRange   range: '>=15.6.2 <16.0.0',
+100 silly addNameRange   hasData: false }
+101 silly mapToRegistry name create-react-class
+102 silly mapToRegistry using default registry
+103 silly mapToRegistry registry https://registry.npmjs.org/
+104 silly mapToRegistry uri https://registry.npmjs.org/create-react-class
+105 verbose addNameRange registry:https://registry.npmjs.org/create-react-class not in flight; fetching
+106 verbose get https://registry.npmjs.org/create-react-class not expired, no request
+107 silly addNameRange number 2 { name: 'create-react-class',
+107 silly addNameRange   range: '>=15.6.2 <16.0.0',
+107 silly addNameRange   hasData: true }
+108 silly addNameRange versions [ 'create-react-class',
+108 silly addNameRange   [ '1.0.0',
+108 silly addNameRange     '1.0.1',
+108 silly addNameRange     '1.1.0',
+108 silly addNameRange     '1.1.1',
+108 silly addNameRange     '1.2.0',
+108 silly addNameRange     '1.2.1',
+108 silly addNameRange     '1.2.2',
+108 silly addNameRange     '1.2.3',
+108 silly addNameRange     '1.2.4',
+108 silly addNameRange     '15.5.0',
+108 silly addNameRange     '15.5.1',
+108 silly addNameRange     '15.5.2',
+108 silly addNameRange     '15.5.3',
+108 silly addNameRange     '15.5.4',
+108 silly addNameRange     '15.6.0-rc.0',
+108 silly addNameRange     '15.6.0',
+108 silly addNameRange     '15.6.2',
+108 silly addNameRange     '15.6.3' ] ]
+109 silly addNamed create-react-class@15.6.3
+110 verbose addNamed "15.6.3" is a plain semver version for create-react-class
+111 silly cache afterAdd create-react-class@15.6.3
+112 verbose afterAdd /home/destinyrose2358/.npm/create-react-class/15.6.3/package/package.json not in flight; writing
+113 verbose afterAdd /home/destinyrose2358/.npm/create-react-class/15.6.3/package/package.json written
+114 http 304 https://registry.npmjs.org/actioncable
+115 verbose headers { date: 'Thu, 13 Feb 2020 00:54:03 GMT',
+115 verbose headers   connection: 'keep-alive',
+115 verbose headers   'set-cookie':
+115 verbose headers    [ '__cfduid=db371fe5d306d1365a9f1563f5db2250a1581555243; expires=Sat, 14-Mar-20 00:54:03 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+115 verbose headers   'cf-ray': '5642d4325835253b-ORD',
+115 verbose headers   age: '208',
+115 verbose headers   'cache-control': 'public, max-age=300',
+115 verbose headers   etag: '"a8f1f4e421dddeff8f852c8f22d49bcf"',
+115 verbose headers   'last-modified': 'Wed, 18 Dec 2019 19:03:11 GMT',
+115 verbose headers   vary: 'Accept-Encoding',
+115 verbose headers   'cf-cache-status': 'HIT',
+115 verbose headers   'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+115 verbose headers   server: 'cloudflare' }
+116 silly get cb [ 304,
+116 silly get   { date: 'Thu, 13 Feb 2020 00:54:03 GMT',
+116 silly get     connection: 'keep-alive',
+116 silly get     'set-cookie':
+116 silly get      [ '__cfduid=db371fe5d306d1365a9f1563f5db2250a1581555243; expires=Sat, 14-Mar-20 00:54:03 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+116 silly get     'cf-ray': '5642d4325835253b-ORD',
+116 silly get     age: '208',
+116 silly get     'cache-control': 'public, max-age=300',
+116 silly get     etag: '"a8f1f4e421dddeff8f852c8f22d49bcf"',
+116 silly get     'last-modified': 'Wed, 18 Dec 2019 19:03:11 GMT',
+116 silly get     vary: 'Accept-Encoding',
+116 silly get     'cf-cache-status': 'HIT',
+116 silly get     'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+116 silly get     server: 'cloudflare' } ]
+117 verbose etag https://registry.npmjs.org/actioncable from cache
+118 verbose get saving actioncable to /home/destinyrose2358/.npm/registry.npmjs.org/actioncable/.cache.json
+119 silly resolveWithNewModule actioncable@5.2.3 checking installable status
+120 silly cache add args [ 'actioncable@^5.0.0', null ]
+121 verbose cache add spec actioncable@^5.0.0
+122 silly cache add parsed spec Result {
+122 silly cache add   raw: 'actioncable@^5.0.0',
+122 silly cache add   scope: null,
+122 silly cache add   name: 'actioncable',
+122 silly cache add   rawSpec: '^5.0.0',
+122 silly cache add   spec: '>=5.0.0 <6.0.0',
+122 silly cache add   type: 'range' }
+123 silly addNamed actioncable@>=5.0.0 <6.0.0
+124 verbose addNamed ">=5.0.0 <6.0.0" is a valid semver range for actioncable
+125 silly addNameRange { name: 'actioncable', range: '>=5.0.0 <6.0.0', hasData: false }
+126 silly mapToRegistry name actioncable
+127 silly mapToRegistry using default registry
+128 silly mapToRegistry registry https://registry.npmjs.org/
+129 silly mapToRegistry uri https://registry.npmjs.org/actioncable
+130 verbose addNameRange registry:https://registry.npmjs.org/actioncable not in flight; fetching
+131 verbose get https://registry.npmjs.org/actioncable not expired, no request
+132 silly addNameRange number 2 { name: 'actioncable', range: '>=5.0.0 <6.0.0', hasData: true }
+133 silly addNameRange versions [ 'actioncable',
+133 silly addNameRange   [ '0.1.0',
+133 silly addNameRange     '0.1.1',
+133 silly addNameRange     '5.0.0-beta1-2',
+133 silly addNameRange     '5.0.0-beta1-3',
+133 silly addNameRange     '5.0.0-beta3',
+133 silly addNameRange     '5.0.0',
+133 silly addNameRange     '5.0.1-rc1',
+133 silly addNameRange     '5.0.1-rc2',
+133 silly addNameRange     '5.0.1',
+133 silly addNameRange     '5.1.0-beta1',
+133 silly addNameRange     '5.0.2-rc1',
+133 silly addNameRange     '5.0.2',
+133 silly addNameRange     '5.1.0-rc1',
+133 silly addNameRange     '5.1.0-rc2',
+133 silly addNameRange     '5.1.0',
+133 silly addNameRange     '5.0.3',
+133 silly addNameRange     '5.1.1',
+133 silly addNameRange     '5.0.4-rc1',
+133 silly addNameRange     '5.0.4',
+133 silly addNameRange     '5.1.2-rc1',
+133 silly addNameRange     '5.1.2',
+133 silly addNameRange     '5.1.3-rc1',
+133 silly addNameRange     '5.0.5-rc1',
+133 silly addNameRange     '5.1.3-rc2',
+133 silly addNameRange     '5.0.5-rc2',
+133 silly addNameRange     '5.0.5',
+133 silly addNameRange     '5.1.3-rc3',
+133 silly addNameRange     '5.1.3',
+133 silly addNameRange     '5.0.6-rc1',
+133 silly addNameRange     '5.1.4-rc1',
+133 silly addNameRange     '5.0.6',
+133 silly addNameRange     '5.1.4',
+133 silly addNameRange     '5.2.0-beta1',
+133 silly addNameRange     '5.2.0-beta2',
+133 silly addNameRange     '5.2.0-rc1',
+133 silly addNameRange     '5.1.5-rc1',
+133 silly addNameRange     '5.1.5',
+133 silly addNameRange     '5.2.0-rc2',
+133 silly addNameRange     '5.0.7',
+133 silly addNameRange     '5.1.6',
+133 silly addNameRange     '5.2.0',
+133 silly addNameRange     '5.2.1-rc1',
+133 silly addNameRange     '5.2.1',
+133 silly addNameRange     '5.0.7-1',
+133 silly addNameRange     '5.1.6-1',
+133 silly addNameRange     '5.2.1-1',
+133 silly addNameRange     '5.2.2-rc1',
+133 silly addNameRange     '5.2.2',
+133 silly addNameRange     '5.0.7-2',
+133 silly addNameRange     '5.1.6-2',
+133 silly addNameRange     '5.2.2-1',
+133 silly addNameRange     '5.2.3-rc1',
+133 silly addNameRange     '5.1.7-rc1',
+133 silly addNameRange     '5.1.7',
+133 silly addNameRange     '5.2.3',
+133 silly addNameRange     '5.2.4-rc1',
+133 silly addNameRange     '5.2.4',
+133 silly addNameRange     '5.2.4-1' ] ]
+134 silly addNamed actioncable@5.2.4
+135 verbose addNamed "5.2.4" is a plain semver version for actioncable
+136 http 304 https://registry.npmjs.org/react
+137 verbose headers { date: 'Thu, 13 Feb 2020 00:54:03 GMT',
+137 verbose headers   connection: 'keep-alive',
+137 verbose headers   'set-cookie':
+137 verbose headers    [ '__cfduid=d2336450cd4224605b0c0eed1dda2705c1581555243; expires=Sat, 14-Mar-20 00:54:03 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+137 verbose headers   'cf-ray': '5642d43269a6c52c-ORD',
+137 verbose headers   age: '1419',
+137 verbose headers   'cache-control': 'public, max-age=300',
+137 verbose headers   etag: '"1d9ce5a9103134198c122d209e15d184"',
+137 verbose headers   'last-modified': 'Wed, 05 Feb 2020 17:54:51 GMT',
+137 verbose headers   vary: 'Accept-Encoding',
+137 verbose headers   'cf-cache-status': 'HIT',
+137 verbose headers   'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+137 verbose headers   server: 'cloudflare' }
+138 silly get cb [ 304,
+138 silly get   { date: 'Thu, 13 Feb 2020 00:54:03 GMT',
+138 silly get     connection: 'keep-alive',
+138 silly get     'set-cookie':
+138 silly get      [ '__cfduid=d2336450cd4224605b0c0eed1dda2705c1581555243; expires=Sat, 14-Mar-20 00:54:03 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+138 silly get     'cf-ray': '5642d43269a6c52c-ORD',
+138 silly get     age: '1419',
+138 silly get     'cache-control': 'public, max-age=300',
+138 silly get     etag: '"1d9ce5a9103134198c122d209e15d184"',
+138 silly get     'last-modified': 'Wed, 05 Feb 2020 17:54:51 GMT',
+138 silly get     vary: 'Accept-Encoding',
+138 silly get     'cf-cache-status': 'HIT',
+138 silly get     'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+138 silly get     server: 'cloudflare' } ]
+139 verbose etag https://registry.npmjs.org/react from cache
+140 verbose get saving react to /home/destinyrose2358/.npm/registry.npmjs.org/react/.cache.json
+141 silly cache afterAdd actioncable@5.2.4
+142 verbose afterAdd /home/destinyrose2358/.npm/actioncable/5.2.4/package/package.json not in flight; writing
+143 silly resolveWithNewModule react@16.3.2 checking installable status
+144 silly cache add args [ 'react@~16.3.0', null ]
+145 verbose cache add spec react@~16.3.0
+146 silly cache add parsed spec Result {
+146 silly cache add   raw: 'react@~16.3.0',
+146 silly cache add   scope: null,
+146 silly cache add   name: 'react',
+146 silly cache add   rawSpec: '~16.3.0',
+146 silly cache add   spec: '>=16.3.0 <16.4.0',
+146 silly cache add   type: 'range' }
+147 silly addNamed react@>=16.3.0 <16.4.0
+148 verbose addNamed ">=16.3.0 <16.4.0" is a valid semver range for react
+149 silly addNameRange { name: 'react', range: '>=16.3.0 <16.4.0', hasData: false }
+150 silly mapToRegistry name react
+151 silly mapToRegistry using default registry
+152 silly mapToRegistry registry https://registry.npmjs.org/
+153 silly mapToRegistry uri https://registry.npmjs.org/react
+154 verbose addNameRange registry:https://registry.npmjs.org/react not in flight; fetching
+155 verbose afterAdd /home/destinyrose2358/.npm/actioncable/5.2.4/package/package.json written
+156 verbose get https://registry.npmjs.org/react not expired, no request
+157 silly addNameRange number 2 { name: 'react', range: '>=16.3.0 <16.4.0', hasData: true }
+158 silly addNameRange versions [ 'react',
+158 silly addNameRange   [ '0.0.1',
+158 silly addNameRange     '0.0.2',
+158 silly addNameRange     '0.0.3',
+158 silly addNameRange     '0.1.2',
+158 silly addNameRange     '0.2.0',
+158 silly addNameRange     '0.2.1',
+158 silly addNameRange     '0.2.2',
+158 silly addNameRange     '0.2.3',
+158 silly addNameRange     '0.2.4',
+158 silly addNameRange     '0.2.5',
+158 silly addNameRange     '0.2.6',
+158 silly addNameRange     '0.3.0',
+158 silly addNameRange     '0.3.4',
+158 silly addNameRange     '0.3.5',
+158 silly addNameRange     '0.5.0',
+158 silly addNameRange     '0.5.1',
+158 silly addNameRange     '0.5.2',
+158 silly addNameRange     '0.6.0',
+158 silly addNameRange     '0.6.1',
+158 silly addNameRange     '0.6.2',
+158 silly addNameRange     '0.6.3',
+158 silly addNameRange     '0.7.0',
+158 silly addNameRange     '0.7.1',
+158 silly addNameRange     '0.8.0',
+158 silly addNameRange     '0.9.0-rc1',
+158 silly addNameRange     '0.9.0',
+158 silly addNameRange     '0.10.0-rc1',
+158 silly addNameRange     '0.10.0',
+158 silly addNameRange     '0.11.0-rc1',
+158 silly addNameRange     '0.11.0',
+158 silly addNameRange     '0.11.1',
+158 silly addNameRange     '0.11.2',
+158 silly addNameRange     '0.12.0-rc1',
+158 silly addNameRange     '0.12.0',
+158 silly addNameRange     '0.12.1',
+158 silly addNameRange     '0.12.2',
+158 silly addNameRange     '0.13.0-alpha.1',
+158 silly addNameRange     '0.13.0-alpha.2',
+158 silly addNameRange     '0.13.0-beta.1',
+158 silly addNameRange     '0.13.0-beta.2',
+158 silly addNameRange     '0.13.0-rc1',
+158 silly addNameRange     '0.13.0-rc2',
+158 silly addNameRange     '0.13.0',
+158 silly addNameRange     '0.13.1',
+158 silly addNameRange     '0.13.2',
+158 silly addNameRange     '0.13.3',
+158 silly addNameRange     '0.14.0-alpha1',
+158 silly addNameRange     '0.14.0-alpha2',
+158 silly addNameRange     '0.14.0-alpha3',
+158 silly addNameRange     '0.14.0-beta1',
+158 silly addNameRange     '0.14.0-beta2',
+158 silly addNameRange     '0.14.0-beta3',
+158 silly addNameRange     '0.14.0-rc1',
+158 silly addNameRange     '0.14.0',
+158 silly addNameRange     '0.14.1',
+158 silly addNameRange     '0.14.2',
+158 silly addNameRange     '0.14.3',
+158 silly addNameRange     '0.14.4',
+158 silly addNameRange     '0.14.5',
+158 silly addNameRange     '0.14.6',
+158 silly addNameRange     '0.15.0-alpha.1',
+158 silly addNameRange     '0.14.7',
+158 silly addNameRange     '15.0.0-rc.1',
+158 silly addNameRange     '15.0.0-rc.2',
+158 silly addNameRange     '0.14.8',
+158 silly addNameRange     '15.0.0',
+158 silly addNameRange     '15.0.1',
+158 silly addNameRange     '15.0.2-alpha.1',
+158 silly addNameRange     '15.0.2-alpha.2',
+158 silly addNameRange     '15.0.2-alpha.3',
+158 silly addNameRange     '15.0.2-alpha.4',
+158 silly addNameRange     '15.0.2',
+158 silly addNameRange     '15.0.3-alpha.1',
+158 silly addNameRange     '15.0.3-alpha.2',
+158 silly addNameRange     '15.1.0-alpha.1',
+158 silly addNameRange     '15.1.0',
+158 silly addNameRange     '15.2.0-rc.1',
+158 silly addNameRange     '15.2.0-rc.2',
+158 silly addNameRange     '15.2.0',
+158 silly addNameRange     '15.2.1',
+158 silly addNameRange     '15.3.0-rc.1',
+158 silly addNameRange     '15.3.0-rc.2',
+158 silly addNameRange     '15.3.0-rc.3',
+158 silly addNameRange     '15.3.0',
+158 silly addNameRange     '15.3.1-rc.1',
+158 silly addNameRange     '15.3.1-rc.2',
+158 silly addNameRange     '15.3.1',
+158 silly addNameRange     '15.3.2-rc.1',
+158 silly addNameRange     '15.3.2',
+158 silly addNameRange     '15.4.0-rc.1',
+158 silly addNameRange     '15.4.0-rc.2',
+158 silly addNameRange     '15.4.0-rc.3',
+158 silly addNameRange     '15.4.0-rc.4',
+158 silly addNameRange     '15.4.0',
+158 silly addNameRange     '15.4.1',
+158 silly addNameRange     '15.4.2',
+158 silly addNameRange     '16.0.0-alpha',
+158 silly addNameRange     '16.0.0-alpha.0',
+158 silly addNameRange     '16.0.0-alpha.2',
+158 silly addNameRange     '16.0.0-alpha.3',
+158 silly addNameRange     ... 151 more items ] ]
+159 silly addNamed react@16.3.2
+160 verbose addNamed "16.3.2" is a plain semver version for react
+161 silly cache afterAdd react@16.3.2
+162 verbose afterAdd /home/destinyrose2358/.npm/react/16.3.2/package/package.json not in flight; writing
+163 verbose afterAdd /home/destinyrose2358/.npm/react/16.3.2/package/package.json written
+164 silly rollbackFailedOptional Starting
+165 silly rollbackFailedOptional Finishing
+166 silly runTopLevelLifecycles Starting
+167 silly runTopLevelLifecycles Finishing
+168 silly install printInstalled
+169 verbose stack Error: Error extracting /home/destinyrose2358/.npm/actioncable/5.2.3/package.tgz archive: ENOENT: no such file or directory, open '/home/destinyrose2358/.npm/actioncable/5.2.3/package.tgz'
+169 verbose stack     at ReadStream.<anonymous> (/usr/share/npm/lib/fetch-package-metadata.js:286:10)
+169 verbose stack     at emitOne (events.js:116:13)
+169 verbose stack     at ReadStream.emit (events.js:211:7)
+169 verbose stack     at /usr/share/npm/node_modules/graceful-fs/graceful-fs.js:179:14
+169 verbose stack     at /usr/share/npm/node_modules/graceful-fs/graceful-fs.js:230:16
+169 verbose stack     at FSReqWrap.oncomplete (fs.js:135:15)
+170 verbose cwd /mnt/c/Users/desti/OneDrive/Desktop/Final Projects/Eris/frontend
+171 error Linux 4.4.0-18362-Microsoft
+172 error argv "/usr/bin/node" "/usr/bin/npm" "install" "-S" "react-actioncable-provider"
+173 error node v8.10.0
+174 error npm  v3.5.2
+175 error code EREADFILE
+176 error Error extracting /home/destinyrose2358/.npm/actioncable/5.2.3/package.tgz archive: ENOENT: no such file or directory, open '/home/destinyrose2358/.npm/actioncable/5.2.3/package.tgz'
+177 error If you need help, you may report this error at:
+177 error     <https://github.com/npm/npm/issues>
+178 verbose exit [ 1, true ]

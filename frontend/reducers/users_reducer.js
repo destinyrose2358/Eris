@@ -31,6 +31,24 @@ const usersReducer = (state = {}, action) => {
     case RECEIVE_DIRECT_CHANNEL:
       newState = merge({}, state, action.users);
       return newState;
+    case "REMOVE_USER":
+      newState = merge({}, state);
+      delete newState[action.user_id];
+      return newState;
+    case "RECEIVE_CHANNEL_MEMBERSHIP":
+      newState = merge({},
+        state, {
+          [action.user.id]: action.user
+        }
+      );
+      return newState;
+    case "RECEIVE_SERVER_MEMBERSHIP":
+      newState = merge({},
+        state, {
+          [action.user.id]: action.user
+        }
+      );
+      return newState;
     default:
       return state;
   };

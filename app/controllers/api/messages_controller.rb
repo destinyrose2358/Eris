@@ -5,48 +5,64 @@ class Api::MessagesController < ApplicationController
       .where(id: params[:channel_id]).first
     if channel && (channel.restricted_members.include?(current_user) || channel.restrictions.empty?)
       @messages = channel.messages
-      render :index
+      processed_messeages = ApplicationController.renderer.render("api/messages/index", locals: { "@messages": @messages })
+      UsersChannel.broadcast_to current_user, processed_messeages
+      render json: {}, status: :ok
     else
-      render json: ["Nothing to see here"], status: 404
+      UsersChannel.broadcast_to current_user, JSON.generate({ type: "RECEIVE_MESSAGE_ERRORS", errors: ["Nothing to see here"] })
+      render json: {}, status: 404
     end
   end
 
   def create
+    @type = "RECEIVE_MESSAGE"
     channel = Channel
       .where(id: params[:channel_id]).first
     if channel && (channel.restricted_members.include?(current_user) || channel.restrictions.empty?)
       @message = channel.messages.new(message_params)
       @message.author = current_user
       if @message.save
-        render :show
+        processed_message = ApplicationController.renderer.render("api/messages/show", locals: { "@message": @message, "@type": @type })
+        ChannelsChannel.broadcast_to channel, processed_message
+        render json: {}, status: :ok
       else
-        render json: @message.errors.full_messages, status: :unprocessable_entity
+        UsersChannel.broadcast_to current_user, JSON.generate({ type: "RECEIVE_MESSAGE_ERRORS", errors: @message.errors.full_messages })
+        render json: {}, status: :unprocessable_entity
       end
     else
-      render json: ["Nothing to see here"], status: 404
+      UsersChannel.broadcast_to current_user, JSON.generate({ type: "RECEIVE_MESSAGE_ERRORS", errors: ["Nothing to see here"] })
+      render json: {}, status: 404
     end
   end
 
   def update
-    @message = current_user.messages.find_by(id: params[:id])
+    @type = "RECEIVE_MESSAGE"
+    @message = current_user.messages.includes(:channel).find_by(id: params[:id])
     if @message
       if @message.update(message_params)
-        render :show
+        processed_message = ApplicationController.renderer.render("api/messages/show", locals: { "@message": @message, "@type": @type })
+        ChannelsChannel.broadcast_to @message.channel, processed_message
+        render json: {}, status: :ok
       else
-        render json: @message.errors.full_messages, status: :unprocessable_entity
+        UsersChannel.broadcast_to current_user, JSON.generate({ type: "RECEIVE_MESSAGE_ERRORS", errors: @message.errors.full_messages })
+        render json: {}, status: :unprocessable_entity
       end
     else
-      render json: ["Message not found"], status: 404
+      UsersChannel.broadcast_to current_user, JSON.generate({ type: "RECEIVE_MESSAGE_ERRORS", errors: ["Message not found"] })
+      render json: {}, status: 404
     end
   end
 
   def destroy
-    @message = current_user.messages.find_by(id: params[:id])
-    if @message
-      @message.delete
-      render :show
+    @type = "REMOVE_MESSAGE"
+    @message = current_user.messages.includes(:channel).find_by(id: params[:id])
+    if @message && @message.delete
+      processed_message = ApplicationController.renderer.render("api/messages/show", locals: { "@message": @message, "@type": @type })
+      ChannelsChannel.broadcast_to @message.channel, processed_message
+      render json: {}, status: :ok
     else
-      render json: ["Message not found"], status: 404
+      UsersChannel.broadcast_to current_user, JSON.generate({ type: "RECEIVE_MESSAGE_ERRORS", errors: ["Message not found"] })
+      render json: {}, status: 404
     end
   end
 

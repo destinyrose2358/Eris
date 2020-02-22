@@ -22,20 +22,16 @@ export const removeMessage = ({message}) => ({
 
 export const fetchMessages = channelId => dispatch => (
   MessageAPIUtl.fetchMessages(channelId)
-    .then(messages => dispatch(receiveMessages(messages)))
 );
 
 export const createMessage = (channelId, message) => dispatch => (
   MessageAPIUtl.createMessage(channelId, message)
-    .then(message => dispatch(receiveMessage(message)))
 );
 
 export const updateMessage = message => dispatch => (
   MessageAPIUtl.updateMessage(message)
-    .then(message => dispatch(receiveMessage(message)))
 );
 
 export const deleteMessage = message => dispatch => (
   MessageAPIUtl.deleteMessage(message)
-    .then(message => dispatch(removeMessage(message)))
 );

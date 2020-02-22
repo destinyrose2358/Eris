@@ -1,5 +1,5 @@
 export const deleteChannel = (serverId, channelId) => (
-  $.ajax({
+  fetch({
     method: "DELETE",
     url: `api/servers/${serverId}/channels/${channelId}`
   })
