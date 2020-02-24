@@ -1,5 +1,4 @@
 import React from "react";
-import { ActionCable } from "react-actioncable-provider";
 
 export default class WebSocketComponent extends React.Component {
     constructor(props) {
