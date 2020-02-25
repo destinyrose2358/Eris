@@ -14,10 +14,6 @@ export default class ServerIndex extends React.Component {
     this.closeCreateServerForm = this.closeCreateServerForm.bind(this);
   }
 
-  componentDidMount() {
-    this.props.fetchServers();
-  }
-
   openCreateServerForm() {
     this.setState({createServerModalOpen: true});
   }

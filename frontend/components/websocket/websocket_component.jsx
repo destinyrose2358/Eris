@@ -11,39 +11,24 @@ export default class WebSocketComponent extends React.Component {
     }
 
     componentDidMount() {
-        const { receiveResponse, servers, channels } = this.props;
+        const { receiveResponse, fetchServers, fetchDirectChannels } = this.props;
         const userChannel = App.cable.subscriptions.create(
             { channel: "UsersChannel" },
             {
                 received: receiveResponse
-            }  
-        );
-        const serverChannels = {};
-        Object.entries(servers).forEach(pair => {
-            serverChannels[pair[0]] = App.cable.subscriptions.create(
-                { channel: "ServersChannel", id: pair[1] },
-                {
-                    received: receiveResponse
-                }
-            )
-        });
-        const channelChannels = {};
-        Object.entries(channels).forEach(pair => {
-            channelChannels[pair[0]] = App.cable.subscriptions.create(
-                { channel: "ChannelsChannel", id: pair[1] },
-                {
-                    received: receiveResponse
-                }
-            )
-        })
+            }
+        )
+            .then(() => {
+                fetchServers();
+                fetchDirectChannels();
+            });
+        
         this.setState({
-            userChannel,
-            serverChannels,
-            channelChannels
-        })
+            userChannel
+        });
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate() {
         let changeMade = false;
         const { receiveResponse, servers, channels } = this.props;
         Object.entries(this.state.serverChannels).forEach(([serverId, subscription]) => {

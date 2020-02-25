@@ -1,5 +1,7 @@
 import { connect } from "react-redux";
 import WebSocketComponent from "./websocket_component";
+import { fetchServers } from "../../actions/server_actions";
+import { fetchDirectChannels } from "../../actions/channel_actions";
 
 const msp = (state) => {
     return {
@@ -13,7 +15,9 @@ const mdp = (dispatch) => {
     return {
         receiveResponse: (response) => {
             return dispatch(JSON.parse(response));
-        }
+        },
+        fetchServers,
+        fetchDirectChannels
     }
 }
 
