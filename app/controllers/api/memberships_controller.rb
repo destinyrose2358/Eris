@@ -74,6 +74,7 @@ class Api::MembershipsController < ApplicationController
                 when "Server"
                     processed_server_membership = ApplicationController.renderer.render("api/memberships/show", locals: { "@type": "RECEIVE_SERVER_MEMBERSHIP", "@membership": @membership })
                     ServersChannel.broadcast_to @server, processed_server_membership
+            end
         else
             UsersChannel.broadcast_to current_user, JSON.generate({ type: "RECEIVE_MEMBERSHIP_ERRORS", errors: ["Failed to accept invite"] })
             render json: {}, status: :unprocessable_entity
