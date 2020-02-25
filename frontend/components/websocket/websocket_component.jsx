@@ -13,13 +13,15 @@ export default class WebSocketComponent extends React.Component {
     componentDidMount() {
         const { receiveResponse, fetchServers, fetchDirectChannels } = this.props;
         const userChannel = App.cable.subscriptions.create(
-            { channel: "UsersChannel" },
-            {
-                received: receiveResponse
-            }
-        )
-        fetchServers();
-        fetchDirectChannels();
+                { channel: "UsersChannel" },
+                {
+                    received: receiveResponse,
+                    connected: () => {
+                        fetchServers();
+                        fetchDirectChannels();
+                    }
+                }
+            );
         
         this.setState({
             userChannel
