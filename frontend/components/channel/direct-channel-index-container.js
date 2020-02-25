@@ -15,6 +15,6 @@ const mdp = (dispatch) => {
     }
 }
 
-const DirectChannelIndexContainer = withRouter(connect(msp, mdp)(DirectChannelIndex));
+const DirectChannelIndexContainer = withRouter(connect(msp, mdp)(ChannelIndex));
 
 export default DirectChannelIndexContainer;
