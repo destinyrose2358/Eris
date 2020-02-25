@@ -16,8 +16,12 @@ const mdp = (dispatch) => {
         receiveResponse: (response) => {
             return dispatch(JSON.parse(response));
         },
-        fetchServers,
-        fetchDirectChannels
+        fetchServers: () => {
+            return dispatch(fetchServers());
+        },
+        fetchDirectChannels: () => {
+            return dispatch(fetchDirectChannels());
+        }
     }
 }
 
