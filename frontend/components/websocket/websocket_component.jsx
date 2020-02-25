@@ -18,10 +18,8 @@ export default class WebSocketComponent extends React.Component {
                 received: receiveResponse
             }
         )
-            .then(() => {
-                fetchServers();
-                fetchDirectChannels();
-            });
+        fetchServers();
+        fetchDirectChannels();
         
         this.setState({
             userChannel
