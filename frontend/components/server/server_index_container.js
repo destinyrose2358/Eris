@@ -7,10 +7,6 @@ const msp = (state) => ({
   serverIds: state.serverIds
 });
 
-const mdp = (dispatch) => ({
-  fetchServers: () => dispatch(fetchServers())
-})
-
-const ServerIndexContainer = withRouter(connect(msp, mdp)(ServerIndex));
+const ServerIndexContainer = withRouter(connect(msp)(ServerIndex));
 
 export default ServerIndexContainer;

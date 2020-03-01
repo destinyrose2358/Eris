@@ -55,7 +55,7 @@ class Api::MembershipsController < ApplicationController
     end
 
     def update
-        @membership = current_user.pending_memberships.includes(memberable: { messages: :author }, :user).find_by(id: params[:id])
+        @membership = current_user.pending_memberships.includes(:user, memberable: { messages: :author }).find_by(id: params[:id])
         if @membership && @membership.update(accepted: :true)
             if @membership.memberable_type == "Server"
                 @server = @membership.memberable
@@ -68,12 +68,13 @@ class Api::MembershipsController < ApplicationController
             render json: {}
             #send the server or channel the new membership data
             case @membership.memberable_type
-                when "Channel"
-                    processed_channel_membership = ApplicationController.renderer.render("api/memberships/show", locals: { "@type": "RECEIVE_CHANNEL_MEMBERSHIP", "@membership": @membership })
-                    ChannelsChannel.broadcast_to @channel, processed_channel_membership
-                when "Server"
-                    processed_server_membership = ApplicationController.renderer.render("api/memberships/show", locals: { "@type": "RECEIVE_SERVER_MEMBERSHIP", "@membership": @membership })
-                    ServersChannel.broadcast_to @server, processed_server_membership
+            when "Channel"
+                processed_channel_membership = ApplicationController.renderer.render("api/memberships/show", locals: { "@type": "RECEIVE_CHANNEL_MEMBERSHIP", "@membership": @membership })
+                ChannelsChannel.broadcast_to @channel, processed_channel_membership
+            when "Server"
+                processed_server_membership = ApplicationController.renderer.render("api/memberships/show", locals: { "@type": "RECEIVE_SERVER_MEMBERSHIP", "@membership": @membership })
+                ServersChannel.broadcast_to @server, processed_server_membership
+            end
         else
             UsersChannel.broadcast_to current_user, JSON.generate({ type: "RECEIVE_MEMBERSHIP_ERRORS", errors: ["Failed to accept invite"] })
             render json: {}, status: :unprocessable_entity
@@ -88,12 +89,13 @@ class Api::MembershipsController < ApplicationController
             if (is_invitee || is_owner) && ((@membership.memberable_type == "Server" && @membership.delete) || (@membership.memberable_type == "Channel" && @membership.update(accepted: false)))
                 deleted_membership = ApplicationController.renderer.render("api/memberships/destroy", locals: { "@membership": @membership })
                 case @membership.memberable_type
-                    when "Channel"
-                        UsersChannel.broadcast_to @membership.user, JSON.generate({ type: "REMOVE_CHANNEL", channelId: @membership.memberable_id })
-                        ChannelsChannel.broadcast_to @membership.memberable, deleted_membership
-                    when "Server"
-                        UsersChannel.broadcast_to @membership.user, JSON.generate({ type: "REMOVE_SERVER", channelId: @membership.memberable_id })
-                        ServersChannel.broadcast_to @membership.memberable, deleted_membership
+                when "Channel"
+                    UsersChannel.broadcast_to @membership.user, JSON.generate({ type: "REMOVE_CHANNEL", channelId: @membership.memberable_id })
+                    ChannelsChannel.broadcast_to @membership.memberable, deleted_membership
+                when "Server"
+                    UsersChannel.broadcast_to @membership.user, JSON.generate({ type: "REMOVE_SERVER", channelId: @membership.memberable_id })
+                    ServersChannel.broadcast_to @membership.memberable, deleted_membership
+                end
                 render json: {}
             else
                 UsersChannel.broadcast_to current_user, JSON.generate({ type: "RECEIVE_MEMBERSHIP_ERRORS", errors: ["You cannot delete this member"] })

@@ -15,12 +15,6 @@ const mdp = (dispatch) => {
     }
 }
 
-class DirectChannelIndex extends ChannelIndex {
-    componentDidMount() {
-      this.props.fetchChannels();
-    }
-}
-
-const DirectChannelIndexContainer = withRouter(connect(msp, mdp)(DirectChannelIndex));
+const DirectChannelIndexContainer = withRouter(connect(msp, mdp)(ChannelIndex));
 
 export default DirectChannelIndexContainer;
