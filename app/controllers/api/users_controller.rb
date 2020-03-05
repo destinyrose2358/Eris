@@ -16,11 +16,8 @@ class Api::UsersController < ApplicationController
   def update
     @user = User.find_by(id: params[:id])
     if @user && @user.is_password?(params[:password])
-      modified_params = user_params
-      if modified_params[:photo] == "remove"
-        modified_params[:photo] = nil
-      end
-      if @user.update(modified_params)
+      if @user.update(user_params)
+        @user.photo.purge if params[:remove]
         render :current_user
       else
         render json: @user.errors.full_messages, status: :unprocessable_entity

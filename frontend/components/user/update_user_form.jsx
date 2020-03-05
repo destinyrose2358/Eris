@@ -14,7 +14,8 @@ export default class UpdateUserForm extends React.Component {
             file: null,
             newPassword: "",
             editting: false,
-            edittingPassword: false
+            edittingPassword: false,
+            remove: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFile = this.handleFile.bind(this);
@@ -27,7 +28,7 @@ export default class UpdateUserForm extends React.Component {
 
     clearProfilePicture() {
         this.setState({
-            file: "reset",
+            remove: true,
             profilePicture: null
         })
     }
@@ -43,12 +44,15 @@ export default class UpdateUserForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const formData = new FormData();
-        let { username, password, email, file, newPassword } = this.state;
-        if (username) formData.append("user[username]", username);
+        const { password, file, newPassword, remove } = this.state;
+        Object.entries(this.state).forEach(([field, value]) => {
+            if (field && /(?:[^photo]*)(?:[^newPassword]*)(?:[^file]*)(?:[^remove])/.test(field))
+              formData.append(`user[${field}]`, value);
+        });
         if (password) formData.append("password", password);
-        if (email) formData.append("user[email]", email);
         if (file) formData.append("user[photo]", file);
-        if (newPassword.length > 0) formData.append("user[password]", newPassword);
+        if (newPassword) formData.append("user[password]", newPassword);
+        if (remove) formData.append("remove", remove)
         this.props.updateUser(formData, this.props.currentUser.id);
         this.reset();
     }
@@ -70,7 +74,8 @@ export default class UpdateUserForm extends React.Component {
         fileReader.onloadend = () => {
             this.setState({
                 file,
-                photoURL: fileReader.result
+                photoURL: fileReader.result,
+                remove: false
             })
         }
         fileReader.readAsDataURL(file);
@@ -87,13 +92,14 @@ export default class UpdateUserForm extends React.Component {
             file: null,
             newPassword: "",
             editting: false,
-            edittingPassword: false
+            edittingPassword: false,
+            remove: false
         });
     }
 
     render() {
         let { username, password, email, newPassword, photoURL, profilePicture, editting, edittingPassword } = this.state;
-        
+        //refactor to make image uploader a separate component
         const profilePictureStyling = photoURL || profilePicture ? 
             {
                 backgroundImage: `url(${ photoURL || profilePicture })`
@@ -117,6 +123,13 @@ export default class UpdateUserForm extends React.Component {
                         style={profilePictureStyling}
                     >
                         { photoURL || profilePicture ? null : BaseSVG.erisLogo }
+                        
+                        <input
+                            type="file"
+                            name="profile_picture"
+                            accept="image/png, image/jpeg"
+                            onChange={this.handleFile}
+                        />
                         <div
                             className="image-uploader-message"
                         >
@@ -124,12 +137,6 @@ export default class UpdateUserForm extends React.Component {
                             <br/>
                             Avatar
                         </div>
-                        <input
-                            type="file"
-                            name="profile_picture"
-                            accept="image/png, image/jpeg"
-                            onChange={this.handleFile}
-                        />
                         <div
                             className="image-uploader-icon"
                         >
@@ -222,6 +229,7 @@ export default class UpdateUserForm extends React.Component {
                     className="image-uploader"
                     style={profilePictureStyling}
                 >
+                    { photoURL || profilePicture ? null : BaseSVG.erisLogo }
                 </div>
                 <div
                     className="update-user-fields"

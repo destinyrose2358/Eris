@@ -135,14 +135,36 @@ i {
   background-size: cover;
   position: relative;
   overflow: visible;
+  background-color: $accent-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   & input[type=file] {
     width: 100%;
     height: 100%;
     opacity: 0;
     position: absolute;
+    z-index: 2000;
+    &:hover ~ .image-uploader-message {
+      opacity: 100%;
+    }
   }
-  &:hover .image-uploader-message {
-    opacity: 100;
+  & > svg {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    fill: white;
+  }
+  & a {
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    &:hover {
+      color: lighten($tertiary-color, 20%);
+      text-decoration: underline;
+    }
   }
   & .image-uploader-message {
     position: absolute;
@@ -158,6 +180,9 @@ i {
     font-weight: 700;
     font-size: 16px;
     border-radius: 50%;
+    &:hover {
+      opacity: 100;
+    }
   }
   & .image-uploader-icon {
     background: lighten($base-color, 40%);
