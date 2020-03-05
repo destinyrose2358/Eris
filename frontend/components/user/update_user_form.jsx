@@ -9,7 +9,7 @@ export default class UpdateUserForm extends React.Component {
             username: currentUser.username,
             password: "",
             email: currentUser.email,
-            profile_picture: currentUser.profile_picture,
+            profilePicture: currentUser.profile_picture,
             photoURL: null,
             file: null,
             newPassword: "",
@@ -18,6 +18,7 @@ export default class UpdateUserForm extends React.Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFile = this.handleFile.bind(this);
+        this.clearProfilePicture = this.clearProfilePicture.bind(this);
     }
 
     componentDidMount() {
@@ -25,15 +26,10 @@ export default class UpdateUserForm extends React.Component {
     }
 
     clearProfilePicture() {
-        // const file;
-        const fileReader = new FileReader();
-        fileReader.onloadend = () => {
-            this.setState({
-                file,
-                photoURL: fileReader.result
-            })
-        }
-        fileReader.readAsDataURL(file);
+        this.setState({
+            file: "reset",
+            profilePicture: null
+        })
     }
 
     update(field) {
@@ -63,7 +59,7 @@ export default class UpdateUserForm extends React.Component {
             this.setState({
                 username: currentUser.username,
                 email: currentUser.email,
-                profile_picture: currentUser.profile_picture
+                profilePicture: currentUser.profile_picture
             })
         } 
     }
@@ -86,7 +82,7 @@ export default class UpdateUserForm extends React.Component {
             username: currentUser.username,
             password: "",
             email: currentUser.email,
-            profile_picture: currentUser.profile_picture,
+            profilePicture: currentUser.profile_picture,
             photoURL: null,
             file: null,
             newPassword: "",
@@ -96,7 +92,18 @@ export default class UpdateUserForm extends React.Component {
     }
 
     render() {
-        let { username, password, email, newPassword, photoURL, profile_picture, editting, edittingPassword } = this.state;
+        let { username, password, email, newPassword, photoURL, profilePicture, editting, edittingPassword } = this.state;
+        
+        const profilePictureStyling = photoURL || profilePicture ? 
+            {
+                backgroundImage: `url(${ photoURL || profilePicture })`
+            }
+        :
+            {
+
+            }
+        ;
+        
         return editting ? (
             <form
                 className="update-user"
@@ -107,10 +114,9 @@ export default class UpdateUserForm extends React.Component {
                 >
                     <div
                         className="image-uploader"
-                        style={{
-                            backgroundImage: `url(${photoURL || profile_picture})`
-                        }}
+                        style={profilePictureStyling}
                     >
+                        { photoURL || profilePicture ? null : BaseSVG.erisLogo }
                         <div
                             className="image-uploader-message"
                         >
@@ -129,6 +135,15 @@ export default class UpdateUserForm extends React.Component {
                         >
                             {BaseSVG.file}
                         </div>
+                        <a 
+                            onClick={(e) => {
+                                e.preventDefault();
+                                console.log("hit");
+                                this.clearProfilePicture();
+                            }}
+                        >
+                            Remove
+                        </a>
                     </div>
                     
                     <div
@@ -205,9 +220,7 @@ export default class UpdateUserForm extends React.Component {
             >
                 <div
                     className="image-uploader"
-                    style={{
-                        backgroundImage: `url(${photoURL || profile_picture})`
-                    }}
+                    style={profilePictureStyling}
                 >
                 </div>
                 <div
