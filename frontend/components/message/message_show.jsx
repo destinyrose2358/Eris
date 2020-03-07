@@ -9,6 +9,7 @@ export default class MessageShow extends React.Component {
             menuOpen: false,
             change: true
         }
+        this.toggleMenu = this.toggleMenu.bind(this);
     }
 
     componentDidMount() {
@@ -26,6 +27,15 @@ export default class MessageShow extends React.Component {
         $("body").off("click");
     }
 
+    toggleMenu(e) {
+        e.stopPropagation();
+        this.setState(prevState => {
+            return {
+                menuOpen: !prevState.menuOpen
+            }
+        });
+    }
+
     render() {
         const { message, author, isUser, select, selected } = this.props;
         const { menuOpen } = this.state;
@@ -33,16 +43,12 @@ export default class MessageShow extends React.Component {
         if (isUser) dropDown = (
             <aside
                 className={`message-menu message-${ message.id }`}
-                onClick={(e) => {
-                    e.stopPropagation();
-                    this.setState(prevState => {
-                        return {
-                            menuOpen: !prevState.menuOpen
-                        }
-                    });
-                }}
             >
-                <BaseSVG.dropdown menuOpen={menuOpen} message={message} />
+                <BaseSVG.dropdown
+                    menuOpen={menuOpen}
+                    message={message}
+                    toggleMenu={this.toggleMenu}
+                />
                 <div
                     className={`message-menu-content message-${message.id} ${menuOpen ? "visible" : ""}`}
                 >

@@ -47,13 +47,16 @@ const BaseSVG = {
                 </path>
             </g>
         </svg>,
-    dropdown: ({menuOpen, message}) => (
+    dropdown: ({menuOpen, message, toggleMenu}) => (
         <svg
             className={`${menuOpen ? "visible" : ""} message-${message.id}`}
             aria-hidden="false"
             width="24"
             height="24"
             viewBox="0 0 24 24"
+            onClick={e => {
+                toggleMenu(e);
+            }}
         >
             <g
                 fill="none"
