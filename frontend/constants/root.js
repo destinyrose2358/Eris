@@ -3,7 +3,7 @@ let api_ws_root;
 switch (process.env.NODE_ENV) {
     case "production":
         api_root = 'http://erisapp.herokuapp.com';
-        api_ws_root = 'ws://erisapp.herokuapp.com/cable';
+        api_ws_root = 'wss://erisapp.herokuapp.com/cable';
         break;
     case "development":
         api_root = 'http://localhost:3000';
