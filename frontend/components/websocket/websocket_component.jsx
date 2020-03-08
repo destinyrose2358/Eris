@@ -1,4 +1,5 @@
 import React from "react";
+import { API_WS_ROOT } from "../../constants/root";
 
 export default class WebSocketComponent extends React.Component {
     constructor(props) {
@@ -35,7 +36,6 @@ export default class WebSocketComponent extends React.Component {
 
     componentWillUnmount() {
         Object.values(this.state).forEach(value => {
-            debugger;
             if (!value.consumer) {
                 Object.values(value).forEach(subscription => {
                     App.cable.subscriptions.remove(subscription);
@@ -44,6 +44,8 @@ export default class WebSocketComponent extends React.Component {
                 App.cable.subscriptions.remove(value);
             }
         })
+        App.cable.disconnect();
+        App.cable = ActionCable.createConsumer(API_WS_ROOT);
     }
 
     componentDidUpdate(prevProps) {
