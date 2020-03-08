@@ -14,12 +14,13 @@ export default class MessageShow extends React.Component {
 
     componentDidMount() {
         $("body").on("click", e => {
-            if (!e.target.classList.contains(`message-${this.props.message.id}`))
-            this.setState(prevState => {
-                return {
-                    menuOpen: false
-                }
-            });
+            if (!e.target.classList.contains(`message-${this.props.message.id}`)) {
+                this.setState(prevState => {
+                    return {
+                        menuOpen: false
+                    }
+                });
+            }
         });
     }
 
@@ -28,7 +29,6 @@ export default class MessageShow extends React.Component {
     }
 
     toggleMenu(e) {
-        e.stopPropagation();
         this.setState(prevState => {
             return {
                 menuOpen: !prevState.menuOpen

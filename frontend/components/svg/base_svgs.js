@@ -60,14 +60,17 @@ const BaseSVG = {
         >
             <g
                 fill="none"
+                className={`message-${message.id}`}
                 fillRule="evenodd"
             >
                 <path
                     d="M24 0v24H0V0z"
+                    className={`message-${message.id}`}
                 >
                 </path>
                 <path
                     fill="currentColor"
+                    className={`message-${message.id}`}
                     d="M12 16c1.1045695 0 2 .8954305 2 2s-.8954305 2-2 2-2-.8954305-2-2 .8954305-2 2-2zm0-6c1.1045695 0 2 .8954305 2 2s-.8954305 2-2 2-2-.8954305-2-2 .8954305-2 2-2zm0-6c1.1045695 0 2 .8954305 2 2s-.8954305 2-2 2-2-.8954305-2-2 .8954305-2 2-2z"
                 >
                 </path>
