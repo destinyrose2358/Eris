@@ -5,7 +5,6 @@
       user: current_user
     ).html_safe %>;
     <% cookies.encrypted[:session_token] = session[:session_token] %>
-    console.log("<%= session[:session_token] %>");
   <% end %>
 </script>
 

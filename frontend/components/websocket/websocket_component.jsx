@@ -22,7 +22,6 @@ export default class WebSocketComponent extends React.Component {
                 {
                     received: receiveResponse,  
                     connected: () => {
-                        console.log("connected");
                         this.setState({
                             userChannel
                         }, () => {
