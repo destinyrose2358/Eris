@@ -47,24 +47,30 @@ const BaseSVG = {
                 </path>
             </g>
         </svg>,
-    dropdown: ({menuOpen, message}) => (
+    dropdown: ({menuOpen, message, toggleMenu}) => (
         <svg
             className={`${menuOpen ? "visible" : ""} message-${message.id}`}
             aria-hidden="false"
             width="24"
             height="24"
             viewBox="0 0 24 24"
+            onClick={e => {
+                toggleMenu(e);
+            }}
         >
             <g
                 fill="none"
+                className={`message-${message.id}`}
                 fillRule="evenodd"
             >
                 <path
                     d="M24 0v24H0V0z"
+                    className={`message-${message.id}`}
                 >
                 </path>
                 <path
                     fill="currentColor"
+                    className={`message-${message.id}`}
                     d="M12 16c1.1045695 0 2 .8954305 2 2s-.8954305 2-2 2-2-.8954305-2-2 .8954305-2 2-2zm0-6c1.1045695 0 2 .8954305 2 2s-.8954305 2-2 2-2-.8954305-2-2 .8954305-2 2-2zm0-6c1.1045695 0 2 .8954305 2 2s-.8954305 2-2 2-2-.8954305-2-2 .8954305-2 2-2z"
                 >
                 </path>

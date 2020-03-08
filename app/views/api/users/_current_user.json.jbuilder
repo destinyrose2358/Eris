@@ -1,2 +1,2 @@
 json.extract! user, :email, :username, :id
-json.profile_picture url_for(user.photo)
+json.profile_picture user.photo.attached? ? url_for(user.photo) : nil

@@ -9,15 +9,17 @@ export default class UpdateUserForm extends React.Component {
             username: currentUser.username,
             password: "",
             email: currentUser.email,
-            profile_picture: currentUser.profile_picture,
+            profilePicture: currentUser.profile_picture,
             photoURL: null,
             file: null,
             newPassword: "",
             editting: false,
-            edittingPassword: false
+            edittingPassword: false,
+            remove: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFile = this.handleFile.bind(this);
+        this.clearProfilePicture = this.clearProfilePicture.bind(this);
     }
 
     componentDidMount() {
@@ -25,15 +27,10 @@ export default class UpdateUserForm extends React.Component {
     }
 
     clearProfilePicture() {
-        // const file;
-        const fileReader = new FileReader();
-        fileReader.onloadend = () => {
-            this.setState({
-                file,
-                photoURL: fileReader.result
-            })
-        }
-        fileReader.readAsDataURL(file);
+        this.setState({
+            remove: true,
+            profilePicture: null
+        })
     }
 
     update(field) {
@@ -47,12 +44,15 @@ export default class UpdateUserForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const formData = new FormData();
-        let { username, password, email, file, newPassword } = this.state;
-        if (username) formData.append("user[username]", username);
+        const { password, file, newPassword, remove } = this.state;
+        Object.entries(this.state).forEach(([field, value]) => {
+            if (field && /(?:[^photo]*)(?:[^newPassword]*)(?:[^file]*)(?:[^remove])/.test(field))
+              formData.append(`user[${field}]`, value);
+        });
         if (password) formData.append("password", password);
-        if (email) formData.append("user[email]", email);
         if (file) formData.append("user[photo]", file);
-        if (newPassword.length > 0) formData.append("user[password]", newPassword);
+        if (newPassword) formData.append("user[password]", newPassword);
+        if (remove) formData.append("remove", remove)
         this.props.updateUser(formData, this.props.currentUser.id);
         this.reset();
     }
@@ -63,7 +63,7 @@ export default class UpdateUserForm extends React.Component {
             this.setState({
                 username: currentUser.username,
                 email: currentUser.email,
-                profile_picture: currentUser.profile_picture
+                profilePicture: currentUser.profile_picture
             })
         } 
     }
@@ -74,7 +74,8 @@ export default class UpdateUserForm extends React.Component {
         fileReader.onloadend = () => {
             this.setState({
                 file,
-                photoURL: fileReader.result
+                photoURL: fileReader.result,
+                remove: false
             })
         }
         fileReader.readAsDataURL(file);
@@ -86,17 +87,29 @@ export default class UpdateUserForm extends React.Component {
             username: currentUser.username,
             password: "",
             email: currentUser.email,
-            profile_picture: currentUser.profile_picture,
+            profilePicture: currentUser.profile_picture,
             photoURL: null,
             file: null,
             newPassword: "",
             editting: false,
-            edittingPassword: false
+            edittingPassword: false,
+            remove: false
         });
     }
 
     render() {
-        let { username, password, email, newPassword, photoURL, profile_picture, editting, edittingPassword } = this.state;
+        let { username, password, email, newPassword, photoURL, profilePicture, editting, edittingPassword } = this.state;
+        //refactor to make image uploader a separate component
+        const profilePictureStyling = photoURL || profilePicture ? 
+            {
+                backgroundImage: `url(${ photoURL || profilePicture })`
+            }
+        :
+            {
+
+            }
+        ;
+        
         return editting ? (
             <form
                 className="update-user"
@@ -107,17 +120,10 @@ export default class UpdateUserForm extends React.Component {
                 >
                     <div
                         className="image-uploader"
-                        style={{
-                            backgroundImage: `url(${photoURL || profile_picture})`
-                        }}
+                        style={profilePictureStyling}
                     >
-                        <div
-                            className="image-uploader-message"
-                        >
-                            Change
-                            <br/>
-                            Avatar
-                        </div>
+                        { photoURL || profilePicture ? null : BaseSVG.erisLogo }
+                        
                         <input
                             type="file"
                             name="profile_picture"
@@ -125,10 +131,26 @@ export default class UpdateUserForm extends React.Component {
                             onChange={this.handleFile}
                         />
                         <div
+                            className="image-uploader-message"
+                        >
+                            Change
+                            <br/>
+                            Avatar
+                        </div>
+                        <div
                             className="image-uploader-icon"
                         >
                             {BaseSVG.file}
                         </div>
+                        <a 
+                            onClick={(e) => {
+                                e.preventDefault();
+                                console.log("hit");
+                                this.clearProfilePicture();
+                            }}
+                        >
+                            Remove
+                        </a>
                     </div>
                     
                     <div
@@ -205,10 +227,9 @@ export default class UpdateUserForm extends React.Component {
             >
                 <div
                     className="image-uploader"
-                    style={{
-                        backgroundImage: `url(${photoURL || profile_picture})`
-                    }}
+                    style={profilePictureStyling}
                 >
+                    { photoURL || profilePicture ? null : BaseSVG.erisLogo }
                 </div>
                 <div
                     className="update-user-fields"

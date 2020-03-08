@@ -1,4 +1,5 @@
 import React from "react";
+import { API_WS_ROOT } from "../../constants/root";
 
 export default class WebSocketComponent extends React.Component {
     constructor(props) {
@@ -8,29 +9,48 @@ export default class WebSocketComponent extends React.Component {
             serverChannels: {},
             channelChannels: {}
         }
+        this.connectUser = this.connectUser.bind(this);
     }
 
     componentDidMount() {
-        const { receiveResponse, fetchServers, fetchDirectChannels } = this.props;
+        this.connectUser();
+    }
+
+    connectUser() {
+        const { receiveResponse, fetchServers, fetchDirectChannels, currentUser} = this.props;
         const userChannel = App.cable.subscriptions.create(
                 { channel: "UsersChannel" },
                 {
-                    received: receiveResponse,
+                    received: receiveResponse,  
                     connected: () => {
-                        fetchServers();
-                        fetchDirectChannels();
+                        this.setState({
+                            userChannel
+                        }, () => {
+                            fetchServers();
+                            fetchDirectChannels();
+                        });
                     }
                 }
             );
-        
-        this.setState({
-            userChannel
-        });
     }
 
-    componentDidUpdate() {
+    componentWillUnmount() {
+        Object.values(this.state).forEach(value => {
+            if (!value.consumer) {
+                Object.values(value).forEach(subscription => {
+                    App.cable.subscriptions.remove(subscription);
+                })
+            } else {
+                App.cable.subscriptions.remove(value);
+            }
+        })
+        App.cable.disconnect();
+        App.cable = ActionCable.createConsumer(API_WS_ROOT);
+    }
+
+    componentDidUpdate(prevProps) {
         let changeMade = false;
-        const { receiveResponse, servers, channels } = this.props;
+        const { receiveResponse, servers, channels, currentUser } = this.props;
         Object.entries(this.state.serverChannels).forEach(([serverId, subscription]) => {
             if (!servers[serverId]) {
                 App.cable.subscriptions.remove(subscription);

