@@ -1,4 +1,5 @@
 import React from "react";
+import UserSearchContainer from "../user/search/user_search_container";
 
 export default class ServerControls extends React.Component {
     constructor(props) {
@@ -9,6 +10,7 @@ export default class ServerControls extends React.Component {
     }
 
     render() {
+        const { server } = this.props;
         const { openUserSearch } = this.state;
         let userSearchModal = openUserSearch ?
             <>
@@ -19,6 +21,7 @@ export default class ServerControls extends React.Component {
                     })}
                 >
                 </div>
+                <UserSearchContainer serverId={server.id} />
             </>
         :
             null;

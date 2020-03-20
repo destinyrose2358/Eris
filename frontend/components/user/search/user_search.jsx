@@ -1,4 +1,5 @@
 import React from "react";
+import UserSearchListContainer from "./user_search_list_container";
 
 export default class UserSearch extends React.Component {
     constructor(props) {
@@ -10,7 +11,7 @@ export default class UserSearch extends React.Component {
 
     update(field) {
         return e => this.setState({
-            [field]: e.currentTarger.value
+            [field]: e.currentTarget.value
         })
     }
 
@@ -21,18 +22,18 @@ export default class UserSearch extends React.Component {
     }
 
     render() {
-        const {} = this.props;
+        const {serverId} = this.props;
         const {username} = this.state;
         return (
             <div
-                className="user-search"
+                className="modal-user-search"
             >
                 <input
                     type="text"
                     value={username}
                     onChange={this.update("username")}
                 />
-                <UserSearchListContainer username={username} />
+                <UserSearchListContainer username={username} serverId={serverId} />
             </div>
         )
     }
