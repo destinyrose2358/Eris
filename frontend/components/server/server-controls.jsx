@@ -14,15 +14,13 @@ export default class ServerControls extends React.Component {
 
     closeOnClick() {
         $("body").on("click", e => {
+            e.stopPropagation();
             this.setState({
                 menuOpen: false
             }, () => {
-                console.log("event hit");
-                console.log(this.state.menuOpen);
                 $("body").off("click");
             })
-        })
-        console.log("made event");
+        });
     }
 
     toggle(field) {
@@ -50,23 +48,7 @@ export default class ServerControls extends React.Component {
         :
             null;
                 
-        return ( menuOpen ?
-            <>
-                <div
-                    className="server-controls"
-                >
-                    <button
-                        onClick={() => this.setState({
-                            openUserSearch: true
-                        })}
-                    >
-                        Invite People
-                    </button>
-                </div>
-                { userSearchModal }        
-            </>
-            :
-            <>
+        return <>
                 <div
                     className="server-controls"
                     onClick={() => {
@@ -76,11 +58,29 @@ export default class ServerControls extends React.Component {
                         });
                     }}
                 >
-                    <h1>{server.title}</h1>
+                    <aside
+                        className="server-controls-tab"
+                    >
+                        <h1>{server.title}</h1>
+                    </aside>
+                    {
+                        menuOpen ?
+                            <div
+                                className="server-controls-menu"
+                            >
+                                <button
+                                    onClick={() => this.setState({
+                                        openUserSearch: true
+                                    })}
+                                >
+                                    Invite People
+                                </button>
+                            </div>
+                        :
+                            null
+                    }
                 </div>
+                { userSearchModal }        
             </>
-
-            
-        )
     }
 }
