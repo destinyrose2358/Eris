@@ -8,15 +8,18 @@ export default class ServerControls extends React.Component {
             openUserSearch: false,
             menuOpen: false
         };
+        this.toggle = this.toggle.bind(this);
+        this.closeOnClick = this.closeOnClick.bind(this);
     }
 
     closeOnClick() {
-        $("document").on("click", e => {
+        $("body").on("click", e => {
             this.setState({
                 menuOpen: false
             }, () => {
                 console.log("event hit");
-                $("document").off("click");
+                console.log(this.state.menuOpen);
+                $("body").off("click");
             })
         })
         console.log("made event");
@@ -67,8 +70,10 @@ export default class ServerControls extends React.Component {
                 <div
                     className="server-controls"
                     onClick={() => {
-                        this.toggle("menuOpen");
-                        this.closeOnClick();
+                        !menuOpen && this.closeOnClick();
+                        this.setState({
+                            menuOpen: true
+                        });
                     }}
                 >
                     <h1>{server.title}</h1>
