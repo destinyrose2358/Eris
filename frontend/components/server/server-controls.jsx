@@ -5,7 +5,8 @@ export default class ServerControls extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            openUserSearch: false
+            openUserSearch: false,
+            menuOpen: false
         };
         this.toggleUserSearch = this.toggleUserSearch.bind(this);
     }
@@ -18,7 +19,7 @@ export default class ServerControls extends React.Component {
 
     render() {
         const { server } = this.props;
-        const { openUserSearch } = this.state;
+        const { openUserSearch, menuOpen } = this.state;
         let userSearchModal = openUserSearch ?
             <>
                 <div
@@ -33,7 +34,7 @@ export default class ServerControls extends React.Component {
         :
             null;
                 
-        return (
+        return ( menuOpen ?
             <>
                 <div
                     className="server-controls"
@@ -48,6 +49,15 @@ export default class ServerControls extends React.Component {
                 </div>
                 { userSearchModal }        
             </>
+            :
+            <>
+                <div
+                    className="server-controls"
+                >
+                    <h1>{server.title}</h1>
+                </div>
+            </>
+
             
         )
     }

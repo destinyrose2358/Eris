@@ -7,6 +7,7 @@
     z-index: 1200;
     background: $base-color;
     padding: 20px;
+    border-radius: 5px;
     & aside {
         display: flex;
         justify-content: space-between;
@@ -15,6 +16,16 @@
         & h1 {
             font-size: 18px;
             font-weight: 700;
+        }
+        & div svg {
+            width: 24px;
+            height: 24px;
+            & g path:last-child {
+                transition: fill 0.25s ease-in-out;
+            }
+            &:hover g path:last-child {
+                fill: white;
+            }
         }
     }
     

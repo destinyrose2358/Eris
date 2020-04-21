@@ -23,7 +23,7 @@ export default class UserSearch extends React.Component {
     }
 
     render() {
-        const {serverId, server} = this.props;
+        const {serverId, server, toggleUserSearch} = this.props;
         const {username} = this.state;
         return (
             <div
@@ -31,11 +31,14 @@ export default class UserSearch extends React.Component {
             >
                 <aside>
                     <h1>{`INVITE FRIENDS TO ${server.title.toUpperCase()}`}</h1>
-                    <SVG.close
+                    <div
                         onClick={() => {
-                            
+                            toggleUserSearch()
                         }}
-                    />
+                    >
+                        {SVG.close}
+                    </div>
+                    
                 </aside>
                 <input
                     type="text"
