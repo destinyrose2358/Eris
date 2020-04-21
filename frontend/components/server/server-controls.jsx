@@ -8,13 +8,26 @@ export default class ServerControls extends React.Component {
             openUserSearch: false,
             menuOpen: false
         };
-        this.toggleUserSearch = this.toggleUserSearch.bind(this);
     }
 
-    toggleUserSearch() {
-        this.setState((prevState) => ({
-            openUserSearch: !prevState.openUserSearch
-        }));
+    closeOnClick() {
+        $("document").on("click", e => {
+            this.setState({
+                menuOpen: false
+            }, () => {
+                console.log("event hit");
+                $("document").off("click");
+            })
+        })
+        console.log("made event");
+    }
+
+    toggle(field) {
+        return () => {
+            this.setState((prevState) => ({
+                [field]: !prevState[field]
+            }));
+        }
     }
 
     render() {
@@ -29,7 +42,7 @@ export default class ServerControls extends React.Component {
                     })}
                 >
                 </div>
-                <UserSearchContainer serverId={server.id} toggleUserSearch={this.toggleUserSearch} />
+                <UserSearchContainer serverId={server.id} toggleUserSearch={this.toggle("openUserSearch")} />
             </>
         :
             null;
@@ -53,6 +66,10 @@ export default class ServerControls extends React.Component {
             <>
                 <div
                     className="server-controls"
+                    onClick={() => {
+                        this.toggle("menuOpen");
+                        this.closeOnClick();
+                    }}
                 >
                     <h1>{server.title}</h1>
                 </div>
