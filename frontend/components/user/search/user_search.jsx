@@ -1,5 +1,6 @@
 import React from "react";
 import UserSearchListContainer from "./user_search_list_container";
+import SVG from "../../svg/base_svgs";
 
 export default class UserSearch extends React.Component {
     constructor(props) {
@@ -22,16 +23,25 @@ export default class UserSearch extends React.Component {
     }
 
     render() {
-        const {serverId} = this.props;
+        const {serverId, server} = this.props;
         const {username} = this.state;
         return (
             <div
-                className="modal-user-search"
+                className="user-search"
             >
+                <aside>
+                    <h1>{`INVITE FRIENDS TO ${server.title.toUpperCase()}`}</h1>
+                    <SVG.close
+                        onClick={() => {
+                            
+                        }}
+                    />
+                </aside>
                 <input
                     type="text"
                     value={username}
                     onChange={this.update("username")}
+                    placeholder="Search for Friends"
                 />
                 <UserSearchListContainer username={username} serverId={serverId} />
             </div>

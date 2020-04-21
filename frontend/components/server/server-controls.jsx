@@ -7,6 +7,13 @@ export default class ServerControls extends React.Component {
         this.state = {
             openUserSearch: false
         };
+        this.toggleUserSearch = this.toggleUserSearch.bind(this);
+    }
+
+    toggleUserSearch() {
+        this.setState((prevState) => ({
+            openUserSearch: !prevState.openUserSearch
+        }));
     }
 
     render() {
@@ -21,7 +28,7 @@ export default class ServerControls extends React.Component {
                     })}
                 >
                 </div>
-                <UserSearchContainer serverId={server.id} />
+                <UserSearchContainer serverId={server.id} toggleUserSearch={this.toggleUserSearch} />
             </>
         :
             null;
@@ -34,7 +41,7 @@ export default class ServerControls extends React.Component {
                     <button
                         onClick={() => this.setState({
                             openUserSearch: true
-                        }, () => console.log(this.state.openUserSearch))}
+                        })}
                     >
                         Invite People
                     </button>

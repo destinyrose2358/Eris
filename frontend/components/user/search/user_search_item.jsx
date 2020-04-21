@@ -3,7 +3,9 @@ import React from "react";
 
 const UserSearchItem = (props) => {
     return (
-        <li>
+        <li
+            className="user-search-item"
+        >
             <p>{props.user.username}</p>
             <button
                 onClick={() => {

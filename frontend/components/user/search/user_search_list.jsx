@@ -6,7 +6,7 @@ export default class UserSearchList extends React.Component {
         return (
             <ul>
                 {
-                    this.props.users.map(user => <UserSearchItem user={user} serverId={this.props.serverId} />)
+                    this.props.users.map(user => <UserSearchItem key={user.id} user={user} serverId={this.props.serverId} />)
                 }
             </ul>
         )

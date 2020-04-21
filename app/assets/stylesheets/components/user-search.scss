@@ -1,0 +1,43 @@
+.user-search {
+    position: absolute;
+    top: 25%;
+    bottom: 25%;
+    left: 25%;
+    right: 25%;
+    z-index: 1200;
+    background: $base-color;
+    padding: 20px;
+    & aside {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 20px;
+        & h1 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+    }
+    
+    &-item {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+        border-radius: 5px;
+        align-items: center;
+        & button {
+            background: transparent;
+            border: $accent-color 1px solid;
+        }
+        &:hover {
+            background: darken($base-color, 10%);
+            & button {
+                background: $accent-color;
+                &:hover {
+                    background: darken($accent-color, 10%);
+                    border: darken($accent-color, 10%) 1px solid;
+                }
+            }
+        }
+    }
+}
