@@ -68,20 +68,22 @@ export default class ServerControls extends React.Component {
                     </aside>
                     {
                         menuOpen ?
-                            <div
-                                className="server-controls-menu"
-                            >
-                                <div>
-                                    
-                                </div>
-                                <button
-                                    onClick={() => this.setState({
-                                        openUserSearch: true
-                                    })}
+                            <>
+                                <div
+                                    className="modal-server-controls"
+                                />
+                                <div
+                                    className="server-controls-menu"
                                 >
-                                    Invite People
-                                </button>
-                            </div>
+                                    <button
+                                        onClick={() => this.setState({
+                                            openUserSearch: true
+                                        })}
+                                    >
+                                        Invite People
+                                    </button>
+                                </div>
+                            </>
                         :
                             null
                     }

@@ -30,7 +30,7 @@ class Api::MembershipsController < ApplicationController
                 if @channel
                     current_user.messages.create(channel: @channel, body: "I'm inviting you to join my server #{@server.title}, if you would like to join please go to #{request.base_url}/acceptinvite/#{@membership.id}")
                     #send the membership update to the server
-                    ServersChannel.broadcast_to @server, JSON.generate({ type: "RECEIVE_PENDING_MEMBER", memberId: params[:membership][:user_id], serverId: params[:server_id] })
+                    ServersChannel.broadcast_to @server, JSON.generate({ type: "RECEIVE_PENDING_MEMBER", memberId: params[:membership][:user_id].to_i, serverId: params[:server_id].to_i })
                     #send the channel data to current_user and invitee
                     processed_channel = ApplicationController.renderer.render("api/channels/show", locals: { "@type": "RECEIVE_CHANNEL", "@channel": @channel, "@membership": @membership })
                     UsersChannel.broadcast_to current_user, processed_channel
