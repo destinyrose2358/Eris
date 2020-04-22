@@ -1,4 +1,6 @@
 import React from "react";
+import UserSearchListContainer from "./user_search_list_container";
+import SVG from "../../svg/base_svgs";
 
 export default class UserSearch extends React.Component {
     constructor(props) {
@@ -10,7 +12,7 @@ export default class UserSearch extends React.Component {
 
     update(field) {
         return e => this.setState({
-            [field]: e.currentTarger.value
+            [field]: e.currentTarget.value
         })
     }
 
@@ -21,18 +23,30 @@ export default class UserSearch extends React.Component {
     }
 
     render() {
-        const {} = this.props;
+        const {serverId, server, toggleUserSearch} = this.props;
         const {username} = this.state;
         return (
             <div
                 className="user-search"
             >
+                <aside>
+                    <h1>{`INVITE FRIENDS TO ${server.title.toUpperCase()}`}</h1>
+                    <div
+                        onClick={() => {
+                            toggleUserSearch()
+                        }}
+                    >
+                        {SVG.close}
+                    </div>
+                    
+                </aside>
                 <input
                     type="text"
                     value={username}
                     onChange={this.update("username")}
+                    placeholder="Search for Friends"
                 />
-                <UserSearchListContainer username={username} />
+                <UserSearchListContainer username={username} serverId={serverId} />
             </div>
         )
     }

@@ -1,0 +1,29 @@
+.modal-server-controls {
+    background: transparent !important;
+}
+
+.server-controls {
+    background: darken($base-color, 15%);
+    grid-area: server-controls;
+    transition: background-color 0.25s ease-in-out;
+    &:hover {
+        background: darken($base-color, 12%);
+    }
+    &-menu {
+        position: relative;
+        top: 15px;
+        background: darken($base-color, 25%);
+        padding: 5px;
+        z-index: 1000;
+        border-radius: 5px;
+        & button {
+            background: transparent;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+            &:hover {
+                background: darken($base-color, 20%);
+            }
+        }
+    }
+}

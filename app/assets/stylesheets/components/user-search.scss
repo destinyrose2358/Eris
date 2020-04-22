@@ -1,0 +1,54 @@
+.user-search {
+    position: absolute;
+    top: 25%;
+    bottom: 25%;
+    left: 25%;
+    right: 25%;
+    z-index: 1200;
+    background: $base-color;
+    padding: 20px;
+    border-radius: 5px;
+    & aside {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 20px;
+        & h1 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        & div svg {
+            width: 24px;
+            height: 24px;
+            & g path:last-child {
+                transition: fill 0.25s ease-in-out;
+            }
+            &:hover g path:last-child {
+                fill: white;
+            }
+        }
+    }
+    
+    &-item {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+        border-radius: 5px;
+        align-items: center;
+        & button {
+            background: transparent;
+            border: $accent-color 1px solid;
+        }
+        &:hover {
+            background: darken($base-color, 10%);
+            & button {
+                background: $accent-color;
+                &:hover {
+                    background: darken($accent-color, 10%);
+                    border: darken($accent-color, 10%) 1px solid;
+                }
+            }
+        }
+    }
+}

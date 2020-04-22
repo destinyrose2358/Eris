@@ -21,7 +21,7 @@ const serversReducer = (state = {}, action) => {
       return {};
     case RECEIVE_PENDING_MEMBER:
       newState = merge({}, state);
-      newState[action.serverId].pending_member_ids = [...newState[action.serverId].pending_member_ids, action.memberId].filter(distinct);
+      newState[action.serverId].pending_member_ids = Object.values(new Set([...newState[action.serverId].pending_member_ids, action.memberId]));
       return newState;
     case "RECEIVE_SERVER_MEMBERSHIP":
       newState = merge({}, state);

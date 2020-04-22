@@ -7,7 +7,7 @@
   grid-template-columns: 80px 210px 1fr 200px ;
   grid-template-rows: 60px 1fr 80px;
   grid-template-areas:
-    "nav . channel-title ."
+    "nav server-controls channel-title ."
     "nav channel-index message-index members"
     "nav user-controls message-form members"
 }
