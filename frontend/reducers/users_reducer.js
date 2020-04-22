@@ -49,6 +49,9 @@ const usersReducer = (state = {}, action) => {
         }
       );
       return newState;
+    case "RECEIVE_USERS":
+      newState = merge({}, state, action.users);
+      return newState;
     default:
       return state;
   };
