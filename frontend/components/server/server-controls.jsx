@@ -1,5 +1,6 @@
 import React from "react";
 import UserSearchContainer from "../user/search/user_search_container";
+import SVG from "../svg/base_svgs";
 
 export default class ServerControls extends React.Component {
     constructor(props) {
@@ -14,7 +15,6 @@ export default class ServerControls extends React.Component {
 
     closeOnClick() {
         $("body").on("click", e => {
-            e.stopPropagation();
             this.setState({
                 menuOpen: false
             }, () => {
@@ -52,9 +52,8 @@ export default class ServerControls extends React.Component {
                 <div
                     className="server-controls"
                     onClick={() => {
-                        !menuOpen && this.closeOnClick();
                         this.setState({
-                            menuOpen: true
+                            menuOpen: !menuOpen
                         });
                     }}
                 >
@@ -62,12 +61,19 @@ export default class ServerControls extends React.Component {
                         className="server-controls-tab"
                     >
                         <h1>{server.title}</h1>
+                        { SVG.close }
+                        <div
+                            className="server-controls-icon-mask"
+                        />
                     </aside>
                     {
                         menuOpen ?
                             <div
                                 className="server-controls-menu"
                             >
+                                <div>
+                                    
+                                </div>
                                 <button
                                     onClick={() => this.setState({
                                         openUserSearch: true

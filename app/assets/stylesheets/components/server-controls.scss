@@ -1,0 +1,23 @@
+.server-controls {
+    background: darken($base-color, 15%);
+    grid-area: server-controls;
+    transition: background-color 0.5s ease-in-out;
+    &:hover {
+        background: darken($base-color, 12%);
+    }
+    &-menu {
+        position: relative;
+        background: darken($base-color, 25%);
+        padding: 5px;
+        border-radius: 5px;
+        & button {
+            background: transparent;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+            &:hover {
+                background: darken($base-color, 20%);
+            }
+        }
+    }
+}
