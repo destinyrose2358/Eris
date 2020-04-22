@@ -1,5 +1,6 @@
 import { inviteUser } from "../../../actions/membership_actions";
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 const UserSearchItem = (props) => {
     return (
@@ -9,7 +10,8 @@ const UserSearchItem = (props) => {
             <p>{props.user.username}</p>
             <button
                 onClick={() => {
-                    inviteUser(props.serverId, props.user.id);
+                    inviteUser(props.serverId, props.user.id)
+                        .then(({channelId}) => props.history.push(`/channels/${channelId}`));
                 }}
             >
                 Invite
@@ -18,4 +20,4 @@ const UserSearchItem = (props) => {
     )
 };
 
-export default UserSearchItem;
+export default withRouter(UserSearchItem);

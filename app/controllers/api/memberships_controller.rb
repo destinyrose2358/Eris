@@ -21,7 +21,7 @@ class Api::MembershipsController < ApplicationController
         if @membership && @membership.save
             if @server
                 user = User.find_by(id: params[:membership][:user_id])
-                @channel = current_user.direct_channels.includes(:members).where(members: [current_user, user])[0]
+                @channel = current_user.direct_channels.includes(:members).joins(:members).where('members.id IN (?)': [current_user, user])[0]
                 unless @channel
                     @channel = Channel.create() 
                     @channel.members.push([current_user, user])
@@ -37,7 +37,7 @@ class Api::MembershipsController < ApplicationController
                     UsersChannel.broadcast_to user, processed_channel
                     #send message data to current_user and user
 
-                    render json: {}, status: :ok
+                    render json: {channelId: @channel.id}, status: :ok
                 else
                     @membership.delete
                     UsersChannel.broadcast_to current_user, JSON.generate({ type: "RECEIVE_MEMBERSHIP_ERRORS", errors: ["Invite failed to send, Please try again"] })
