@@ -62,10 +62,15 @@ export default class ServerControls extends React.Component {
                     >
                         <h1>{server.title}</h1>
                         { SVG.close }
+                    </aside>
+                    <div
+                        className="server-controls-icon-mask-parent"
+                    >
                         <div
                             className="server-controls-icon-mask"
                         />
-                    </aside>
+                    </div>
+                    
                     {
                         menuOpen ?
                             <>
