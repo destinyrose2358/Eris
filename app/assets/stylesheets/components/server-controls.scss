@@ -6,8 +6,40 @@
     background: darken($base-color, 15%);
     grid-area: server-controls;
     transition: background-color 0.25s ease-in-out;
+    & svg {
+        width: 25px;
+        height: 25px;
+        position: relative;
+        top: 5px;
+    }
+    &-icon-mask {
+        background: darken($base-color, 15%);
+        position: relative;
+        right: 30px;
+        top: 15px;
+        width: 20px;
+        height: 20px;
+        transition: background-color 0.25s ease-in-out;
+    }
+    &-tab {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        & h1 {
+            font-size: 20px;
+        }
+        & .active {
+            animation-duration: 0.5s;
+            animation-name: switchClose;
+        }
+    }
     &:hover {
         background: darken($base-color, 12%);
+        cursor: pointer;
+        & .server-controls-icon-mask {
+            background: darken($base-color, 12%);
+        }
     }
     &-menu {
         position: relative;
@@ -25,5 +57,11 @@
                 background: darken($base-color, 20%);
             }
         }
+    }
+}
+
+@keyframes rotateServerControlsIcon {
+    0% {
+        transform: rotate();
     }
 }
