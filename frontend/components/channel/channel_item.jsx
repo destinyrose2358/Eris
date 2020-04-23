@@ -18,7 +18,7 @@ export default class ChannelItem extends React.Component {
     return (
       <li className="channel-link">
         <Link
-          to={`/${serverId}/${channel.id}`}>
+          to={`/${serverId}/${channel && channel.id}`}>
           <p>{ channel.title || members[members.length - 1].username }</p>
         </Link>
       </li>

@@ -6,8 +6,46 @@
     background: darken($base-color, 15%);
     grid-area: server-controls;
     transition: background-color 0.25s ease-in-out;
+    padding: 5px;
+    & svg {
+        width: 25px;
+        height: 25px;
+        position: relative;
+        top: 5px;
+        transform-origin: 50% 35%;
+        transition: transform 0.25s ease-in-out;
+        & path {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &-icon-mask {
+        background: darken($base-color, 15%);
+        position: relative;
+        right: 25px;
+        top: 15px;
+        width: 30px;
+        height: 20px;
+        transition: background-color 0.25s ease-in-out;
+    }
+    &-tab {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        & h1 {
+            font-size: 20px;
+        }
+        &.active svg {
+            transform: rotate(180deg);
+        }
+    }
     &:hover {
         background: darken($base-color, 12%);
+        cursor: pointer;
+        & .server-controls-icon-mask {
+            background: darken($base-color, 12%);
+        }
     }
     &-menu {
         position: relative;

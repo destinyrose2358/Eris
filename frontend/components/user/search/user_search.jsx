@@ -13,7 +13,7 @@ export default class UserSearch extends React.Component {
     update(field) {
         return e => this.setState({
             [field]: e.currentTarget.value
-        })
+        });
     }
 
     componentDidUpdate(_, prevState) {
@@ -32,9 +32,7 @@ export default class UserSearch extends React.Component {
                 <aside>
                     <h1>{`INVITE FRIENDS TO ${server.title.toUpperCase()}`}</h1>
                     <div
-                        onClick={() => {
-                            toggleUserSearch()
-                        }}
+                        onClick={() => toggleUserSearch()}
                     >
                         {SVG.close}
                     </div>

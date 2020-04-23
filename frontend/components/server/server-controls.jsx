@@ -58,7 +58,7 @@ export default class ServerControls extends React.Component {
                     }}
                 >
                     <aside
-                        className="server-controls-tab"
+                        className={`server-controls-tab ${menuOpen && "active"}`}
                     >
                         <h1>{server.title}</h1>
                         { SVG.close }

@@ -55,7 +55,7 @@ class Api::MembershipsController < ApplicationController
     end
 
     def update
-        @membership = current_user.pending_memberships.includes(:user, memberable: { messages: :author }).find_by(id: params[:id])
+        @membership = current_user.pending_memberships.includes(:user).find_by(id: params[:id])
         if @membership && @membership.update(accepted: :true)
             if @membership.memberable_type == "Server"
                 @server = @membership.memberable
