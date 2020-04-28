@@ -21,9 +21,9 @@ class Api::MembershipsController < ApplicationController
         if @membership && @membership.save
             if @server
                 user = User.find_by(id: params[:membership][:user_id])
-                @channel = current_user.direct_channels.includes(:members).joins(:members).where('users.id': [current_user, user])[0]
+                @channel = current_user.direct_channels.includes(:members).joins(:members).where(members: [current_user, user])[0]
                 unless @channel
-                    @channel = Channel.create() 
+                    @channel = Channel.create()
                     @channel.members.push([current_user, user])
                 end
                 
@@ -32,7 +32,7 @@ class Api::MembershipsController < ApplicationController
                     #send the membership update to the server
                     ServersChannel.broadcast_to @server, JSON.generate({ type: "RECEIVE_PENDING_MEMBER", memberId: params[:membership][:user_id].to_i, serverId: params[:server_id].to_i })
                     #send the channel data to current_user and invitee
-                    processed_channel = ApplicationController.renderer.render("api/channels/show", locals: { "@type": "RECEIVE_CHANNEL", "@channel": @channel, "@membership": @membership })
+                    processed_channel = ApplicationController.renderer.render("api/channels/show", locals: { "@type": "RECEIVE_DIRECT_CHANNEL", "@channel": @channel, "@membership": @membership })
                     UsersChannel.broadcast_to current_user, processed_channel
                     UsersChannel.broadcast_to user, processed_channel
                     #send message data to current_user and user
