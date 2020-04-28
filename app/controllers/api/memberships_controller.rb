@@ -21,7 +21,7 @@ class Api::MembershipsController < ApplicationController
         if @membership && @membership.save
             if @server
                 user = User.find_by(id: params[:membership][:user_id])
-                @channel = current_user.direct_channels.includes(:members).joins(:members).where(members: [current_user, user])[0]
+                @channel = current_user.direct_channels.includes(:members).joins(:members).where(users: { id: user})[0]
                 unless @channel
                     @channel = Channel.create()
                     @channel.members.push([current_user, user])
