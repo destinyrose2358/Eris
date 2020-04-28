@@ -8,7 +8,7 @@ const receiveUser = user => ({
   user
 });
 
-const receiveUsers = users => ({
+const receiveUsers = ({users}) => ({
   type: RECEIVE_USERS,
   users
 });

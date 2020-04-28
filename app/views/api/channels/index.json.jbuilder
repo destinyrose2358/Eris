@@ -8,7 +8,4 @@ json.channels do
     end
 end
 json.channelIds @channels.map  { |channel| channel.id }
-@channels.each do |channel|
-
-end
 json.partial! "api/users/index", users: @channels.collect(&:messages).flatten.map(&:author).concat(@channels.collect(&:members).flatten).uniq

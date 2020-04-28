@@ -16,6 +16,10 @@ export default class UserSearch extends React.Component {
         });
     }
 
+    componentDidMount() {
+        this.props.fetchUsers(this.state.username);
+    }
+
     componentDidUpdate(_, prevState) {
         if ((!prevState.username && this.state.username) || (prevState.username.length >= this.state.username.length)) {
             this.props.fetchUsers(this.state.username);
