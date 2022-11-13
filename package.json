@@ -46,6 +46,6 @@
   },
   "homepage": "https://github.com/destinyrose2358/Eris#readme",
   "devDependencies": {
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.12"
   }
 }
